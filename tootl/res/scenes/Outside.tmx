@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="7" nextobjectid="21">
+ <objectgroup color="#8000ff" id="3" name="Player Starting Positions">
+  <object id="14" template="templates/player_start.tx" name="Start from Outside" type="player_start" x="210" y="66">
+   <properties>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value="res/scenes/Inside.tmx"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Hotspots">
+  <object id="12" name="Door" type="hotspot" x="174" y="30" width="18" height="36">
+   <properties>
+    <property name="action_script" value="res/scripts/load_inside.wren"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

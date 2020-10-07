@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object>
+  <properties>
+   <property name="fade_speed" type="float" value="0"/>
+   <property name="fadein_on_start" type="bool" value="false"/>
+   <property name="previous_scene_that_activates" value=""/>
+  </properties>
+  <point/>
+ </object>
+</template>

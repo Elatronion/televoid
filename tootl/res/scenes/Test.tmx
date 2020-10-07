@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="6" nextobjectid="11">
+ <objectgroup color="#8000ff" id="3" name="Player Starting Positions">
+  <object id="6" template="templates/player_start.tx" name="Start from Test2" type="player_start" x="144" y="0">
+   <properties>
+    <property name="fade_speed" type="float" value="3.123"/>
+    <property name="fadein_on_start" type="bool" value="false"/>
+    <property name="previous_scene_that_activates" value="SceneY"/>
+   </properties>
+  </object>
+  <object id="8" template="templates/player_start.tx" name="Start from Test1" type="player_start" x="144" y="30">
+   <properties>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value="SceneX"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff6347" id="5" name="Triggers">
+  <object id="9" name="Exit Outside Trigger" type="trigger" x="0" y="0.5" width="78" height="30">
+   <properties>
+    <property name="action_script" value="res/actions/action.cmd"/>
+   </properties>
+  </object>
+  <object id="10" name="Exit Outside Trigger" type="trigger" x="90" y="-30.5" width="12" height="30">
+   <properties>
+    <property name="action_script" value="res/actions/action.cmd"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
