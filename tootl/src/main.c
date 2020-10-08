@@ -7,6 +7,13 @@
 #include "text.h"
 #include "Dialogue.h"
 
+void Televoid_FollowTarget(hge_entity* entity, hge_vec3* position, follow_component* follow) {
+  if(!follow->target_pos) return;
+  if(!follow->lock_x) position->x += (follow->target_pos->x - position->x) * follow->speed * hgeDeltaTime();
+	if(!follow->lock_y) position->y += (follow->target_pos->y - position->y) * follow->speed * hgeDeltaTime();
+	if(!follow->lock_z) position->z += (follow->target_pos->z - position->z) * follow->speed * hgeDeltaTime();
+}
+
 void TelevoidSpriteSheetSystem(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
 	// Update Frame X Relative To FPS
   if(GetGameState() != GAME_PAUSE)
@@ -59,6 +66,8 @@ int main() {
   hgeResourcesLoadTexture("res/textures/inventory/item_slot.png", "GUI Inventory Slot");
 
   // Systems //
+  hgeAddSystem(system_light, 2, "position", "light");
+  hgeAddSystem(system_scenelogic, 1, "scene logic");
   hgeAddSystem(TextSystem, 1, "ActiveCamera");
 	hgeAddSystem(CharacterSystem, 3, "Character", "Transform", "SpriteSheet");
 	hgeAddSystem(PlayerCharacterControlSystem, 2, "Playable", "Character");
@@ -67,7 +76,7 @@ int main() {
   hgeAddSystem(DebugCommandsSystem, 1, "DebugCommands");
   hgeAddSystem(FreeCam, 3, "Camera", "FreeMove", "Position");
 	hgeAddSystem(CameraSystem, 3, "Camera", "Position", "Orientation");
-	hgeAddSystem(FollowTarget, 2, "Position", "Follow");
+	hgeAddSystem(Televoid_FollowTarget, 2, "Position", "Follow");
 	hgeAddSystem(SpriteRenderingSystem, 2, "Transform", "Sprite");
 	//hgeAddSystem(SpriteSheetSystem, 2, "Transform", "SpriteSheet");
   hgeAddSystem(TelevoidSpriteSheetSystem, 2, "Transform", "SpriteSheet");
@@ -98,6 +107,9 @@ int main() {
   tag_component debug_commands;
   hgeAddComponent(camera_entity, hgeCreateComponent("DebugCommands", &debug_commands, sizeof(debug_commands)));
 
+  scene_logic scene_l;
+  hgeAddComponent(camera_entity, hgeCreateComponent("scene logic", &scene_l, sizeof(scene_l)));
+
   televoidSceneLoad("res/scenes/Outside.tmx");
   //televoidRunScript("res/scripts/test.wren");
 
@@ -116,7 +128,7 @@ int main() {
 	hgeAddComponent(camera_entity, hgeCreateComponent("Follow", &camera_follow_component, sizeof(camera_follow_component)));*/
 
   // Working Dialogue System
-  hge_entity* dialogue_entity = hgeCreateEntity();
+  /*hge_entity* dialogue_entity = hgeCreateEntity();
   dialogue_component dialogue;
   dialogue.cur_message = &dialogue.root;
   strcpy(dialogue.root.str, "Hello, World: Component!");
@@ -125,7 +137,22 @@ int main() {
   AppendMessage(&dialogue.root, "This is the last message.\nSo, why not test some crazy stuff!");
   hgeAddComponent(dialogue_entity, hgeCreateComponent("Dialogue", &dialogue, sizeof(dialogue)));
 
-  televoidTextCreate("res/fonts/VCR.ttf");
+  televoidTextCreate("res/fonts/VCR.ttf");*/
+
+  hge_entity* light_entity = hgeCreateEntity();
+  hge_vec3 light_position = { 0, 16, 200 };
+  hgeAddComponent(light_entity,
+    hgeCreateComponent("position", &light_position, sizeof(light_position)));
+  hge_light light;
+  light.ambient = hgeCreateVec3(0.1f, 0.1f, 0.1f);
+  light.diffuse = hgeCreateVec3(1, 0, 0);
+  light.specular = light.diffuse;
+
+  light.constant = 1.0f;
+  light.linear = 0.0014f;
+  light.quadratic = 0.000007;
+  hgeAddComponent(light_entity,
+    hgeCreateComponent("light", &light, sizeof(light)));
 
   hgeStart();
   CleanUpForgottenDialoguePointers();

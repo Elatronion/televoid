@@ -3,6 +3,11 @@
 #include "tmx.h"
 #define MAX_SCENE_ENTITIES 200
 
+#define SCENE_TRANSITION_TIME 1
+float scene_transition_chrono = 0.0f;
+bool is_loading = false;
+char level_that_is_loading[255];
+
 int num_scene_entities = 0;
 hge_entity* scene_entities[MAX_SCENE_ENTITIES];
 char last_loaded_scene[255];
@@ -179,8 +184,27 @@ void TriggerSystem(hge_entity* entity, hge_transform* transform, trigger* c_trig
   hgeShaderSetBool(hgeResourcesQueryShader("sprite_shader"), "transparent", false);
 }
 
+void system_scenelogic(hge_entity* entity, scene_logic* scene_l) {
+  if(is_loading) {
+    scene_transition_chrono += hgeDeltaTime();
+    if(scene_transition_chrono >= SCENE_TRANSITION_TIME) {
+      load_scene(level_that_is_loading);
+      scene_transition_chrono = SCENE_TRANSITION_TIME;
+      is_loading = false;
+    }
+  } else {
+    if(scene_transition_chrono > 0) {
+      scene_transition_chrono -= hgeDeltaTime();
+    } else {
+      scene_transition_chrono = 0;
+    }
+  }
+  hgeUseShader(hgeResourcesQueryShader("framebuffer_shader"));
+  hgeShaderSetFloat(hgeResourcesQueryShader("framebuffer_shader"), "screen_alpha", 1.0 - (scene_transition_chrono / SCENE_TRANSITION_TIME));
+}
+
 // Actions
-void televoidSceneLoad(const char* scene_path) {
+void load_scene(const char* scene_path) {
   printf("Loading TMX '%s'\n", scene_path);
   tmx_map *map = tmx_load(scene_path);
   if (!map) {
@@ -198,6 +222,12 @@ void televoidSceneLoad(const char* scene_path) {
 
   strcpy(&last_loaded_scene, scene_path);
   printf("Last Loaded Scene: %s\n", last_loaded_scene);
+}
+
+void televoidSceneLoad(const char* scene_path) {
+  //load_scene(scene_path);
+  is_loading = true;
+  strcpy(level_that_is_loading, scene_path);
 }
 
 // Prefabs

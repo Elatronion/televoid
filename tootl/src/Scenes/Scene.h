@@ -15,8 +15,14 @@ typedef struct {
   bool just_entered;
 } trigger; // Detects Player (ian)
 
+typedef struct {
+  // lol wut?
+} scene_logic;
+
 // Systems
 void TriggerSystem(hge_entity* entity, hge_transform* transform, trigger* c_trigger);
+
+void system_scenelogic(hge_entity* entity, scene_logic* scene_l);
 
 // Actions
 void televoidSceneLoad(const char* scene_path);
