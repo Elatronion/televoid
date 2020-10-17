@@ -1,7 +1,7 @@
 #include "Inventory.h"
 #include "GameState.h"
 
-item items[10] = {{0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}};
+inventory_item items[10] = {{0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}};
 
 void InventoryPrint() {
   printf("Inventory:\n\t");
@@ -63,6 +63,36 @@ void InventorySystem(hge_entity* entity, tag_component* inventory) {
   hge_vec3 slot_scale = { 2 * slot_width, 2 * (slot_width*hgeWindowWidth())/hgeWindowHeight(), 1 };
   float slot_y = position.y - scale.y/2 + slot_scale.y/2
   + (2 * (0.03125*hgeWindowWidth())/hgeWindowHeight());
+
+  // ITEMS
+  // Left Half
+  for(int i = 0; i < 5; i++) {
+    // 0.046875
+    float offset = i * (slot_width*2 + 0.0234375);
+    hge_vec3 slot_position = {
+      -1 + slot_width + 0.09375 + offset,
+      slot_y,
+      -1 };
+    hgeRenderSprite(
+      hgeResourcesQueryShader("gui_shader"),
+      hgeResourcesQueryTexture(televoidGetItemName(items[i].item_id).name),
+      slot_position, slot_scale, 0.0f);
+  }
+  // Right Half
+  for(int i = 0; i < 5; i++) {
+    // 0.046875
+    float offset = i * (slot_width*2 + 0.0234375);
+    hge_vec3 slot_position = {
+      -1 + slot_width + 1.109375 + offset,
+      slot_y,
+      -1 };
+    hgeRenderSprite(
+      hgeResourcesQueryShader("gui_shader"),
+      hgeResourcesQueryTexture(televoidGetItemName(items[i+5].item_id).name),
+      slot_position, slot_scale, 0.0f);
+  }
+
+  // SLOTS
   // Left Half
   for(int i = 0; i < 5; i++) {
     // 0.046875
@@ -89,4 +119,5 @@ void InventorySystem(hge_entity* entity, tag_component* inventory) {
       hgeResourcesQueryTexture("GUI Inventory Slot"),
       slot_position, slot_scale, 0.0f);
   }
+
 }

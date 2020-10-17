@@ -2,6 +2,7 @@
 #define SCENE_H
 #include <HGE/HGE_Core.h>
 #include "Hotspot.h"
+#include "Inventory.h"
 
 typedef struct {
   char previous_scene_that_activates[255];
@@ -29,6 +30,8 @@ void televoidSceneLoad(const char* scene_path);
 
 // Prefabs
 void televoidAddDecoration(hge_vec3 position, hge_vec3 scale, const char* sprite);
+
+void televoidAddItem(hge_vec3 position, hge_vec3 scale, const char* item_name);
 
 hotspot_component* televoidAddHotspot();
 void televoidSceneAddTrigger(hge_transform transform);

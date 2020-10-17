@@ -18,6 +18,14 @@ void UnloadScene() {
   num_scene_entities = 0;
 }
 
+void ParseTMXItem(tmx_object* object) {
+  printf("Add Item '%s'\n", object->name);
+
+  hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 90 };
+  hge_vec3 scl = { object->width, object->height, 90 };
+  televoidAddItem(pos, scl, object->name);
+}
+
 void ParseTMXHotspot(tmx_object* object) {
   trigger trigger_component;
   tmx_properties* properties = object->properties;
@@ -123,6 +131,7 @@ void ParseTMXObject(tmx_object* object) {
   if(strcmp(object->type, "player_start") == 0) ParseTMXPlayerStart(object);
   else if(strcmp(object->type, "trigger") == 0) ParseTMXTrigger(object);
   else if(strcmp(object->type, "hotspot") == 0) ParseTMXHotspot(object);
+  else if(strcmp(object->type, "item") == 0)    ParseTMXItem(object);
 }
 
 void ParseTMXData(tmx_map* map) {
@@ -251,6 +260,24 @@ void televoidAddDecoration(hge_vec3 position, hge_vec3 scale, const char* path) 
   num_scene_entities++;
 }
 
+void televoidAddItem(hge_vec3 position, hge_vec3 scale, const char* item_name) {
+  if(InventoryHasItem(televoidGetItemID(item_name))) return;
+
+  hge_entity* item_entity = hgeCreateEntity();
+  hge_transform item_transform;
+  item_transform.position = position;
+  item_transform.scale = scale;
+  hgeAddComponent(item_entity, hgeCreateComponent("Transform", &item_transform, sizeof(item_transform)));
+  item_component item_c;
+  //item_c.name = malloc(strlen(item_name));
+  strcpy(item_c.name, item_name);
+  item_c.take = false;
+  hgeAddComponent(item_entity, hgeCreateComponent("Item", &item_c, sizeof(item_c)));
+
+  scene_entities[num_scene_entities] = item_entity;
+  num_scene_entities++;
+}
+
 void hotspot_default_event(){ HGE_WARNING("hotspot has no event"); }
 hotspot_component* televoidAddHotspot(hge_vec3 position, hge_vec3 scale, const char* script) {
   hge_entity* hotspot_entity = hgeCreateEntity();
@@ -305,6 +332,7 @@ void televoidAddIanPlayer(hge_vec3 position, bool face_left) {
   ian_character_component.destination = position;
   ian_character_component.speed = 20.0f;
   ian_character_component.current_hotspot = NULL;
+  ian_character_component.current_item = NULL;
   hgeAddComponent(ian_character_entity, hgeCreateComponent("Character", &ian_character_component, sizeof(ian_character_component)));
   tag_component inventory;
   hgeAddComponent(ian_character_entity, hgeCreateComponent("Inventory", &inventory, sizeof(inventory)));

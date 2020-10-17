@@ -86,6 +86,10 @@ int main() {
   hgeAddSystem(InventorySystem, 1, "Inventory");
   hgeAddSystem(TriggerSystem, 2, "Transform", "Trigger");
   hgeAddSystem(HotspotSystem, 2, "Transform", "Hotspot");
+  hgeAddSystem(ItemSystem, 2, "Transform", "Item");
+
+  // Loading
+  televoidGenerateAllItems();
 
   // Camera
   hge_entity* camera_entity = hgeCreateEntity();

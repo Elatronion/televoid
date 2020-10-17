@@ -1,7 +1,6 @@
 #include "Character.h"
 #include "GameState.h"
 #include "Scene.h"
-
 bool noclip = false;
 
 void CharacterNoclip(hge_transform* transform) {
@@ -16,6 +15,7 @@ void CharacterGroundClick(character_component* character, hge_vec3 position) {
   if(character->state == CHARACTER_INTERACTING) return;
 
   character->current_hotspot = NULL;
+  character->current_item = NULL;
   character->destination = position;
 }
 
@@ -26,6 +26,13 @@ void CharacterHotspotClick(character_component* character, hotspot_component* ho
   character->destination = hotspot->interaction_location;
 }
 
+void CharacterItemClick(character_component* character, item_component* item_c, hge_transform* transform) {
+  if(character->state == CHARACTER_INTERACTING) return;
+
+  character->current_item = item_c;
+  character->destination = transform->position;
+}
+
 // Character States
 void CharacterIdle(character_component* character, hge_vec3* position, spritesheet_component* spritesheet) {
   float offset = character->speed/8;
@@ -34,7 +41,7 @@ void CharacterIdle(character_component* character, hge_vec3* position, spriteshe
 
   if(position->x >= character->destination.x + offset || position->x <= character->destination.x - offset) {
     character->state = CHARACTER_WALKING;
-  } else if(character->current_hotspot) {
+  } else if(character->current_hotspot || character->current_item) {
     character->state = CHARACTER_INTERACTING;
     spritesheet->frame.x = 0;
   }
@@ -52,7 +59,7 @@ void CharacterWalking(character_component* character, hge_vec3* position, sprite
     position->x += character->speed * hgeDeltaTime();
     spritesheet->flipped = false;
   } else {
-    if(character->current_hotspot) {
+    if(character->current_hotspot || character->current_item) {
       character->state = CHARACTER_INTERACTING;
       spritesheet->frame.x = 0;
     } else character->state = CHARACTER_IDLE;
@@ -67,6 +74,9 @@ void CharacterInteracting(character_component* character, spritesheet_component*
     //character->current_hotspot->event();
     televoidRunScript(character->current_hotspot->script);
     character->current_hotspot = NULL;
+  } else if (character->current_item && spritesheet->frame.x == 2) {
+    character->current_item->take = true;
+    character->current_item = NULL;
   } else if(spritesheet->frame.x == 7) {
     character->state = CHARACTER_IDLE;
   }
@@ -142,7 +152,27 @@ void PlayerCharacterControlSystem(hge_entity* e, tag_component* playable, charac
 	hge_vec3 transformed_mousepos = { cam_pos->x + (hgeInputGetMousePosition().x - hgeWindowWidth()/2)/main_orth_cam_zoom, cam_pos->y + (-hgeInputGetMousePosition().y+hgeWindowHeight()/2)/main_orth_cam_zoom, 0.0f};
 
 	if(hgeInputGetMouseDown(HGE_MOUSE_LEFT)) {
+
+    item_component* intersected_item = NULL;
+    hge_transform* item_transform = NULL;
 		hotspot_component* intersected_hotspot = NULL;
+    // Find All Items
+    hge_ecs_request found_items = hgeECSRequest(1, "Item");
+    if(found_items.NUM_ENTITIES > 0)
+			for(int i = 0; i < found_items.NUM_ENTITIES; i++) {
+				hge_transform mouse_transform;
+				mouse_transform.position = transformed_mousepos;
+				mouse_transform.scale.x = 1;
+				mouse_transform.scale.y = 1;
+				hge_component transform_hge_component = found_items.entities[i]->components[hgeQuery(found_items.entities[i], "Transform")];
+				item_transform = transform_hge_component.data;
+				// Check If Our Cursor Is Intersecting Any Items
+				if(AABB(mouse_transform, *item_transform)) {
+					hge_component item_hge_component = found_items.entities[i]->components[hgeQuery(found_items.entities[i], "Item")];
+					intersected_item = item_hge_component.data;
+				}
+			}
+
 		// Find All Hotspots
 		hge_ecs_request found_hotspots = hgeECSRequest(1, "Hotspot");
 		if(found_hotspots.NUM_ENTITIES > 0)
@@ -163,11 +193,12 @@ void PlayerCharacterControlSystem(hge_entity* e, tag_component* playable, charac
 		if(intersected_hotspot) {
 			//printf("Clicked Hotspot!\n");
 			CharacterHotspotClick(character, intersected_hotspot);
-		} else {
+		} else if(intersected_item) {
+      CharacterItemClick(character, intersected_item, item_transform);
+    } else {
 			//printf("Clicked Nothing!\n");
 			CharacterGroundClick(character, transformed_mousepos);
 		}
-
 	}
 
 	// DEBUG RENDER

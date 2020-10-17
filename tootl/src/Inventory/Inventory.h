@@ -2,10 +2,11 @@
 #define INVENTORY_H
 
 #include <HGE/HGE_Core.h>
+#include "Items.h"
 
 typedef struct {
   int item_id;
-} item;
+} inventory_item;
 
 void InventorySystem(hge_entity* entity, tag_component* inventory);
 

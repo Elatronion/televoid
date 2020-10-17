@@ -3,6 +3,7 @@
 
 #include <HGE/HGE_Core.h>
 #include "Hotspot.h"
+#include "Inventory.h"
 
 typedef enum {
 	CHARACTER_IDLE, CHARACTER_WALKING, CHARACTER_INTERACTING
@@ -13,9 +14,8 @@ typedef struct {
 	hge_vec3 destination;
 	float speed;
   hotspot_component* current_hotspot;
+	item_component* current_item;
 } character_component;
-
-hge_texture debug_pointer_texture;
 
 void CharacterGroundClick(character_component* character, hge_vec3 position);
 void CharacterHotspotClick(character_component* character, hotspot_component* hotspot);
