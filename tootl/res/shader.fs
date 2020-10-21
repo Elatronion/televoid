@@ -2,7 +2,7 @@
 out vec4 FragColor;
 
 in vec3 FragPos;
-in vec3 Normal;
+//in vec3 Normal;
 in vec2 TexCoord;
 
 struct Light {
@@ -17,24 +17,41 @@ struct Light {
     float quadratic;
 };
 
+struct Material {
+  sampler2D diffuse;
+  sampler2D normal;
+};
+
 uniform Light light;
 
 layout(origin_upper_left) in vec4 gl_FragCoord;
 
-uniform sampler2D ourTexture;
+uniform Material material;
 
 uniform int transparent;
 
+uniform bool flipped;
+
 void main() {
-  if(texture(ourTexture, TexCoord).a == 0) discard;
+  if(texture(material.diffuse, TexCoord).a == 0) discard;
+
+  // obtain normal from normal map in range [0,1]
+  vec3 normal = texture(material.normal, TexCoord).rgb;
+  if(flipped) {
+    normal.x = 1.0-normal.x;
+  }
+  // transform normal vector to range [-1,1]
+  normal = normalize(normal * 2.0 - 1.0);
+
   // ambient
-  vec3 ambient = light.ambient * texture(ourTexture, TexCoord).rgb;
+  vec3 ambient = light.ambient * texture(material.diffuse, TexCoord).rgb;
 
   // diffuse
-  vec3 norm = normalize(Normal);
-  vec3 lightDir = normalize(light.position - FragPos);
+  vec3 norm = normalize(normal);
+  vec3 lightPos = vec3(light.position.xy, FragPos.z + 15);
+  vec3 lightDir = normalize(lightPos - FragPos);
   float diff = max(dot(norm, lightDir), 0.0);
-  vec3 diffuse = light.diffuse * diff * texture(ourTexture, TexCoord).rgb;
+  vec3 diffuse = light.diffuse * diff * texture(material.diffuse, TexCoord).rgb;
 
   // specular
   /*vec3 viewDir = normalize(viewPos - FragPos);
@@ -50,14 +67,14 @@ void main() {
   specular *= intensity;*/
 
   // attenuation
-  /*float distance    = length(light.position - FragPos);
+  float distance    = length(light.position - FragPos);
   float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
   ambient  *= attenuation;
   diffuse   *= attenuation;
-  //specular *= attenuation;*/
+  //specular *= attenuation;
 
   vec3 result = (ambient + diffuse/* + specular*/);
 
   FragColor = vec4(result, 1.0);
-  FragColor = texture(ourTexture, TexCoord);
+  //FragColor = texture(material.diffuse, TexCoord);
 }

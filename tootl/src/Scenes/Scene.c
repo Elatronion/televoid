@@ -323,7 +323,8 @@ void televoidAddIanPlayer(hge_vec3 position, bool face_left) {
   ian_character_spritesheet.num_frames = 7;
   ian_character_spritesheet.flipped = face_left;
   ian_character_spritesheet.playing = true;
-  ian_character_spritesheet.spritesheet = hgeLoadTexture("res/moose.png");
+  ian_character_spritesheet.spritesheet_material.diffuse = hgeLoadTexture("res/textures/sprites/moose.png");
+  ian_character_spritesheet.spritesheet_material.normal = hgeLoadTexture("res/textures/sprites/moose_normal.png");
   hgeAddComponent(ian_character_entity, hgeCreateComponent("SpriteSheet", &ian_character_spritesheet, sizeof(ian_character_spritesheet)));
   tag_component playable;
   hgeAddComponent(ian_character_entity, hgeCreateComponent("Playable", &playable, sizeof(playable)));

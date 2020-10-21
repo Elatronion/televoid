@@ -15,6 +15,9 @@ void Televoid_FollowTarget(hge_entity* entity, hge_vec3* position, follow_compon
 }
 
 void TelevoidSpriteSheetSystem(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
+  hge_shader sprite_shader = hgeResourcesQueryShader("sprite_shader");
+  hgeUseShader(sprite_shader);
+
 	// Update Frame X Relative To FPS
   if(GetGameState() != GAME_PAUSE)
 	spritesheet->time += hgeDeltaTime();
@@ -26,11 +29,14 @@ void TelevoidSpriteSheetSystem(hge_entity* entity, hge_transform* transform, spr
 	}
 
 	// Flip By Reversing X Scale
-	hge_vec3 rendering_scale = transform->scale;
+	/*hge_vec3 rendering_scale = transform->scale;
 	if(spritesheet->flipped)
-		rendering_scale.x = -rendering_scale.x;
+		rendering_scale.x = -rendering_scale.x;*/
 
-	hgeRenderSpriteSheet(hgeResourcesQueryShader("sprite_shader"), spritesheet->spritesheet, transform->position, rendering_scale, 0.0f, spritesheet->resolution, spritesheet->frame);
+  hgeShaderSetBool(sprite_shader, "flipped", spritesheet->flipped);
+	hgeRenderSpriteSheet(hgeResourcesQueryShader("sprite_shader"), spritesheet->spritesheet_material, transform->position, transform->scale, 0.0f, spritesheet->resolution, spritesheet->frame);
+
+  hgeShaderSetBool(sprite_shader, "flipped", false);
 }
 
 void DebugCommandsSystem(hge_entity* entity, tag_component debug_commands) {
@@ -64,6 +70,9 @@ int main() {
   hgeResourcesLoadTexture("res/textures/debug/hotspot.png", "debug_hotspot_texture");
   hgeResourcesLoadTexture("res/textures/inventory/inventory.png", "GUI Inventory");
   hgeResourcesLoadTexture("res/textures/inventory/item_slot.png", "GUI Inventory Slot");
+
+  hgeResourcesLoadTexture("res/textures/HGE/DEFAULT NORMAL.png", "HGE DEFAULT NORMAL");
+  //hgeResourcesLoadTexture("res/textures/sprites/moose_normal.png", "HGE DEFAULT NORMAL");
 
   // Systems //
   hgeAddSystem(system_light, 2, "position", "light");
@@ -132,7 +141,7 @@ int main() {
 	hgeAddComponent(camera_entity, hgeCreateComponent("Follow", &camera_follow_component, sizeof(camera_follow_component)));*/
 
   // Working Dialogue System
-  /*hge_entity* dialogue_entity = hgeCreateEntity();
+  hge_entity* dialogue_entity = hgeCreateEntity();
   dialogue_component dialogue;
   dialogue.cur_message = &dialogue.root;
   strcpy(dialogue.root.str, "Hello, World: Component!");
@@ -141,22 +150,22 @@ int main() {
   AppendMessage(&dialogue.root, "This is the last message.\nSo, why not test some crazy stuff!");
   hgeAddComponent(dialogue_entity, hgeCreateComponent("Dialogue", &dialogue, sizeof(dialogue)));
 
-  televoidTextCreate("res/fonts/VCR.ttf");*/
+  televoidTextCreate("res/fonts/VCR.ttf");
 
   hge_entity* light_entity = hgeCreateEntity();
-  hge_vec3 light_position = { 0, 16, 200 };
+  hge_vec3 light_position = { 40, -40, 0 };
   hgeAddComponent(light_entity,
-    hgeCreateComponent("position", &light_position, sizeof(light_position)));
+  hgeCreateComponent("position", &light_position, sizeof(light_position)));
   hge_light light;
   light.ambient = hgeCreateVec3(0.1f, 0.1f, 0.1f);
-  light.diffuse = hgeCreateVec3(1, 0, 0);
+  light.diffuse = hgeCreateVec3(1, 1, 1);
   light.specular = light.diffuse;
 
   light.constant = 1.0f;
-  light.linear = 0.0014f;
-  light.quadratic = 0.000007;
+  light.linear =    0.0014f;
+  light.quadratic = 0.000007f;
   hgeAddComponent(light_entity,
-    hgeCreateComponent("light", &light, sizeof(light)));
+  hgeCreateComponent("light", &light, sizeof(light)));
 
   hgeStart();
   CleanUpForgottenDialoguePointers();
