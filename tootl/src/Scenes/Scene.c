@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Character.h"
 #include "tmx.h"
+#include <stdint.h>
 #define MAX_SCENE_ENTITIES 200
 
 #define SCENE_TRANSITION_TIME 1
@@ -18,10 +19,74 @@ void UnloadScene() {
   num_scene_entities = 0;
 }
 
+void ParseTMXProp(tmx_object* object) {
+  tmx_property* property_depth = tmx_get_property(object->properties, "depth");
+  hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, property_depth->value.decimal };
+  hge_vec3 scl = { object->width, object->height, 0 };
+  hge_transform transform;
+  transform.position = pos;
+  transform.scale = scl;
+
+
+  char img_path[255];
+  hge_material material;
+  sprintf(img_path, "res/textures/sprites/props/%s_%s.png", object->name, "diffuse");
+  material.diffuse = hgeLoadTexture(img_path);
+  sprintf(img_path, "res/textures/sprites/props/%s_%s.png", object->name, "normal");
+  material.normal = hgeLoadTexture(img_path);
+  televoidAddProp(transform, material);
+}
+
+void ParseTMXLight(tmx_object* object) {
+  hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 2 };
+  //hge_vec3 scl = { object->width, object->height, 90 };
+  //televoidAddItem(pos, scl, object->name);
+
+  tmx_property* property_diffuse = tmx_get_property(object->properties, "diffuse");
+  tmx_property* property_ambient = tmx_get_property(object->properties, "ambient");
+  tmx_property* property_dir_x = tmx_get_property(object->properties, "dir_x");
+  tmx_property* property_dir_y = tmx_get_property(object->properties, "dir_y");
+  tmx_property* property_dir_z = tmx_get_property(object->properties, "dir_z");
+  if(!property_diffuse || !property_ambient) return;
+  /*
+  text_color.x = ((menu->hexValue >> 16) & 0xFF) / 255.0;  // Extract the RR byte
+  text_color.y = ((menu->hexValue >> 8) & 0xFF) / 255.0;   // Extract the GG byte
+  text_color.z = ((menu->hexValue) & 0xFF) / 255.0;        // Extract the BB byte
+  */
+  // ((color >> 16) & 0xFF) / 255.0; A
+  /*
+  uint32_t diffuse_color = property_diffuse->value.color;
+  uint32_t ambient_color = property_ambient->value.color;
+  hge_vec3 diffuse_vec = hgeVec3(
+    (float)((diffuse_color >> 16) & 0xFF) / 255.f,
+    (float)((diffuse_color >> 8) & 0xFF) / 255.f,
+    (float)(diffuse_color & 0xFF) / 255.f
+  );
+  hge_vec3 ambient_vec = hgeVec3(
+    (float)((ambient_color >> 16) & 0xFF) / 255.f,
+    (float)((ambient_color >> 8) & 0xFF) / 255.f,
+    (float)(ambient_color & 0xFF) / 255.f
+  );
+  printf("diffuse_color (%x)\n", property_ambient->value.color);
+  */
+  tmx_col_floats diffuse_argb = tmx_col_to_floats(property_diffuse->value.color);
+  tmx_col_floats ambient_argb = tmx_col_to_floats(property_ambient->value.color);
+  hge_vec3 diffuse_vec = { diffuse_argb.r, diffuse_argb.g, diffuse_argb.b };
+  hge_vec3 ambient_vec = { ambient_argb.r, ambient_argb.g, ambient_argb.b };
+
+  printf("AMBIENT: (%f, %f, %f)\n", ambient_vec.x, ambient_vec.y, ambient_vec.z);
+
+  if(property_dir_x && property_dir_y && property_dir_z) {
+    televoidAddDirLight(hgeVec3(property_dir_x->value.decimal, property_dir_y->value.decimal, property_dir_z->value.decimal), diffuse_vec, ambient_vec);
+  } else {
+    televoidAddPointLight(pos, diffuse_vec, ambient_vec);
+  }
+}
+
 void ParseTMXItem(tmx_object* object) {
   printf("Add Item '%s'\n", object->name);
 
-  hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 90 };
+  hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 0.5f };
   hge_vec3 scl = { object->width, object->height, 90 };
   televoidAddItem(pos, scl, object->name);
 }
@@ -33,24 +98,6 @@ void ParseTMXHotspot(tmx_object* object) {
   if(!property_action_script) return;
   char script_path[255];
   strcpy(script_path, property_action_script->value.string);
-  // Copy string data
-  /*
-
-  printf("trigger:\n\taction_script: '%s'\n", trigger_component.action_script);
-  hge_entity* entity = hgeCreateEntity();
-  hgeAddComponent(entity, hgeCreateComponent("Trigger", &trigger_component, sizeof(trigger_component)));
-  hge_transform ian_character_transform;
-  ian_character_transform.position.x = object->x + object->width/2;
-  ian_character_transform.position.y = -object->y - object->height/2;
-  ian_character_transform.position.z = 90.0f;
-  ian_character_transform.scale.x = object->width;
-  ian_character_transform.scale.y = object->height;
-  ian_character_transform.scale.z = 0.0f;
-  hgeAddComponent(entity, hgeCreateComponent("Transform", &ian_character_transform, sizeof(ian_character_transform)));
-
-  scene_entities[num_scene_entities] = entity;
-  num_scene_entities++;
-  */
   hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 90 };
   hge_vec3 scl = { object->width, object->height, 90 };
   televoidAddHotspot(pos, scl, script_path);
@@ -132,9 +179,24 @@ void ParseTMXObject(tmx_object* object) {
   else if(strcmp(object->type, "trigger") == 0) ParseTMXTrigger(object);
   else if(strcmp(object->type, "hotspot") == 0) ParseTMXHotspot(object);
   else if(strcmp(object->type, "item") == 0)    ParseTMXItem(object);
+  else if(strcmp(object->type, "light") == 0)   ParseTMXLight(object);
+  else if(strcmp(object->type, "prop") == 0)    ParseTMXProp(object);
 }
 
-void ParseTMXData(tmx_map* map) {
+void strip_filename(char *fname)
+{
+    char *end = fname + strlen(fname);
+
+    while (end > fname && *end != '/') {
+        --end;
+    }
+
+    if (end > fname) {
+        *end = '\0';
+    }
+}
+
+void ParseTMXData(tmx_map* map, const char* scene_path) {
   printf("Map Size: %dx%d\n", map->width, map->height);
 
   tmx_layer* layer = map->ly_head;
@@ -143,11 +205,18 @@ void ParseTMXData(tmx_map* map) {
 
     if(strcmp(layer->name, "background") == 0) {
       hge_vec3 scl = { layer->content.image->width, layer->content.image->height, 0 };
-      hge_vec3 pos = { scl.x/2, -scl.y/2, -90 };
-      char path[255] = "res/scenes/";
+      hge_vec3 pos = { scl.x/2, -scl.y/2, -200 };
+      char path[255] = "";
+      strcat(&path, scene_path);
+      strip_filename(&path);
+      strcat(&path, "/");
       strcat(&path, layer->content.image->source);
       printf("image path: '%s'\n", path);
-      televoidAddDecoration(pos, scl, path);
+      tmx_property* property_lit = tmx_get_property(layer->properties, "lit");
+      bool lit = false;
+      if(property_lit)
+        lit = property_lit->value.boolean;
+      televoidAddBackground(pos, scl, lit, path);
     } else {
       tmx_object_group* object_group = layer->content.objgr;
       tmx_object* object = object_group->head;
@@ -186,9 +255,10 @@ void TriggerSystem(hge_entity* entity, hge_transform* transform, trigger* c_trig
 
   hgeUseShader(hgeResourcesQueryShader("sprite_shader"));
   hgeShaderSetBool(hgeResourcesQueryShader("sprite_shader"), "transparent", true);
+  hge_material material = { hgeResourcesQueryTexture(debug_trigger_texture[index]), hgeResourcesQueryTexture("HGE DEFAULT NORMAL") };
   hgeRenderSprite(
     hgeResourcesQueryShader("sprite_shader"),
-    hgeResourcesQueryTexture(debug_trigger_texture[index]),
+    material,
     transform->position, transform->scale, 0.0f);
   hgeShaderSetBool(hgeResourcesQueryShader("sprite_shader"), "transparent", false);
 }
@@ -221,7 +291,7 @@ void load_scene(const char* scene_path) {
 		return;
 	}
   UnloadScene();
-  ParseTMXData(map);
+  ParseTMXData(map, scene_path);
   tmx_map_free(map);
 
   if(!hgeQueryEntity(1, "Player Ian")) {
@@ -240,21 +310,26 @@ void televoidSceneLoad(const char* scene_path) {
 }
 
 // Prefabs
-void televoidAddDecoration(hge_vec3 position, hge_vec3 scale, const char* path) {
+void televoidAddProp(hge_transform prop_transform, hge_material prop_material) {
+  hge_entity* prop_entity = hgeCreateEntity();
+  hgeAddComponent(prop_entity, hgeCreateComponent("transform", &prop_transform, sizeof(prop_transform)));
+  hgeAddComponent(prop_entity, hgeCreateComponent("material", &prop_material, sizeof(prop_material)));
+  scene_entities[num_scene_entities] = prop_entity;
+  num_scene_entities++;
+}
+
+void televoidAddBackground(hge_vec3 position, hge_vec3 scale, bool lit, const char* path) {
   hge_entity* decoration_entity = hgeCreateEntity();
   hge_transform transform;
   transform.position = position;
   transform.scale = scale;
-  hgeAddComponent(decoration_entity, hgeCreateComponent("Transform", &transform, sizeof(transform)));
-  hge_texture sprite = hgeResourcesQueryTexture(path);
-  printf("Sprite ID: %d\n", sprite.id);
-  if(sprite.id == -1) {
-    printf("SPRITE MUST BE LOADED!\n");
-    hgeResourcesLoadTexture(path, path);
-    sprite = hgeResourcesQueryTexture(path);
-  }
+  hgeAddComponent(decoration_entity, hgeCreateComponent("transform", &transform, sizeof(transform)));
 
-  hgeAddComponent(decoration_entity, hgeCreateComponent("Sprite", &sprite, sizeof(sprite)));
+  hge_texture sprite = hgeLoadTexture(path); //hgeResourcesQueryTexture(path);
+
+  hge_material material = { sprite, hgeResourcesQueryTexture("HGE DEFAULT NORMAL") };
+  background bg = { material, lit };
+  hgeAddComponent(decoration_entity, hgeCreateComponent("background", &bg, sizeof(bg)));
 
   scene_entities[num_scene_entities] = decoration_entity;
   num_scene_entities++;
@@ -275,6 +350,48 @@ void televoidAddItem(hge_vec3 position, hge_vec3 scale, const char* item_name) {
   hgeAddComponent(item_entity, hgeCreateComponent("Item", &item_c, sizeof(item_c)));
 
   scene_entities[num_scene_entities] = item_entity;
+  num_scene_entities++;
+}
+
+void televoidAddDirLight(hge_vec3 direction, hge_vec3 ambient, hge_vec3 diffuse) {
+  hge_entity* light_entity = hgeCreateEntity();
+  hge_dirlight light = hgeDirLight(
+    ambient,
+    diffuse,
+    hgeVec3(0, 0, 0),
+    direction
+  );
+  hgeAddComponent(light_entity,
+  hgeCreateComponent("dirlight", &light, sizeof(light)));
+
+  scene_entities[num_scene_entities] = light_entity;
+  num_scene_entities++;
+}
+
+void televoidAddPointLight(hge_vec3 position, hge_vec3 ambient, hge_vec3 diffuse) {
+  hge_entity* light_entity = hgeCreateEntity();
+  hge_vec3 light_position = position;
+  hgeAddComponent(light_entity,
+  hgeCreateComponent("position", &light_position, sizeof(light_position)));
+  hge_pointlight light = hgePointLight(
+    ambient,
+    diffuse,
+    hgeVec3(0, 0, 0), // Specular
+    1.0f,
+    0.007f/3,  //0.007f/2 0.0014f,
+    0.0002f/3  //0.0002f/2 0.000007f
+  );
+  /*light.ambient = hgeVec3(color.x * 0.1f, color.y * 0.1f, color.z * 0.1f);
+  light.diffuse = color;
+  light.specular = light.diffuse;
+
+  light.constant = 1.0f;
+  light.linear =    0.0014f;
+  light.quadratic = 0.000007f;*/
+  hgeAddComponent(light_entity,
+  hgeCreateComponent("pointlight", &light, sizeof(light)));
+
+  scene_entities[num_scene_entities] = light_entity;
   num_scene_entities++;
 }
 
@@ -323,15 +440,15 @@ void televoidAddIanPlayer(hge_vec3 position, bool face_left) {
   ian_character_spritesheet.num_frames = 7;
   ian_character_spritesheet.flipped = face_left;
   ian_character_spritesheet.playing = true;
-  ian_character_spritesheet.spritesheet_material.diffuse = hgeLoadTexture("res/textures/sprites/moose.png");
-  ian_character_spritesheet.spritesheet_material.normal = hgeLoadTexture("res/textures/sprites/moose_normal.png");
+  ian_character_spritesheet.spritesheet_material.diffuse = hgeResourcesQueryTexture("moose");
+  ian_character_spritesheet.spritesheet_material.normal = hgeResourcesQueryTexture("moose normal");
   hgeAddComponent(ian_character_entity, hgeCreateComponent("SpriteSheet", &ian_character_spritesheet, sizeof(ian_character_spritesheet)));
   tag_component playable;
   hgeAddComponent(ian_character_entity, hgeCreateComponent("Playable", &playable, sizeof(playable)));
   character_component ian_character_component;
   ian_character_component.state = CHARACTER_IDLE;
   ian_character_component.destination = position;
-  ian_character_component.speed = 20.0f;
+  ian_character_component.speed = 25.f; //20.0f;
   ian_character_component.current_hotspot = NULL;
   ian_character_component.current_item = NULL;
   hgeAddComponent(ian_character_entity, hgeCreateComponent("Character", &ian_character_component, sizeof(ian_character_component)));
@@ -342,11 +459,13 @@ void televoidAddIanPlayer(hge_vec3 position, bool face_left) {
   num_scene_entities++;
 
   // Make Camera Follow Player Position
-  hge_entity* camera_entity = hgeQueryEntity(1, "ActiveCamera");
+  hge_entity* camera_entity = hgeQueryEntity(2, "ActiveCamera", "Follow");
+  if(camera_entity) {
   follow_component* camera_follower = camera_entity->components[hgeQuery(camera_entity, "Follow")].data;
-  hge_transform* ian_transform_pointer = ian_character_entity->components[hgeQuery(ian_character_entity, "Transform")].data;
-	camera_follower->target_pos = &ian_transform_pointer->position;
-  hge_vec3* camera_position = camera_entity->components[hgeQuery(camera_entity, "Position")].data;
-  camera_position->x = position.x;
-  camera_position->y = position.y;
+    hge_transform* ian_transform_pointer = ian_character_entity->components[hgeQuery(ian_character_entity, "Transform")].data;
+  	camera_follower->target_pos = &ian_transform_pointer->position;
+    hge_vec3* camera_position = camera_entity->components[hgeQuery(camera_entity, "Position")].data;
+    camera_position->x = position.x;
+    camera_position->y = position.y;
+  }
 }

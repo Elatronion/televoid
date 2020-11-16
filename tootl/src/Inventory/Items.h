@@ -1,11 +1,10 @@
 #ifndef TELEVOID_ITEM_H
 #define TELEVOID_ITEM_H
-#define TELEVOID_MAX_ITEMS 1
 #include <HGE/HGE_ResourceManager.h>
 #include <HGE/HGE_Core.h>
 
 typedef struct {
-  const char* name;
+  char name[255];
 } item;
 
 typedef struct {
@@ -13,6 +12,7 @@ typedef struct {
   bool take;
 } item_component;
 
+//void televoidCleanAllItems()
 void televoidGenerateAllItems();
 
 item televoidGetItemName(int id);

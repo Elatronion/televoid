@@ -18,7 +18,7 @@
 # Compiler Flags
 COMPILER_FLAGS :=
 # Library Flags
-WINDOWS_LINKER_LIBS := hypergameengine.dll
+WINDOWS_LINKER_LIBS := -std=c89 freetype6.dll libxml2.dll hypergameengine.dll
 LINUX_LINKER_LIBS := -lxml2 -lhypergameengine -lfreetype
 
  ##############################################
@@ -106,7 +106,7 @@ ifeq ($(TARGET_OS), linux)
 	else
 		# Creating Executable
 		TARGET_NAME := $(TARGET_NAME).out
-		LINKER_FLAGS := $(INC_FLAGS) $(PROJECT_STRUCTURE_FLAGS)$(COMPILER_FLAGS) $(LINUX_LINKER_LIBS)
+		LINKER_FLAGS := $(INC_FLAGS) $(PROJECT_STRUCTURE_FLAGS) $(COMPILER_FLAGS) $(LINUX_LINKER_LIBS)
 	endif
 endif
 
@@ -117,13 +117,13 @@ ifeq ($(TARGET_OS), windows)
 		COMPILER ?= i686-w64-mingw32-gcc
 		ARCHIVER ?= i686-w64-mingw32-ar
 		# 32bit Linker Libs
-		PROJECT_STRUCTURE_FLAGS := -L ./lib/windows/x86_64/ -I ./inc/ -I /usr/include/ -lgdi32 -lws2_32 -lwinmm -lm
+		PROJECT_STRUCTURE_FLAGS := -L ./lib/windows/x86_64/ -I ./inc/ -lgdi32 -lws2_32 -lwinmm -lm
 	else ifeq ($(TARGET_CPU), x86_64)
 		# 64bit Compiler
 		COMPILER ?= x86_64-w64-mingw32-gcc
 		ARCHIVER ?= x86_64-w64-mingw32-ar
 		# 364bit Linker Libs
-		PROJECT_STRUCTURE_FLAGS := -L ./lib/windows/x86_64/ -I ./inc/ -I /usr/include/ -lgdi32 -lws2_32 -lwinmm -lm
+		PROJECT_STRUCTURE_FLAGS := -L ./lib/windows/x86_64/ -I ./inc/ -lgdi32 -lws2_32 -lwinmm -lm
 	endif
 	ifeq ($(ARCHIVE), true)
 		ifeq ($(ARCHIVE_STATIC), true)

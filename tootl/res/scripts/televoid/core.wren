@@ -3,7 +3,11 @@ class Scene {
 }
 
 class Inventory {
-  foreign static add(item_id)
-  foreign static remove(item_id)
-  foreign static has(item_id)
+  foreign static add(item_name)
+  foreign static remove(item_name)
+  foreign static has(item_name)
+}
+
+class Dialogue {
+  foreign static load(dialogue_file)
 }

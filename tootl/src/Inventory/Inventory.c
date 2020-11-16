@@ -11,11 +11,13 @@ void InventoryPrint() {
 }
 
 void InventoryAddItem(int item_id) {
-  for (int i = 0; i < 10; i++)
+  for (int i = 0; i < 10; i++) {
+    if(items[i].item_id == item_id) break;
     if (items[i].item_id == 0) {
       items[i].item_id = item_id;
       break;
     }
+  }
 }
 
 void InventoryRemoveItem(int item_id) {
@@ -54,9 +56,10 @@ void InventorySystem(hge_entity* entity, tag_component* inventory) {
   gui_y += (desired_y - gui_y) * 10.f * hgeDeltaTime();
   hge_vec3 position = { 0, gui_y, -0.9f };
 
+  hge_material gui_inventory_material = { hgeResourcesQueryTexture("GUI Inventory"), hgeResourcesQueryTexture("HGE DEAFULT NORMAL") };
   hgeRenderSprite(
     hgeResourcesQueryShader("gui_shader"),
-    hgeResourcesQueryTexture("GUI Inventory"),
+    gui_inventory_material,
     position, scale, 0.0f);
 
   float slot_width = 0.0703f;
@@ -73,9 +76,10 @@ void InventorySystem(hge_entity* entity, tag_component* inventory) {
       -1 + slot_width + 0.09375 + offset,
       slot_y,
       -1 };
+    hge_material gui_item_material = { hgeResourcesQueryTexture(televoidGetItemName(items[i].item_id).name), hgeResourcesQueryTexture("HGE DEAFULT NORMAL") };
     hgeRenderSprite(
       hgeResourcesQueryShader("gui_shader"),
-      hgeResourcesQueryTexture(televoidGetItemName(items[i].item_id).name),
+      gui_item_material,
       slot_position, slot_scale, 0.0f);
   }
   // Right Half
@@ -86,13 +90,15 @@ void InventorySystem(hge_entity* entity, tag_component* inventory) {
       -1 + slot_width + 1.109375 + offset,
       slot_y,
       -1 };
+    hge_material gui_item_material = { hgeResourcesQueryTexture(televoidGetItemName(items[i+5].item_id).name), hgeResourcesQueryTexture("HGE DEAFULT NORMAL") };
     hgeRenderSprite(
       hgeResourcesQueryShader("gui_shader"),
-      hgeResourcesQueryTexture(televoidGetItemName(items[i+5].item_id).name),
+      gui_item_material,
       slot_position, slot_scale, 0.0f);
   }
 
   // SLOTS
+  hge_material gui_slot_material = { hgeResourcesQueryTexture("GUI Inventory Slot"), hgeResourcesQueryTexture("HGE DEAFULT NORMAL") };
   // Left Half
   for(int i = 0; i < 5; i++) {
     // 0.046875
@@ -103,7 +109,7 @@ void InventorySystem(hge_entity* entity, tag_component* inventory) {
       -1 };
     hgeRenderSprite(
       hgeResourcesQueryShader("gui_shader"),
-      hgeResourcesQueryTexture("GUI Inventory Slot"),
+      gui_slot_material,
       slot_position, slot_scale, 0.0f);
   }
   // Right Half
@@ -116,7 +122,7 @@ void InventorySystem(hge_entity* entity, tag_component* inventory) {
       -1 };
     hgeRenderSprite(
       hgeResourcesQueryShader("gui_shader"),
-      hgeResourcesQueryTexture("GUI Inventory Slot"),
+      gui_slot_material,
       slot_position, slot_scale, 0.0f);
   }
 

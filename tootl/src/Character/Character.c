@@ -117,7 +117,8 @@ void CharacterSystem(hge_entity* e, character_component* character, hge_transfor
     hge_vec3 max_z_overlay_position = character->destination;
     max_z_overlay_position.z = 100.0f;
     hge_vec3 loc_scale = {9, 9, 1};
-	 hgeRenderSprite(hgeResourcesQueryShader("sprite_shader"), hgeResourcesQueryTexture("debug_pointer_texture"), max_z_overlay_position, loc_scale, 0.0f);
+    hge_material material = { hgeResourcesQueryTexture("debug_pointer_texture"), hgeResourcesQueryTexture("HGE DEFAULT NORMAL") };
+	 hgeRenderSprite(hgeResourcesQueryShader("sprite_shader"), material, max_z_overlay_position, loc_scale, 0.0f);
   }
 }
 
@@ -204,8 +205,9 @@ void PlayerCharacterControlSystem(hge_entity* e, tag_component* playable, charac
 	// DEBUG RENDER
 	if(IsDebugMode()) {
     hge_vec3 max_z_overlay_position = transformed_mousepos;
-    max_z_overlay_position.z = 100.0f;
+    max_z_overlay_position.z = 0.0f;
 		hge_vec3 loc_scale = {9, 9, 1};
-		hgeRenderSprite(hgeResourcesQueryShader("sprite_shader"), hgeResourcesQueryTexture("debug_pointer_texture"), max_z_overlay_position, loc_scale, 0.0f);
+    hge_material material = { hgeResourcesQueryTexture("debug_pointer_texture"), hgeResourcesQueryTexture("HGE DEFAULT NORMAL") };
+		hgeRenderSprite(hgeResourcesQueryShader("sprite_shader"), material, max_z_overlay_position, loc_scale, 0.0f);
 	}
 }

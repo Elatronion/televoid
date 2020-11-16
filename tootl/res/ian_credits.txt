@@ -5,8 +5,9 @@ Ri
 Affy M
     3D Modeler?
 
-Normal D
+Normal Canard
     Game Designer
+    Level Designer
     Artist
 
 Ari S
@@ -27,7 +28,7 @@ Watson J [away]
 Kit C
     Plush
     Art
-    Concept
+    Concepts
     
 Keaton H [away]
     Concept Art

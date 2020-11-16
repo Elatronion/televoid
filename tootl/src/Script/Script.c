@@ -12,18 +12,18 @@ void wrenSceneLoad(WrenVM* vm) {
 }
 
 void wrenInventoryAdd(WrenVM* vm) {
-  int item_id = wrenGetSlotDouble(vm, 1);
-  InventoryAddItem(item_id);
+  const char* item_name = wrenGetSlotString(vm, 1);
+  InventoryAddItem(televoidGetItemID(item_name));
 }
 
 void wrenInventoryRemove(WrenVM* vm) {
-  int item_id = wrenGetSlotDouble(vm, 1);
-  InventoryRemoveItem(item_id);
+  const char* item_name = wrenGetSlotString(vm, 1);
+  InventoryRemoveItem(televoidGetItemID(item_name));
 }
 
 void wrenInventoryHas(WrenVM* vm) {
-  int item_id = wrenGetSlotDouble(vm, 1);
-  wrenSetSlotBool(vm, 0, InventoryHasItem(item_id));
+  const char* item_name = wrenGetSlotString(vm, 1);
+  wrenSetSlotBool(vm, 0, InventoryHasItem(televoidGetItemID(item_name)));
 }
 
 WrenForeignMethodFn bindForeignMethod(
@@ -43,8 +43,7 @@ WrenForeignMethodFn bindForeignMethod(
       }
       // Other foreign methods on WrenC...
     } else if(strcmp(className, "Inventory") == 0) {
-      if (isStatic && strcmp(signature, "add(_)") == 0)
-      {
+      if (isStatic && strcmp(signature, "add(_)") == 0) {
         return wrenInventoryAdd; // C function for Inventory.add(_).
       } else if(isStatic && strcmp(signature, "remove(_)") == 0) {
         return wrenInventoryRemove; // C function for Inventory.remove(_).
