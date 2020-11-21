@@ -1,3 +1,4 @@
+//#define HGE_LOGGING
 #include <HGE/HGE_Core.h>
 #include "Character.h"
 #include "Inventory.h"
@@ -6,6 +7,7 @@
 #include "Script.h"
 #include "text.h"
 #include "Dialogue.h"
+
 
 void Televoid_FollowTarget(hge_entity* entity, hge_vec3* position, follow_component* follow) {
   if(!follow->target_pos) return;
@@ -299,8 +301,9 @@ int main(int argc, char **argv) {
   if(argc > 1) {
     televoidSceneLoad(argv[1]);
   } else {
-    HGE_WARNING("No Televoid Scene Provided.");
-    televoidSceneLoad("res/scenes/demo/Outside.tmx");
+    const char* default_scene = "res/scenes/demo/Outside.tmx";
+    HGE_WARNING("No Televoid Scene Provided, Loading default \"%s\".", default_scene);
+    televoidSceneLoad(default_scene);
   }
 
   //televoidSceneLoad("res/scenes/Outside.tmx");

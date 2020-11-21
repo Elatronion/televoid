@@ -2,6 +2,8 @@
 #include "Character.h"
 #include "tmx.h"
 #include <stdint.h>
+#include <unistd.h>
+
 #define MAX_SCENE_ENTITIES 200
 
 #define SCENE_TRANSITION_TIME 1
@@ -20,8 +22,10 @@ void UnloadScene() {
 }
 
 void ParseTMXProp(tmx_object* object) {
+  float depth = 0.0f;
   tmx_property* property_depth = tmx_get_property(object->properties, "depth");
-  hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, property_depth->value.decimal };
+  if(property_depth) depth = property_depth->value.decimal;
+  hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, depth };
   hge_vec3 scl = { object->width, object->height, 0 };
   hge_transform transform;
   transform.position = pos;
@@ -31,50 +35,54 @@ void ParseTMXProp(tmx_object* object) {
   char img_path[255];
   hge_material material;
   sprintf(img_path, "res/textures/sprites/props/%s_%s.png", object->name, "diffuse");
+  if( access( img_path, F_OK ) == -1 ) {
+    HGE_ERROR("File \"%s\" doesn't exists.", img_path);
+    return;
+  }
   material.diffuse = hgeLoadTexture(img_path);
   sprintf(img_path, "res/textures/sprites/props/%s_%s.png", object->name, "normal");
-  material.normal = hgeLoadTexture(img_path);
+  if( access( img_path, F_OK ) == -1 ) {
+    const char* default_normal = "res/textures/HGE/DEFAULT NORMAL.png";
+    HGE_WARNING("File \"%s\" doesn't exists. Using default \"%s\".", img_path, default_normal);
+    material.normal = hgeLoadTexture(default_normal);
+  } else {
+    material.normal = hgeLoadTexture(img_path);
+  }
   televoidAddProp(transform, material);
 }
 
 void ParseTMXLight(tmx_object* object) {
   hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 2 };
-  //hge_vec3 scl = { object->width, object->height, 90 };
-  //televoidAddItem(pos, scl, object->name);
 
   tmx_property* property_diffuse = tmx_get_property(object->properties, "diffuse");
   tmx_property* property_ambient = tmx_get_property(object->properties, "ambient");
   tmx_property* property_dir_x = tmx_get_property(object->properties, "dir_x");
   tmx_property* property_dir_y = tmx_get_property(object->properties, "dir_y");
   tmx_property* property_dir_z = tmx_get_property(object->properties, "dir_z");
+  if(!property_diffuse) {
+    if(object->name) {
+      HGE_ERROR("Light \"%s\" is missing light color property 'diffuse'.", object->name);
+    } else {
+      HGE_ERROR("Light is missing light color property 'diffuse'.");
+    }
+  }
+
+  if(!property_ambient) {
+    if(object->name) {
+      HGE_ERROR("Light \"%s\" is missing light color property 'ambient'.", object->name);
+    } else {
+      HGE_ERROR("Light is missing light color property 'ambient'.");
+    }
+  }
+
   if(!property_diffuse || !property_ambient) return;
-  /*
-  text_color.x = ((menu->hexValue >> 16) & 0xFF) / 255.0;  // Extract the RR byte
-  text_color.y = ((menu->hexValue >> 8) & 0xFF) / 255.0;   // Extract the GG byte
-  text_color.z = ((menu->hexValue) & 0xFF) / 255.0;        // Extract the BB byte
-  */
-  // ((color >> 16) & 0xFF) / 255.0; A
-  /*
-  uint32_t diffuse_color = property_diffuse->value.color;
-  uint32_t ambient_color = property_ambient->value.color;
-  hge_vec3 diffuse_vec = hgeVec3(
-    (float)((diffuse_color >> 16) & 0xFF) / 255.f,
-    (float)((diffuse_color >> 8) & 0xFF) / 255.f,
-    (float)(diffuse_color & 0xFF) / 255.f
-  );
-  hge_vec3 ambient_vec = hgeVec3(
-    (float)((ambient_color >> 16) & 0xFF) / 255.f,
-    (float)((ambient_color >> 8) & 0xFF) / 255.f,
-    (float)(ambient_color & 0xFF) / 255.f
-  );
-  printf("diffuse_color (%x)\n", property_ambient->value.color);
-  */
+
   tmx_col_floats diffuse_argb = tmx_col_to_floats(property_diffuse->value.color);
   tmx_col_floats ambient_argb = tmx_col_to_floats(property_ambient->value.color);
   hge_vec3 diffuse_vec = { diffuse_argb.r, diffuse_argb.g, diffuse_argb.b };
   hge_vec3 ambient_vec = { ambient_argb.r, ambient_argb.g, ambient_argb.b };
 
-  printf("AMBIENT: (%f, %f, %f)\n", ambient_vec.x, ambient_vec.y, ambient_vec.z);
+  //printf("AMBIENT: (%f, %f, %f)\n", ambient_vec.x, ambient_vec.y, ambient_vec.z);
 
   if(property_dir_x && property_dir_y && property_dir_z) {
     televoidAddDirLight(hgeVec3(property_dir_x->value.decimal, property_dir_y->value.decimal, property_dir_z->value.decimal), diffuse_vec, ambient_vec);
@@ -84,7 +92,17 @@ void ParseTMXLight(tmx_object* object) {
 }
 
 void ParseTMXItem(tmx_object* object) {
-  printf("Add Item '%s'\n", object->name);
+  if(!object->name) {
+    HGE_ERROR("Item has no name.");
+    return;
+  }
+
+  char item_path[255] = "";
+  sprintf(&item_path, "res/textures/inventory/items/%s.png", object->name);
+  if( access( item_path, F_OK ) == -1 ) {
+    HGE_ERROR("File \"%s\" doesn't exists.", item_path);
+    return;
+  }
 
   hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 0.5f };
   hge_vec3 scl = { object->width, object->height, 90 };
@@ -95,9 +113,20 @@ void ParseTMXHotspot(tmx_object* object) {
   trigger trigger_component;
   tmx_properties* properties = object->properties;
   tmx_property* property_action_script = tmx_get_property(object->properties, "action_script");
-  if(!property_action_script) return;
+  if(!property_action_script) {
+    if(object->name) {
+      HGE_ERROR("Hotspot \"%s\" has no action script.", object->name);
+    } else {
+      HGE_ERROR("Hotspot has no action script.", object->name);
+    }
+    return;
+  }
   char script_path[255];
   strcpy(script_path, property_action_script->value.string);
+  if( access( script_path, F_OK ) == -1 ) {
+    HGE_ERROR("File \"%s\" doesn't exists.", script_path);
+    return;
+  }
   hge_vec3 pos = { object->x + object->width/2, -object->y - object->height/2, 90 };
   hge_vec3 scl = { object->width, object->height, 90 };
   televoidAddHotspot(pos, scl, script_path);
@@ -107,11 +136,20 @@ void ParseTMXTrigger(tmx_object* object) {
   trigger trigger_component;
   tmx_properties* properties = object->properties;
   tmx_property* property_action_script = tmx_get_property(object->properties, "action_script");
-  if(!property_action_script) return;
-  // Copy string data
+  if(!property_action_script) {
+    if(object->name) {
+      HGE_ERROR("Hotspot \"%s\" has no action script.", object->name);
+    } else {
+      HGE_ERROR("Hotspot has no action script.", object->name);
+    }
+    return;
+  }
   strcpy(&trigger_component.action_script, property_action_script->value.string);
-
-  printf("trigger:\n\taction_script: '%s'\n", trigger_component.action_script);
+  if( access( trigger_component.action_script, F_OK ) == -1 ) {
+    HGE_ERROR("File \"%s\" doesn't exists.", trigger_component.action_script);
+    return;
+  }
+  //printf("trigger:\n\taction_script: '%s'\n", trigger_component.action_script);
   hge_entity* entity = hgeCreateEntity();
 	hgeAddComponent(entity, hgeCreateComponent("Trigger", &trigger_component, sizeof(trigger_component)));
   hge_transform ian_character_transform;
@@ -137,14 +175,11 @@ void ParseTMXPlayerStart(tmx_object* object) {
 
   if(!property_previous_scene) {
     // Error: No Previous Scene
-    HGE_ERROR("no previous scene");
-    return;
+    HGE_WARNING("No previous scene property.");
+    strcpy(&start.previous_scene_that_activates, "");
+  } else {
+    strcpy(&start.previous_scene_that_activates, property_previous_scene->value.string);
   }
-
-  //start.previous_scene_that_activates = property_previous_scene->value.string;
-  // Copy string data
-  strcpy(&start.previous_scene_that_activates, property_previous_scene->value.string);
-
 
   if(!property_face_left)
     start.face_left = false;
@@ -173,8 +208,25 @@ void ParseTMXPlayerStart(tmx_object* object) {
 }
 
 void ParseTMXObject(tmx_object* object) {
-  //printf("(%f, %f) [%f, %f] - Interactable\n", object->x, object->y, object->width, object->height);
-  printf("object type: %s\n", object->type);
+  if(!object->type) {
+    if(object->name) {
+      HGE_ERROR("TMX Object With Name \"%s\" Has No Type!", object->name);
+    } else {
+      HGE_ERROR("TMX Object Has No Type!");
+    }
+    return;
+  }
+
+  if(object->name && object->type) {
+    HGE_LOG("Parsing TMX Object \"%s\" type \"%s\"...", object->name, object->type);
+  } else if(object->name && !object->type) {
+    HGE_LOG("Parsing TMX Object \"%s\"...", object->name);
+  } else if(!object->name && object->type) {
+    HGE_LOG("Parsing TMX Object type \"%s\"...", object->type);
+  } else {
+    HGE_LOG("Parsing TMX Object ...", object->type);
+  }
+
   if(strcmp(object->type, "player_start") == 0) ParseTMXPlayerStart(object);
   else if(strcmp(object->type, "trigger") == 0) ParseTMXTrigger(object);
   else if(strcmp(object->type, "hotspot") == 0) ParseTMXHotspot(object);
@@ -200,8 +252,9 @@ void ParseTMXData(tmx_map* map, const char* scene_path) {
   printf("Map Size: %dx%d\n", map->width, map->height);
 
   tmx_layer* layer = map->ly_head;
-  while(layer != NULL) {
-    printf("Layer Name: '%s'\n", layer->name);
+  while(layer) {
+    //printf("Layer Name: '%s'\n", layer->name);
+    HGE_LOG("Parsing TMX Layer \"%s\".", layer->name);
 
     if(strcmp(layer->name, "background") == 0) {
       hge_vec3 scl = { layer->content.image->width, layer->content.image->height, 0 };
@@ -284,12 +337,16 @@ void system_scenelogic(hge_entity* entity, scene_logic* scene_l) {
 
 // Actions
 void load_scene(const char* scene_path) {
-  printf("Loading TMX '%s'\n", scene_path);
   tmx_map *map = tmx_load(scene_path);
   if (!map) {
-		tmx_perror("Cannot load map");
+    tmx_perror("Cannot load map");
+    const char* default_scene = "res/scenes/demo/Outside.tmx";
+    HGE_ERROR("Cannot load map \"%s\"!", scene_path);
+    HGE_WARNING("Loading default scene \"%s\".", default_scene);
+    load_scene(default_scene);
 		return;
 	}
+  HGE_LOG("Loading TMX \"%s\"", scene_path);
   UnloadScene();
   ParseTMXData(map, scene_path);
   tmx_map_free(map);
@@ -300,7 +357,7 @@ void load_scene(const char* scene_path) {
   }
 
   strcpy(&last_loaded_scene, scene_path);
-  printf("Last Loaded Scene: %s\n", last_loaded_scene);
+  HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
 }
 
 void televoidSceneLoad(const char* scene_path) {
