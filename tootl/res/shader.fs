@@ -2,7 +2,7 @@
 out vec4 FragColor;
 
 in vec3 FragPos;
-//in vec3 Normal;
+in vec3 Normal;
 in vec2 TexCoord;
 
 struct DirLight {
@@ -35,14 +35,11 @@ struct Material {
 uniform DirLight dirLight;
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 
-layout(origin_upper_left) in vec4 gl_FragCoord;
-
 uniform Material material;
 
-uniform bool transparent;
+layout(origin_upper_left) in vec4 gl_FragCoord;
 
-uniform bool flipped;
-uniform bool lit;
+uniform int transparent;
 
 vec3 CalcDirLight(DirLight light, vec3 normal)
 {
@@ -83,28 +80,17 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos)
 void main() {
   if(texture(material.diffuse, TexCoord).a == 0) discard;
 
-  // obtain normal from normal map in range [0,1]
-  vec3 normal = texture(material.normal, TexCoord).rgb;
-  if(flipped) {
-    normal.x = 1.0-normal.x;
-  }
-  // transform normal vector to range [-1,1]
-  normal = normalize(normal * 2.0 - 1.0);
+  bool do_lighting = false;
+  if(do_lighting) {
+    vec3 normal = texture(material.normal, TexCoord).rgb;
+    vec3 result = CalcDirLight(dirLight, normal);
 
-  //vec3 result = texture(material.diffuse, TexCoord).rgb;
-  vec3 result = CalcDirLight(dirLight, normal);
+    for(int i = 0; i < NR_POINT_LIGHTS; i++)
+          result += CalcPointLight(pointLights[i], normal, FragPos);
 
-  for(int i = 0; i < NR_POINT_LIGHTS; i++)
-        result += CalcPointLight(pointLights[i], normal, FragPos);
-        //result += vec3(1, 0, 0);
-
-  if(lit) {
     FragColor = vec4(result, 1.0);
   } else {
     FragColor = texture(material.diffuse, TexCoord);
-  }
-
-  if(transparent) {
-    FragColor.a = 0.25;
+    if(FragColor.a == 0) discard;
   }
 }

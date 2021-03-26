@@ -1,21 +1,18 @@
 #include "Character.h"
+//#include "GameState.h"
+//#include "Scene.h"
+#include <HGE/HGE_FileUtility.h>
+#include <HGE/HGE_AudioSample.h>
+#include <HGE/HGE_AudioSource.h>
+#include <HGE/HGE_Random.h>
+#include "Boombox.h"
+#include "MousePicker.h"
 #include "GameState.h"
-#include "Scene.h"
-bool noclip = false;
-
-void CharacterNoclip(hge_transform* transform) {
-  const float noclip_speed = 200.0f;
-  if(hgeInputGetKey(HGE_KEY_W)) transform->position.y += noclip_speed*hgeDeltaTime();
-  if(hgeInputGetKey(HGE_KEY_S)) transform->position.y -= noclip_speed*hgeDeltaTime();
-  if(hgeInputGetKey(HGE_KEY_A)) transform->position.x -= noclip_speed*hgeDeltaTime();
-  if(hgeInputGetKey(HGE_KEY_D)) transform->position.x += noclip_speed*hgeDeltaTime();
-}
 
 void CharacterGroundClick(character_component* character, hge_vec3 position) {
   if(character->state == CHARACTER_INTERACTING) return;
 
   character->current_hotspot = NULL;
-  character->current_item = NULL;
   character->destination = position;
 }
 
@@ -26,13 +23,6 @@ void CharacterHotspotClick(character_component* character, hotspot_component* ho
   character->destination = hotspot->interaction_location;
 }
 
-void CharacterItemClick(character_component* character, item_component* item_c, hge_transform* transform) {
-  if(character->state == CHARACTER_INTERACTING) return;
-
-  character->current_item = item_c;
-  character->destination = transform->position;
-}
-
 // Character States
 void CharacterIdle(character_component* character, hge_vec3* position, spritesheet_component* spritesheet) {
   float offset = character->speed/8;
@@ -41,16 +31,31 @@ void CharacterIdle(character_component* character, hge_vec3* position, spriteshe
 
   if(position->x >= character->destination.x + offset || position->x <= character->destination.x - offset) {
     character->state = CHARACTER_WALKING;
-  } else if(character->current_hotspot || character->current_item) {
+  } else if(character->current_hotspot) {
     character->state = CHARACTER_INTERACTING;
     spritesheet->frame.x = 0;
   }
 }
 
+bool just_steped = false;
 void CharacterWalking(character_component* character, hge_vec3* position, spritesheet_component* spritesheet) {
   float offset = character->speed/8;
   // Set Spritesheet to Walking Animation
   spritesheet->frame.y = 1;
+
+	// Feet contact frames
+	if(!just_steped && (spritesheet->frame.x == 1 || spritesheet->frame.x == 5)) {
+		int step_n = hgeRandomInt(1, 4);
+		char step_resource_name[6];
+		sprintf(step_resource_name, "step%d", step_n);
+
+		televoidBoomboxPlaySFX(step_resource_name);
+		just_steped = true;
+	} else {
+		if(just_steped && spritesheet->frame.x != 1 && spritesheet->frame.x != 5) {
+			just_steped = false;
+		}
+	}
 
   if(position->x >= character->destination.x + offset) {
     position->x -= character->speed * hgeDeltaTime();
@@ -59,7 +64,7 @@ void CharacterWalking(character_component* character, hge_vec3* position, sprite
     position->x += character->speed * hgeDeltaTime();
     spritesheet->flipped = false;
   } else {
-    if(character->current_hotspot || character->current_item) {
+    if(character->current_hotspot) {
       character->state = CHARACTER_INTERACTING;
       spritesheet->frame.x = 0;
     } else character->state = CHARACTER_IDLE;
@@ -71,35 +76,17 @@ void CharacterInteracting(character_component* character, spritesheet_component*
   spritesheet->frame.y = 2;
 
   if (character->current_hotspot && spritesheet->frame.x == 2) {
-    //character->current_hotspot->event();
-    televoidRunScript(character->current_hotspot->script);
+
+    televoidHotspotExecute(character->current_hotspot);
+
     character->current_hotspot = NULL;
-  } else if (character->current_item && spritesheet->frame.x == 2) {
-    character->current_item->take = true;
-    character->current_item = NULL;
   } else if(spritesheet->frame.x == 7) {
     character->state = CHARACTER_IDLE;
   }
 }
 
 void CharacterSystem(hge_entity* e, character_component* character, hge_transform* transform, spritesheet_component* spritesheet) {
-  if(GetGameState() == GAME_PAUSE || GetGameState() == GAME_MINIGAME) return;
-
-  /*hge_vec3 text_position = { -hgeWindowWidth()/2, -hgeWindowHeight()/2, 100 };
-  hge_vec4 text_color = { 1, 1, 1, 1 };
-  char my_text[255];
-  snprintf( my_text, 255, "pos: (%d, %d)", (int)transform->position.x, (int)transform->position.y);
-  televoidTextRenderSimple(my_text, false, text_position, 1, text_color);*/
-
-  if(IsDebugMode()) {
-    if(hgeInputGetKeyDown(HGE_KEY_V)) noclip = !noclip;
-
-    if(noclip) {
-      CharacterNoclip(transform);
-      return;
-    }
-  }
-
+  if(televoidGameState() == GAME_PAUSE) return;
 	switch(character->state) {
 		case CHARACTER_IDLE:
 			CharacterIdle(character, &transform->position, spritesheet);
@@ -111,103 +98,46 @@ void CharacterSystem(hge_entity* e, character_component* character, hge_transfor
       CharacterInteracting(character, spritesheet);
       break;
 	}
-
-	// DEBUG RENDER
-  if(IsDebugMode()) {
-    hge_vec3 max_z_overlay_position = character->destination;
-    max_z_overlay_position.z = 100.0f;
-    hge_vec3 loc_scale = {9, 9, 1};
-    hge_material material = { hgeResourcesQueryTexture("debug_pointer_texture"), hgeResourcesQueryTexture("HGE DEFAULT NORMAL") };
-	 hgeRenderSprite(hgeResourcesQueryShader("sprite_shader"), material, max_z_overlay_position, loc_scale, 0.0f);
-  }
 }
 
-void PlayerCharacterControlSystem(hge_entity* e, tag_component* playable, character_component* character) {
-	bool RIGHT = hgeInputGetKey(HGE_KEY_D);
-	bool LEFT = hgeInputGetKey(HGE_KEY_A);
-	bool UP = hgeInputGetKey(HGE_KEY_W);
-	bool DOWN = hgeInputGetKey(HGE_KEY_S);
 
+void PlayerCharacterControlSystem(hge_entity* e, tag_component* playable, character_component* character) {
   if(hgeInputGetKeyDown(HGE_KEY_ESCAPE)) {
-    switch(GetGameState()) {
-        case GAME_PLAY:
-          SetGameState(GAME_PAUSE);
-        break;
-        case GAME_PAUSE:
-          SetGameState(GAME_PLAY);
-        break;
-    }
+    if(televoidGameState() == GAME_PLAY)
+      televoidSetGameState(GAME_PAUSE);
+    else if(televoidGameState() == GAME_PAUSE)
+      televoidSetGameState(GAME_PLAY);
+    return;
   }
 
-  if(GetGameState() != GAME_PLAY) return;
+  if(televoidGameState() != GAME_PLAY) return;
 
-	hge_vec3 mouse_normalized = hgeNormalizedDeviceCoords(hgeInputGetMousePosition().x, hgeInputGetMousePosition().y);
-	float mouse_x_normalized = mouse_normalized.x;
-	float mouse_y_normalized = mouse_normalized.y;
+  if(hgeInputGetMouseDown(HGE_MOUSE_LEFT)) {
+    hge_vec3 mousepicker_raycast = mousePickerRaycast();
 
-	hge_entity* cam_entity = hgeQueryEntity(1, "ActiveCamera");
-	hge_vec3* cam_pos = cam_entity->components[hgeQuery(cam_entity, "Position")].data;
-  hge_camera* cam_camera = cam_entity->components[hgeQuery(cam_entity, "Camera")].data;
-
-	float main_orth_cam_zoom = 1/cam_camera->fov;
-	hge_vec3 transformed_mousepos = { cam_pos->x + (hgeInputGetMousePosition().x - hgeWindowWidth()/2)/main_orth_cam_zoom, cam_pos->y + (-hgeInputGetMousePosition().y+hgeWindowHeight()/2)/main_orth_cam_zoom, 0.0f};
-
-	if(hgeInputGetMouseDown(HGE_MOUSE_LEFT)) {
-
-    item_component* intersected_item = NULL;
-    hge_transform* item_transform = NULL;
-		hotspot_component* intersected_hotspot = NULL;
-    // Find All Items
-    hge_ecs_request found_items = hgeECSRequest(1, "Item");
-    if(found_items.NUM_ENTITIES > 0)
-			for(int i = 0; i < found_items.NUM_ENTITIES; i++) {
-				hge_transform mouse_transform;
-				mouse_transform.position = transformed_mousepos;
-				mouse_transform.scale.x = 1;
-				mouse_transform.scale.y = 1;
-				hge_component transform_hge_component = found_items.entities[i]->components[hgeQuery(found_items.entities[i], "Transform")];
-				item_transform = transform_hge_component.data;
-				// Check If Our Cursor Is Intersecting Any Items
-				if(AABB(mouse_transform, *item_transform)) {
-					hge_component item_hge_component = found_items.entities[i]->components[hgeQuery(found_items.entities[i], "Item")];
-					intersected_item = item_hge_component.data;
-				}
-			}
-
-		// Find All Hotspots
-		hge_ecs_request found_hotspots = hgeECSRequest(1, "Hotspot");
+    hotspot_component* intersected_hotspot = NULL;
+    // Find All Hotspots
+		hge_ecs_request found_hotspots = hgeECSRequest(1, "hotspot");
 		if(found_hotspots.NUM_ENTITIES > 0)
 			for(int i = 0; i < found_hotspots.NUM_ENTITIES; i++) {
 				hge_transform mouse_transform;
-				mouse_transform.position = transformed_mousepos;
+				mouse_transform.position = mousepicker_raycast;
 				mouse_transform.scale.x = 1;
 				mouse_transform.scale.y = 1;
-				hge_component transform_hge_component = found_hotspots.entities[i]->components[hgeQuery(found_hotspots.entities[i], "Transform")];
+				hge_component transform_hge_component = found_hotspots.entities[i]->components[hgeQuery(found_hotspots.entities[i], "transform")];
 				hge_transform* transform = transform_hge_component.data;
 				// Check If Our Cursor Is Intersecting Any Hotspots
 				if(AABB(mouse_transform, *transform)) {
-					hge_component hotspot_hge_component = found_hotspots.entities[i]->components[hgeQuery(found_hotspots.entities[i], "Hotspot")];
+					hge_component hotspot_hge_component = found_hotspots.entities[i]->components[hgeQuery(found_hotspots.entities[i], "hotspot")];
 					intersected_hotspot = hotspot_hge_component.data;
 				}
 			}
 
 		if(intersected_hotspot) {
-			//printf("Clicked Hotspot!\n");
 			CharacterHotspotClick(character, intersected_hotspot);
-		} else if(intersected_item) {
-      CharacterItemClick(character, intersected_item, item_transform);
-    } else {
-			//printf("Clicked Nothing!\n");
-			CharacterGroundClick(character, transformed_mousepos);
+		} else {
+			CharacterGroundClick(character, mousepicker_raycast);
 		}
-	}
+  }
 
-	// DEBUG RENDER
-	if(IsDebugMode()) {
-    hge_vec3 max_z_overlay_position = transformed_mousepos;
-    max_z_overlay_position.z = 0.0f;
-		hge_vec3 loc_scale = {9, 9, 1};
-    hge_material material = { hgeResourcesQueryTexture("debug_pointer_texture"), hgeResourcesQueryTexture("HGE DEFAULT NORMAL") };
-		hgeRenderSprite(hgeResourcesQueryShader("sprite_shader"), material, max_z_overlay_position, loc_scale, 0.0f);
-	}
 }

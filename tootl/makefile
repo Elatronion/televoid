@@ -18,7 +18,8 @@
 # Compiler Flags
 COMPILER_FLAGS :=
 # Library Flags
-WINDOWS_LINKER_LIBS := -std=c89 freetype6.dll libxml2.dll hypergameengine.dll
+# adding "-fstack-protector -lssp" FIXES "__strcpy_chk" when compiling dirent.h with mingw
+WINDOWS_LINKER_LIBS := -fstack-protector -lssp freetype6.dll libxml2.dll soft_oal.dll hypergameengine.dll
 LINUX_LINKER_LIBS := -lxml2 -lhypergameengine -lfreetype
 
  ##############################################

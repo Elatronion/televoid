@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="12" nextobjectid="29">
+ <objectgroup color="#ffff00" id="11" name="Hotspots">
+  <object id="25" type="hotspot" x="0" y="0" width="6" height="6">
+   <properties>
+    <property name="auto_exec" type="bool" value="true"/>
+    <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/test-minigame.wren&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

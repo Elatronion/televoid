@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="15" nextobjectid="29">
+ <imagelayer id="13" name="awesome 3d background" offsetx="390" offsety="192">
+  <image source="white.png" width="1000" height="1000"/>
+  <properties>
+   <property name="depth" type="float" value="0"/>
+   <property name="mesh" value="res/meshes/test_background_uv.obj"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="7" name="cool white background">
+  <image source="white.png" width="1000" height="1000"/>
+  <properties>
+   <property name="lit" type="bool" value="true"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="12" name="room background" offsetx="486" offsety="108">
+  <image source="room.png" width="100" height="100"/>
+  <properties>
+   <property name="depth" type="float" value="10"/>
+  </properties>
+ </imagelayer>
+ <objectgroup color="#00ff00" id="10" name="Props">
+  <object id="20" name="chair" type="prop" x="444" y="168" width="15" height="22">
+   <properties>
+    <property name="depth" type="float" value="-5"/>
+   </properties>
+  </object>
+  <object id="24" name="TV" type="prop" x="462" y="168" width="15" height="12">
+   <properties>
+    <property name="depth" type="float" value="-15"/>
+   </properties>
+  </object>
+  <object id="26" name="chair" type="prop" x="390" y="168" width="15" height="22">
+   <properties>
+    <property name="depth" type="float" value="5"/>
+   </properties>
+  </object>
+  <object id="27" name="chair" type="prop" x="390" y="168" width="15" height="22">
+   <properties>
+    <property name="depth" type="float" value="-15"/>
+   </properties>
+  </object>
+  <object id="28" name="chair" type="prop" x="390" y="168" width="15" height="22">
+   <properties>
+    <property name="depth" type="float" value="-5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#8000ff" id="3" name="Player Starting Positions">
+  <object id="21" name="Ian Spawn from Outside" type="player_start" x="570" y="192">
+   <properties>
+    <property name="face_left" type="bool" value="true"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value="res/scenes/demo/Outside.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="22" name="Ian Spawn from NULL" type="player_start" x="498" y="192">
+   <properties>
+    <property name="face_left" type="bool" value="true"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffffff" id="9" name="Lights">
+  <object id="16" type="light" x="426" y="180">
+   <properties>
+    <property name="ambient" type="color" value="#ffffffff"/>
+    <property name="diffuse" type="color" value="#ff9a9996"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" type="light" x="0" y="0">
+   <properties>
+    <property name="ambient" type="color" value="#ff000000"/>
+    <property name="diffuse" type="color" value="#ff000000"/>
+    <property name="dir_x" type="float" value="0.5"/>
+    <property name="dir_y" type="float" value="-0.5"/>
+    <property name="dir_z" type="float" value="0"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff6347" id="5" name="Triggers">
+  <object id="10" name="Exit Outside Trigger" type="trigger" x="594" y="156" width="8.94318" height="35.892">
+   <properties>
+    <property name="exec_on_enter" type="bool" value="true"/>
+    <property name="exec_on_exit" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playSFX(&quot;VCR Flap In&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="11" name="Hotspots">
+  <object id="25" type="hotspot" x="516" y="162" width="36" height="30">
+   <properties>
+    <property name="snippet">//Inventory.add(&quot;blue_key&quot;)
+Scene.load(&quot;res/scenes/arcade.tmx&quot;)</property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="8" name="Items">
+  <object id="12" name="key" type="item" x="462" y="186" width="9" height="9"/>
+ </objectgroup>
+</map>

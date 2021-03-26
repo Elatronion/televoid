@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="16" nextobjectid="30">
+ <objectgroup color="#ff0000" id="15" name="Floor">
+  <object id="29" x="0" y="240">
+   <polyline points="0,0 108,0 156,-18 282,-18 324,30"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" id="10" name="Props"/>
+ <objectgroup color="#8000ff" id="3" name="Player Starting Positions">
+  <object id="22" name="Ian Spawn from NULL" type="player_start" x="0" y="240">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffffff" id="9" name="Lights"/>
+ <objectgroup color="#ff6347" id="5" name="Triggers"/>
+ <objectgroup color="#ffff00" id="11" name="Hotspots">
+  <object id="25" type="hotspot" x="30" y="210" width="18" height="30">
+   <properties>
+    <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/breakout.wren&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="8" name="Items"/>
+</map>

@@ -9,6 +9,7 @@ out vec2 TexCoord;
 
 out vec3 FragPos;
 out vec3 Normal;
+
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
@@ -21,7 +22,8 @@ uniform int image_resx;
 uniform int image_resy;
 uniform int frame_x;
 uniform int frame_y;
-uniform bool flipped;
+
+uniform float runtime;
 
 void DoSpriteSheetMath() {
   float size_x = float(frame_resolution_x)/float(image_resx);
@@ -36,19 +38,11 @@ void DoSpriteSheetMath() {
 void main()
 {
     gl_Position = projection * view * model * vec4(aPos, 1.0);
+    TexCoord = vec2(aTexCoord.x, 1.0 - aTexCoord.y);
 
-    if(flipped) {
-      TexCoord = vec2(1.0 - aTexCoord.x, 1.0-aTexCoord.y);
-    } else {
-      TexCoord = vec2(aTexCoord.x, 1.0-aTexCoord.y);
-    }
+    if(is_spritesheet)
+      DoSpriteSheetMath();
 
     FragPos = vec3(model * vec4(aPos, 1.0));
-    vec3 aNormal = vec3(0, 0, 1);
     Normal = aNormal;
-    //Normal = mat3(transpose(inverse(model))) * aNormal;
-
-    // Sprite Sheet
-    if(!is_spritesheet) return;
-    DoSpriteSheetMath();
 }

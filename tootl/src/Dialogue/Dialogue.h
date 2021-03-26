@@ -2,40 +2,38 @@
 #define DIALOGUE_H
 #include <HGE/HGE_Core.h>
 
-/*
-  IMPORTANT NOTE:
-  ONLY ONE DIALOGUE COMPONENT SHOULD EXIST AT ANY GIVING TIME
-  CAUSES MEMORY LEAK, AMONG OTHER ISSUES
-*/
+typedef enum {
+  DIALOGUE_MESSAGE,
+  DIALOGUE_SCRIPT,
+  DIALOGUE_SNIPPET,
+  DIALOGUE_LEFT_SPRITE,
+  DIALOGUE_RIGHT_SPRITE
+} dialogue_event_type;
 
 typedef struct {
-  char str[255];
-  char left_sprite[255];
-  char right_sprite[255];
-  void* next;
-} dialogue_message;
+  dialogue_event_type type;
+  const char* data;
+} dialogue_event;
+
+typedef struct dialogue_event_node_t {
+  dialogue_event event;
+  struct dialogue_event_node_t* next;
+} dialogue_event_node;
 
 typedef struct {
-  dialogue_message* root;
-  dialogue_message* cur_message;
-  float gui_y;
-  float character_left_y;
-  float character_right_y;
-  bool closing;
+  dialogue_event_node* head;
+  dialogue_event_node* current;
+  hge_texture left_character_sprite;
+  hge_texture right_character_sprite;
 } dialogue_component;
 
-void LoadDialogue(const char* dialogue_path);
+dialogue_event_node* dialogue_event_create(dialogue_event_type type, const char* data);
+void dialogue_event_destroy(dialogue_event_node* event_node);
+void dialogue_event_destroy_list(dialogue_event_node* head);
+void dialogue_event_push_list(dialogue_event_node* head, dialogue_event_node* node);
 
-dialogue_component CreateDialogue(const char* str, const char* left_sprite, const char* right_sprite);
-void AppendMessage(dialogue_message* root, const char* str, const char* left_sprite, const char* right_sprite);
-void DeleteDialogueTree(dialogue_message* root);
+dialogue_event_node* dialogue_load(const char* file_path);
 
-void DialogueSystem(hge_entity* entity, dialogue_component* dialogue);
-
-void CleanUpForgottenDialoguePointers();
-
-// Prefabs
-
-void televoidCreateDialogue();
+void system_dialogue(hge_entity* entity, dialogue_component* dialogue);
 
 #endif

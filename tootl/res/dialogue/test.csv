@@ -1,0 +1,11 @@
+TYPE,DATA
+LEFT,IAN_IDLE
+RIGHT,FRANK_IDLE
+MESSAGE,"Hello, World!"
+SNIPPET,"System.print(“Hello, World!”)"
+RIGHT,SAM_IDLE
+MESSAGE,"I can’t believe this is working!
+And that is how we switch lines!"
+SCRIPT,res/scripts/camera_shake.wren
+RIGHT,FRANK_IDLE
+MESSAGE,WHAT WAS THAT!!?!?!

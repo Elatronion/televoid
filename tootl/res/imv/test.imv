@@ -1,0 +1,68 @@
+# Like Wavefront .obj file
+# Will have editor, saver, and loader.
+
+# TODO: Implement z-axis rotation 'r'
+# TODO: Keyframe color (including opacity) (extra properties)
+
+# Maybe TODO: Masking (Televoid Intro)
+# Editor TODO: Layering
+
+# Should be able to interact with scene world?
+# Would allow for easy cinematics.
+
+ #################
+# Suggested Ideas #
+ #################
+
+ # Asset Loading
+
+ ###################
+# Implemented Ideas #
+ ###################
+
+# Element
+# e x y z sx sy sz r "texture name"
+# Text Element
+# t x y z sy "text"
+# Scene Object
+# o first_keyframe_type "scene entity name"
+# Keyframe
+# k type property time value
+# Script / Snippet
+# s time "res/scripts/test.wren"
+
+e 0 0 0 64 64 0 0 "GUI Inventory Slot"
+d 0 "GUI Inventory Slot"
+d 1 "WOOD TABLE BACKGROUND"
+k easeinout x 0 0
+k easeinout x 3 100
+k easeinout x 6 -100
+k easeinout x 9 0
+k easeinout x 10 0
+k easeinout y 0 0
+k easeinout y 3 100
+k easeinout y 6 -100
+k easeinout y 9 0
+k easeinout r 0 0
+k easeinout r 4.5 45
+k easeinout r 9 0
+
+o easeinout "camera"
+k easeinout x 5 463
+k easeinout y 5 -179
+k easeinout z 5 50
+k easeinout z 7 50
+
+t 0 0 0 2 "template"
+d 1 "1"
+d 2 "2"
+d 3 "3"
+d 4 "4"
+d 5 "5"
+k easeinout y 0 0
+k easeinout y 3 100
+k easeinout y 6 0
+
+
+s 3 "res/scripts/test.wren"
+s 3 "System.print("Hello, Snippet!")"

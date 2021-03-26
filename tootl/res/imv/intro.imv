@@ -1,0 +1,334 @@
+# Intro animation by Ezra Hradecky (Elatronion)
+
+# Animation Length in Seconds: 102
+
+# Used To Keep Animation Alive, Please Fix... #
+e 1280 720 0 0 0 0 0 "GUI Inventory Slot"
+k hold x 0 0
+k hold x 102 0
+
+# music : m
+
+m "Gone"
+s 100 "Scene.load("res/scenes/test.tmx")"
+
+e 0 0 -1 100000 100000 0 0 "IMV INTRO WHITE"
+k hold colorA 0 0
+k hold colorA 70.23 1
+k hold colorA 96 0
+# ...
+k easeinout colorA 102 0
+e 0 0 0 1000 1000 0 0 "IMV INTRO IAN-WIND-frame1"
+d 70.500000 "IMV INTRO IAN-WIND-frame1"
+d 70.830002 "IMV INTRO IAN-WIND-frame2"
+d 71.160004 "IMV INTRO IAN-WIND-frame3"
+d 71.490005 "IMV INTRO IAN-WIND-frame1"
+d 71.820007 "IMV INTRO IAN-WIND-frame2"
+d 72.150009 "IMV INTRO IAN-WIND-frame3"
+d 72.480011 "IMV INTRO IAN-WIND-frame1"
+d 72.810013 "IMV INTRO IAN-WIND-frame2"
+d 73.140015 "IMV INTRO IAN-WIND-frame3"
+d 73.470016 "IMV INTRO IAN-WIND-frame1"
+d 73.800018 "IMV INTRO IAN-WIND-frame2"
+d 74.130020 "IMV INTRO IAN-WIND-frame3"
+d 74.460022 "IMV INTRO IAN-WIND-frame1"
+d 74.790024 "IMV INTRO IAN-WIND-frame2"
+d 75.120026 "IMV INTRO IAN-WIND-frame3"
+d 75.450027 "IMV INTRO IAN-WIND-frame1"
+d 75.780029 "IMV INTRO IAN-WIND-frame2"
+d 76.110031 "IMV INTRO IAN-WIND-frame3"
+d 76.440033 "IMV INTRO IAN-WIND-frame1"
+d 76.770035 "IMV INTRO IAN-WIND-frame2"
+d 77.100037 "IMV INTRO IAN-WIND-frame3"
+d 77.430038 "IMV INTRO IAN-WIND-frame1"
+d 77.760040 "IMV INTRO IAN-WIND-frame2"
+d 78.090042 "IMV INTRO IAN-WIND-frame3"
+d 78.420044 "IMV INTRO IAN-WIND-frame1"
+d 78.750046 "IMV INTRO IAN-WIND-frame2"
+d 79.080048 "IMV INTRO IAN-WIND-frame3"
+d 79.410049 "IMV INTRO IAN-WIND-frame1"
+d 79.740051 "IMV INTRO IAN-WIND-frame2"
+d 80.070053 "IMV INTRO IAN-WIND-frame3"
+d 80.400055 "IMV INTRO IAN-WIND-frame1"
+d 80.730057 "IMV INTRO IAN-WIND-frame2"
+d 81.060059 "IMV INTRO IAN-WIND-frame3"
+d 81.390060 "IMV INTRO IAN-WIND-frame1"
+d 81.720062 "IMV INTRO IAN-WIND-frame2"
+d 82.050064 "IMV INTRO IAN-WIND-frame3"
+d 82.380066 "IMV INTRO IAN-WIND-frame1"
+d 82.710068 "IMV INTRO IAN-WIND-frame2"
+d 83.040070 "IMV INTRO IAN-WIND-frame3"
+d 83.370071 "IMV INTRO IAN-WIND-frame1"
+d 83.700073 "IMV INTRO IAN-WIND-frame2"
+d 84.030075 "IMV INTRO IAN-WIND-frame3"
+d 84.360077 "IMV INTRO IAN-WIND-frame1"
+d 84.690079 "IMV INTRO IAN-WIND-frame2"
+d 85.020081 "IMV INTRO IAN-WIND-frame3"
+d 85.350082 "IMV INTRO IAN-WIND-frame1"
+d 85.680084 "IMV INTRO IAN-WIND-frame2"
+d 86.010086 "IMV INTRO IAN-WIND-frame3"
+d 86.340088 "IMV INTRO IAN-WIND-frame1"
+d 86.670090 "IMV INTRO IAN-WIND-frame2"
+d 87.000092 "IMV INTRO IAN-WIND-frame3"
+d 87.330093 "IMV INTRO IAN-WIND-frame1"
+d 87.660095 "IMV INTRO IAN-WIND-frame2"
+d 87.990097 "IMV INTRO IAN-WIND-frame3"
+d 88.320099 "IMV INTRO IAN-WIND-frame1"
+d 88.650101 "IMV INTRO IAN-WIND-frame2"
+d 88.980103 "IMV INTRO IAN-WIND-frame3"
+d 89.310104 "IMV INTRO IAN-WIND-frame1"
+d 89.640106 "IMV INTRO IAN-WIND-frame2"
+d 89.970108 "IMV INTRO IAN-WIND-frame3"
+d 90.300110 "IMV INTRO IAN-WIND-frame1"
+d 90.630112 "IMV INTRO IAN-WIND-frame2"
+d 90.960114 "IMV INTRO IAN-WIND-frame3"
+d 91.290115 "IMV INTRO IAN-WIND-frame1"
+d 91.620117 "IMV INTRO IAN-WIND-frame2"
+d 91.950119 "IMV INTRO IAN-WIND-frame3"
+d 92.280121 "IMV INTRO IAN-WIND-frame1"
+d 92.610123 "IMV INTRO IAN-WIND-frame2"
+d 92.940125 "IMV INTRO IAN-WIND-frame3"
+d 93.270126 "IMV INTRO IAN-WIND-frame1"
+d 93.600128 "IMV INTRO IAN-WIND-frame2"
+d 93.930130 "IMV INTRO IAN-WIND-frame3"
+d 94.260132 "IMV INTRO IAN-WIND-frame1"
+d 94.590134 "IMV INTRO IAN-WIND-frame2"
+d 94.920135 "IMV INTRO IAN-WIND-frame3"
+d 95.250137 "IMV INTRO IAN-WIND-frame1"
+d 95.580139 "IMV INTRO IAN-WIND-frame2"
+d 95.910141 "IMV INTRO IAN-WIND-frame3"
+d 96.240143 "IMV INTRO IAN-WIND-frame1"
+d 96.570145 "IMV INTRO IAN-WIND-frame2"
+d 96.900146 "IMV INTRO IAN-WIND-frame3"
+d 97.230148 "IMV INTRO IAN-WIND-frame1"
+d 97.560150 "IMV INTRO IAN-WIND-frame2"
+d 97.890152 "IMV INTRO IAN-WIND-frame3"
+d 98.220154 "IMV INTRO IAN-WIND-frame1"
+d 98.550156 "IMV INTRO IAN-WIND-frame2"
+d 98.880157 "IMV INTRO IAN-WIND-frame3"
+d 99.210159 "IMV INTRO IAN-WIND-frame1"
+d 99.540161 "IMV INTRO IAN-WIND-frame2"
+d 99.870163 "IMV INTRO IAN-WIND-frame3"
+d 100.200165 "IMV INTRO IAN-WIND-frame1"
+d 100.530167 "IMV INTRO IAN-WIND-frame2"
+d 100.860168 "IMV INTRO IAN-WIND-frame3"
+d 101.190170 "IMV INTRO IAN-WIND-frame1"
+d 101.520172 "IMV INTRO IAN-WIND-frame2"
+d 101.850174 "IMV INTRO IAN-WIND-frame3"
+
+k linear sx 70.5 1000
+k linear sy 70.5 1000
+
+k linear sx 102 800
+k linear sy 102 800
+
+k hold colorA 0 0
+k hold colorA 70.23 1
+k hold colorA 96 0
+# ...
+k hold colorA 102 0
+
+
+
+
+e -2000 -200 0 900 900 0 0 "IMV INTRO PRINTER"
+k hold colorA 0 0
+k hold colorA 40.73 1
+k hold colorA 70.23 0
+# ...
+k hold colorA 102 0
+
+k easeinout x 40.73 -2000
+k easeinout x 70.23 -400
+
+e -400 -100 0 800 800 0 0 "IMV INTRO TV-TABLE"
+k hold colorA 0 0
+k hold colorA 40.73 1
+k hold colorA 70.23 0
+# ...
+k hold colorA 102 0
+
+k easeinout x 40.73 -400
+k easeinout x 70.23 0
+
+e -100 0 0 800 800 0 0 "IMV INTRO CHAIR"
+k hold colorA 0 0
+k hold colorA 40.73 1
+k hold colorA 70.23 0
+# ...
+k hold colorA 102 0
+
+k easeinout x 40.73 -100
+k easeinout x 70.23 175
+
+e -350 115 0 800 800 0 0 "IMV INTRO PLANT"
+k hold colorA 0 0
+k hold colorA 40.73 1
+k hold colorA 70.23 0
+# ...
+k hold colorA 102 0
+
+k easeinout x 40.73 -350
+k easeinout x 70.23 -150
+
+e 350 25 0 400 400 0 0 "IMV INTRO EX-BIKE"
+k hold colorA 0 0
+k hold colorA 40.73 1
+k hold colorA 70.23 0
+# ...
+k hold colorA 102 0
+
+k easeinout x 40.73 350
+k easeinout x 70.23 500
+
+
+# y 150
+t -24 125 0 1 "Lyrics Will Go Here"
+k linear y 0 125
+k linear y 40.73  280
+k linear x 0 -15
+k linear x 40.73  -44
+
+#k linear x 0 50
+#k linear y 0 50
+#k linear sy 0 1
+
+#k linear x 40.73  275
+#k linear y 40.73  0
+#k linear sy 40.73  2
+
+# Make Text Yellow
+k linear colorR 0 0
+k linear colorG 0 0
+k linear colorB 0 0
+k linear colorR 1 0.996078431373
+k linear colorG 1 0.8
+k linear colorB 1 0.043137254902
+
+d 0 ""
+d 11.13 "I'LL"
+d 12.83 "SEE"
+d 13.86 "YOU"
+d 14.33 "A"
+d 14.83 "AGAIN"
+d 15.73 "DON'T"
+d 16.16 "KNOW"
+d 16.66 "WHEN"
+d 17.56 "BUT"
+d 18 "I"
+d 18.46 "NEED"
+d 19.36 "YOU"
+d 19.83 "TO"
+d 20.33 "SPARE"
+d 21.26 "ME"
+d 21.73 "A"
+d 22.16 "THOUGHT"
+d 23.1 "WHILE"
+d 23.56 "I'M"
+d 24.03 "GONE"
+d 24.93 "THINK"
+d 25.36 "OF"
+d 25.86 "ME"
+d 26.76 "ONCE"
+d 27.26 "OR"
+d 27.6 "TWICE"
+d 28.63 "WOULD"
+d 29.1 "BE"
+d 29.53 "NICE"
+d 30.46 "CAUSE"
+d 30.93 "AL"
+d 31.4 "ALTHOUGH"
+d 32.3 "I"
+d 32.8 "AM"
+d 33.23 "GONE"
+d 34.16 "I"
+d 34.63 "STILL"
+d 35.06 "NEED"
+d 36 "TO"
+d 36.43 "BE"
+d 36.9 "LOVED"
+d 37.83 "TO"
+d 38.3 "LIVE"
+d 38.76 "ON"
+d 40.73 ""
+
+d 102 "FIN"
+
+
+# x1 : 120 x 66
+# x4 : 480 264
+# x6 : 720 x 369
+# x10 : 1200 x 660
+# x15 : 1800 x 990
+# x20 : 2400 x 1320
+# x30 : 3600 x 1980
+e 0 0 0 480 264 0 0 "IMV INTRO Ian Sit 1"
+k linear y 0 0
+k linear sx 0 480
+k linear sy 0 264
+k linear sz 0 0
+
+k linear y 40.73 -400
+k linear sx 40.73 3600
+k linear sy 40.73 1980
+k linear sz 40.73 0
+
+k linear y 96 -400
+k linear sx 96 3600
+k linear sy 96 1980
+k linear sz 96 0
+
+k linear y 120 -200
+k linear sx 120 2400
+k linear sy 120 1320
+k linear sz 120 0
+
+
+k hold colorA 0 1
+k hold colorA 40.73 0
+k hold colorA 96 1
+# ...
+k hold colorA 102 0
+
+
+# x1 : 1220 x 1450
+# x4 : 4880 x 5800
+# x30 : 36600 x 43500
+e 0 0 2 4880 5800 0 0 "IMV INTRO Door Close"
+k easeinout sx 0 4880
+k easeinout sy 0 5800
+k easeinout sz 0 2
+
+d 0 "IMV INTRO Door Close"
+d 3.76 "IMV INTRO Door Open"
+d 40.73  "IMV INTRO Door Open"
+
+k easeinout sx 25.5 36600
+k easeinout sy 25.5 43500
+k easeinout sz 25.5 2
+
+k hold colorA 0 1
+k hold colorA 38.76 0
+
+# x1 : 122 x 145
+# x4 : 488 x 580
+# x30 : 3660 x 4350
+e 0 0 1 488 580 0 0 "IMV INTRO Door Static"
+k easeinout sx 0 488
+k easeinout sy 0 580
+k easeinout sz 0 1
+k easeinout colorA 5 1
+
+k easeinout sx 25.5 3660
+k easeinout sy 25.5 4350
+k easeinout sz 25.5 1
+k easeinout colorA 15 0
+
+# White Flash
+e 0 0 10 100000 100000 0 0 "IMV INTRO WHITE"
+k hold colorA 0 0
+k hold colorA 40.73 1
+k easeinout colorA 44.63 0
+
+k hold colorA 70.23 1
+k easeinout colorA 73.63 0

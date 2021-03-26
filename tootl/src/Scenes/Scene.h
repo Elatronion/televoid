@@ -1,48 +1,42 @@
 #ifndef SCENE_H
 #define SCENE_H
 #include <HGE/HGE_Core.h>
+#include <HGE/HGE_ResourceManager.h>
+
+#include "Dialogue.h"
 #include "Hotspot.h"
+#include "Trigger.h"
+#include "Prop.h"
+
+#include "Character.h"
+#include "MousePicker.h"
+#include "Hotspot.h"
+#include "GameState.h"
+#include "Dialogue.h"
+#include "SafeTrash.h"
 #include "Inventory.h"
+#include "Minigame.h"
+#include "IMVPlayer.h"
 
-typedef struct {
-  char previous_scene_that_activates[255];
-  bool face_left;
-  bool fadein_on_start;
-  float fade_speed;
-} player_start;
+#include "IMVPlayer.h"
 
-typedef struct {
-  char action_script[255];
-  bool just_entered;
-} trigger; // Detects Player (ian)
+hge_entity* televoidSceneGetEntity(const char* name);
 
-typedef struct {
-  // lol wut?
-} scene_logic;
+void televoidSceneAddEntity(hge_entity* entity, const char* name);
+void televoidSceneDestroy();
 
-typedef struct {
-  hge_material material;
-  bool lit;
-} background;
+void televoidLoadScene(const char* scene_path);
+void televoidSceneUpdate();
 
-// Systems
-void TriggerSystem(hge_entity* entity, hge_transform* transform, trigger* c_trigger);
+hge_transform* televoid_player_transform();
 
-void system_scenelogic(hge_entity* entity, scene_logic* scene_l);
-
-// Actions
-void televoidSceneLoad(const char* scene_path);
-
-// Prefabs
-void televoidAddBackground(hge_vec3 position, hge_vec3 scale, bool lit, const char* sprite);
-
-void televoidAddItem(hge_vec3 position, hge_vec3 scale, const char* item_name);
-
-void televoidAddDirLight(hge_vec3 direction, hge_vec3 ambient, hge_vec3 diffuse);
-void televoidAddPointLight(hge_vec3 position, hge_vec3 ambient, hge_vec3 diffuse);
-
-hotspot_component* televoidAddHotspot();
-void televoidSceneAddTrigger(hge_transform transform);
-void televoidAddIanPlayer(hge_vec3 position, bool face_left);
+hge_entity* televoidCreateIanPlayer(hge_vec3 position, bool face_left);
+hge_entity* televoidCreatePlayerCamera(hge_vec3 position);
+hge_entity* televoidCreateHotspot(hge_transform transform, hge_vec3 interaction_location, hotspot_type type, const char* data);
+hge_entity* televoidCreateTrigger(hge_transform transform, unsigned int flags, const char* data);
+void televoidAddMesh(hge_transform transform, const char* meshPath, hge_material material);
+void televoidCreateProp(const char* name, hge_transform prop_transform, hge_material prop_material);
+hge_entity* televoidCreateDialogue(const char* file);
+hge_entity* televoidIMVCreate(const char* path);
 
 #endif

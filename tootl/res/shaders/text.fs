@@ -2,16 +2,22 @@
 in vec2 TexCoords;
 out vec4 color;
 
-uniform sampler2D text;
-uniform vec4 textColor;
+struct Material {
+  sampler2D diffuse;
+  sampler2D normal;
+  bool lit;
+  vec4 color_multiplier;
+};
+
+uniform Material material;
 
 void main()
 {
-    //color = vec4(1, 1, 1, 1);
-    vec4 sampled = vec4(1.0, 1.0, 1.0, texture(text, TexCoords).r);
-    //color = textColor * sampled;
-    //if(sampled.a < 0.5)
-    //discard;
 
-    color = textColor * sampled;
+    vec4 sampled = vec4(1.0, 1.0, 1.0, texture(material.diffuse, TexCoords).r);
+    color = sampled * material.color_multiplier;
+    if(sampled.a < 0.5)
+      discard;
+
+    color = material.color_multiplier * sampled;
 }
