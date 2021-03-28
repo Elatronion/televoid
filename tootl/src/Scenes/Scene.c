@@ -333,6 +333,25 @@ void ParseTMXLight(tmx_object* object) {
   }
 }
 
+void ParseTMXFloor(tmx_object* object) {
+  hge_vec2 origin = { object->x, object->y };
+
+  floor_t floor;
+  floor.root = NULL;
+
+  for(int i = 0; i < object->content.shape->points_len; i++) {
+    hge_vec2 point = hgeVec2(object->content.shape->points[i][0], object->content.shape->points[i][1]);
+
+    hge_vec2 position = hgeVec2(origin.x + point.x, origin.y + point.y);
+    position.y = -position.y;
+    HGE_LOG("[TMX FLOOR] add point (%f, %f)\n", position.x, position.y);
+    floor_push_position(&floor, position);
+  }
+
+  hge_entity* floor_entity = hgeCreateEntity();
+  hgeAddComponent(floor_entity, hgeCreateComponent("floor", &floor, sizeof(floor)));
+}
+
 void ParseTMXObject(tmx_object* object) {
   if(!object->type) {
     if(object->name) {
@@ -359,6 +378,7 @@ void ParseTMXObject(tmx_object* object) {
   else if(strcmp(object->type, "item") == 0) ParseTMXItem(object);
   else if(!strcmp(object->type, "prop")) ParseTMXProp(object);
   else if(strcmp(object->type, "light") == 0) ParseTMXLight(object);
+  else if(strcmp(object->type, "floor") == 0) ParseTMXFloor(object);
 }
 
 void strip_filename(char *fname)

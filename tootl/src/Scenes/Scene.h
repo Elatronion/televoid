@@ -19,6 +19,7 @@
 #include "IMVPlayer.h"
 
 #include "IMVPlayer.h"
+#include "Floor.h"
 
 hge_entity* televoidSceneGetEntity(const char* name);
 

@@ -7,6 +7,8 @@
 #include "Scene.h"
 #include "dirent.h"
 
+#include "Floor.h"
+
 void televoid_system_spritesheet(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
 	// Flip By Reversing X Scale
 	hge_vec3 rendering_scale = transform->scale;
@@ -180,9 +182,12 @@ int main(int argc, char **argv) {
 	hgeAddSystem(system_mesh_renderer, 2, "transform", "mesh");
 
 	hgeAddSystem(system_trigger_logic, 2, "transform", "trigger");
+
+	hgeAddSystem(system_floor, 1, "floor");
 	// debug systems
 	hgeAddSystem(system_trigger_renderer, 2, "transform", "trigger");
 	hgeAddSystem(system_hotspot_renderer, 2, "transform", "hotspot");
+	hgeAddSystem(system_floor_debug, 1, "floor");
 
 	// Global Updater
 	hge_entity* global_updater_entity = hgeCreateEntity();
