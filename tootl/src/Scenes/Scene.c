@@ -481,7 +481,8 @@ void LoadScene(const char* scene_path) {
   //HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
 
   if(strcmp(scene_path, "res/scenes/main_menu.tmx") != 0 &&
-     strcmp(scene_path, "res/scenes/settings_menu.tmx") != 0) {
+     strcmp(scene_path, "res/scenes/settings_menu.tmx") != 0 &&
+     strcmp(scene_path, "res/scenes/splash.tmx") != 0) {
     televoidSave(scene_path);
   }
 }

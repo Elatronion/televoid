@@ -1,0 +1,65 @@
+# Splashscreen animation by Ezra Hradecky (Elatronion)
+
+# Animation Length in Seconds: 20
+
+t 0 0 0 1 "brutalmoose fans presents"
+# Make Text Yellow
+k linear colorR 0 0
+k linear colorG 0 0
+k linear colorB 0 0
+k linear colorA 0 0
+k linear colorR 1 0.996078431373
+k linear colorG 1 0.8
+k linear colorB 1 0.043137254902
+
+### Text 1 ###
+# Color Fade
+k linear colorA 0 0
+k linear colorA 1 1
+k linear colorA 4 1
+k linear colorA 5 0
+
+# Zoom Slowly
+k linear sy 0 1
+k linear sy 5 1.25
+
+### Text 2 ###
+d 5 "after 3 years of development"
+# Color Fade
+k linear colorA 5 0
+k linear colorA 6 1
+k linear colorA 9 1
+k linear colorA 10 0
+
+# Zoom Slowly
+k linear sy 5 1
+k linear sy 10 1.25
+
+### Text 3 ###
+d 10 "Televoid: Out of The Loop"
+# Color Fade
+k linear colorA 10 0
+k linear colorA 11 1
+k linear colorA 14 1
+k linear colorA 15 0
+
+# Zoom Slowly
+k linear sy 10 1
+k linear sy 15 1.25
+
+### Text 4 ###
+d 15 "written from scratch in C"
+# Color Fade
+k linear colorA 15 0
+k linear colorA 16 1
+k linear colorA 19 1
+k linear colorA 20 0
+
+# Zoom Slowly
+k linear sy 15 1
+k linear sy 20 1.25
+
+d 50 "FIN"
+
+
+s 20 "Scene.load("res/scenes/main_menu.tmx")"

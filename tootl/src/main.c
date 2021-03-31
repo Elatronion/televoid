@@ -202,7 +202,7 @@ int main(int argc, char **argv) {
 			televoidLoadScene(argv[1]);
 			break;
 		default:
-			televoidLoadScene("res/scenes/main_menu.tmx");
+			televoidLoadScene("res/scenes/splash.tmx");
 	}
 
 	televoid_system_global_update(NULL, NULL);
