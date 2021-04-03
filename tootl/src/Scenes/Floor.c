@@ -16,6 +16,7 @@ void floor_order(floor_node* root) {
 void floor_push_position(floor_t* floor, hge_vec2 position) {
   floor_node* node = malloc(sizeof(floor_node));
   node->position = position;
+  node->next = NULL;
 
   if(!floor->root) {
     floor->root = node;
