@@ -428,6 +428,7 @@ void ParseTMXData(tmx_map* map, const char* scene_path) {
         strip_filename(&path);
         strcat(&path, "/");
         strcat(&path, layer->content.image->source);
+        printf("IMAGE PATH: \"%s\"\n", layer->content.image->source);
         printf("image path: '%s'\n", path);
         tmx_property* property_lit = tmx_get_property(layer->properties, "lit");
         bool lit = false;

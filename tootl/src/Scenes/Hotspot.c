@@ -28,10 +28,16 @@ void system_hotspot_renderer(hge_entity* entity, hge_transform* transform, hotsp
   if(material_id != -1) {
     hge_material* item_material = entity->components[material_id].data;
     rendering_material = *item_material;
+    hgeRenderSprite(
+      hgeResourcesQueryShader("basic"),
+      rendering_material,
+      *transform
+    );
+  } else if(true) {
+    hgeRenderSprite(
+      hgeResourcesQueryShader("basic"),
+      rendering_material,
+      *transform
+    );
   }
-  hgeRenderSprite(
-    hgeResourcesQueryShader("basic"),
-    rendering_material,
-    *transform
-  );
 }

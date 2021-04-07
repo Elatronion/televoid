@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="16" nextobjectid="31">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="24" nextobjectid="40">
+ <imagelayer id="23" name="background" offsetx="-229.5" offsety="-154.833">
+  <image source="../../../../../../../../mnt/Black6/Projects/Televoid/televoid/tootl/res/scenes/arcade_background.png" width="1280" height="720"/>
+  <properties>
+   <property name="depth" type="float" value="25"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="20" name="ground" offsetx="-437.394" offsety="-156.121">
+  <image source="arcade_ground.png" width="1280" height="720"/>
+  <properties>
+   <property name="depth" type="float" value="0.5"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="21" name="FX01" offsetx="-238.333" offsety="-182">
+  <image source="../../../../../../../../mnt/Black6/Projects/Televoid/televoid/tootl/res/scenes/FX01.png" width="1280" height="720"/>
+  <properties>
+   <property name="depth" type="float" value="0"/>
+  </properties>
+ </imagelayer>
  <objectgroup color="#ff0000" id="15" name="Floor">
   <object id="29" type="floor" x="0" y="240">
-   <polyline points="0,0 108,0 156,-18 282,-18 324,30"/>
+   <polyline points="18,0 90,0 168,-24 457.594,-23.9688"/>
   </object>
  </objectgroup>
- <objectgroup color="#00ff00" id="10" name="Props"/>
+ <objectgroup color="#ff0000" id="17" name="Copy of Floor" visible="0">
+  <object id="39" type="floor" x="0" y="240">
+   <polyline points="0,0 7.5,-0.15625 7.46875,-5.65625 15.8125,-5.96875"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" id="10" name="Props">
+  <object id="31" name="arcade_machine" type="prop" x="429.909" y="181.047" width="14" height="35">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+   </properties>
+  </object>
+  <object id="35" name="arcade_machine" type="prop" x="381.909" y="181.047" width="14" height="35">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+   </properties>
+  </object>
+  <object id="36" name="arcade_machine" type="prop" x="405.909" y="181.047" width="14" height="35">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup color="#8000ff" id="3" name="Player Starting Positions">
-  <object id="22" name="Ian Spawn from NULL" type="player_start" x="0" y="240">
+  <object id="22" name="Ian Spawn from NULL" type="player_start" x="42" y="240">
    <properties>
     <property name="face_left" type="bool" value="false"/>
     <property name="fade_speed" type="float" value="1.234"/>
@@ -19,15 +58,30 @@
  </objectgroup>
  <objectgroup color="#ffffff" id="9" name="Lights"/>
  <objectgroup color="#ff6347" id="5" name="Triggers"/>
- <objectgroup color="#ffff00" id="11" name="Hotspots">
-  <object id="25" type="hotspot" x="156" y="192" width="18" height="30">
+ <objectgroup color="#ffff00" id="11" name="Hotspots" visible="0">
+  <object id="30" type="hotspot" x="381.909" y="181.047" width="14" height="35">
    <properties>
     <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/breakout.wren&quot;)"/>
    </properties>
   </object>
-  <object id="30" type="hotspot" x="30.5" y="209.5" width="18" height="30">
+  <object id="32" type="hotspot" x="429.909" y="181.047" width="14" height="35">
    <properties>
     <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/breakout.wren&quot;)"/>
+   </properties>
+  </object>
+  <object id="34" type="hotspot" x="405.909" y="181.047" width="14" height="35">
+   <properties>
+    <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/breakout.wren&quot;)"/>
+   </properties>
+  </object>
+  <object id="37" type="hotspot" x="180" y="174" width="78" height="36">
+   <properties>
+    <property name="snippet" value=""/>
+   </properties>
+  </object>
+  <object id="38" type="hotspot" x="33.625" y="209.875" width="18.1576" height="29.9891">
+   <properties>
+    <property name="snippet" value=""/>
    </properties>
   </object>
  </objectgroup>
