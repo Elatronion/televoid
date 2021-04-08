@@ -394,6 +394,17 @@ void strip_filename(char *fname)
     }
 }
 
+void isolate_filename(char* fname) {
+  char *end = fname + strlen(fname);
+
+  while (end > fname && *end != '/') {
+      --end;
+  }
+
+  if(end != fname) end++;
+  strcpy(fname, end);
+}
+
 void ParseTMXData(tmx_map* map, const char* scene_path) {
   tmx_layer* layer = map->ly_head;
   while(layer) {
@@ -423,13 +434,18 @@ void ParseTMXData(tmx_map* map, const char* scene_path) {
 
         hge_vec3 scl = { layer->content.image->width, layer->content.image->height, 0 };
         hge_vec3 pos = { scl.x/2 + offset_x, -scl.y/2 - offset_y, -depth };
+
+        char image_name[255] = "";
+        strcat(&image_name, layer->content.image->source);
+        isolate_filename(&image_name);
         char path[255] = "";
         strcat(&path, scene_path);
         strip_filename(&path);
         strcat(&path, "/");
-        strcat(&path, layer->content.image->source);
-        printf("IMAGE PATH: \"%s\"\n", layer->content.image->source);
-        printf("image path: '%s'\n", path);
+        strcat(&path, image_name);
+        HGE_LOG("IMAGE SUPER PATH: \"%s\"\n", layer->content.image->source);
+        HGE_LOG("IMAGE LOADED PATH: \"%s\"\n", path);
+
         tmx_property* property_lit = tmx_get_property(layer->properties, "lit");
         bool lit = false;
         if(property_lit)
