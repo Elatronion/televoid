@@ -125,5 +125,8 @@ void main() {
 
   if(!dither(FragColor.a, 0)) {
     discard;
+  } else {
+    FragColor.rgb *= FragColor.a;
+    FragColor.a = 1;
   }
 }
