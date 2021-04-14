@@ -58,7 +58,7 @@
  </objectgroup>
  <objectgroup color="#ffffff" id="9" name="Lights"/>
  <objectgroup color="#ff6347" id="5" name="Triggers"/>
- <objectgroup color="#ffff00" id="11" name="Hotspots" visible="0">
+ <objectgroup color="#ffff00" id="11" name="Hotspots">
   <object id="30" type="hotspot" x="381.909" y="181.047" width="14" height="35">
    <properties>
     <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/breakout.wren&quot;)"/>

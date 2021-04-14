@@ -1,5 +1,5 @@
 import "minigame-core" for Vec2, GameObject, Window, Input, ResourceManager, Math
-import "televoid-core" for Audio
+import "televoid-core" for Audio, Inventory, Dialogue
 
 class Breakout {
   static STATE_MENU   { 0 }
@@ -27,6 +27,9 @@ class Breakout {
 
     _ballSpeed = 500
     reset()
+
+    System.print("Wow, some interesting fact!")
+    Dialogue.load("res/dialogue/test.csv")
   }
 
   reset() {
@@ -50,7 +53,7 @@ class Breakout {
     _numBlocks = 0
     _blocks = []
 
-    for (y in 0..4) {
+    for (y in 0..6) { //0..4
     for (x in 0..6) {
       _numBlocks = _numBlocks+1
       _blocks.add(
@@ -65,6 +68,8 @@ class Breakout {
 
   win() {
     _gameState = Breakout.STATE_WIN
+    System.print("Wow, I won! :D")
+    Inventory.add("breakout ticket")
   }
 
   loose() {
@@ -76,14 +81,19 @@ class Breakout {
     } else {
       _gameState = Breakout.STATE_MENU
       reset()
+      System.print("Aww man, I lost! D:")
     }
   }
 
   processInput(elapsedTime) {
+    if(Input.getKeyDown(Input.KEY_W)) {
+      win()
+    }
+
     var pressingLaunchKey = Input.getKeyDown(Input.KEY_SPACE)
     var pressingLeftKey = Input.getKey(Input.KEY_A) || Input.getKey(Input.KEY_LEFT)
     var pressingRightKey = Input.getKey(Input.KEY_D) || Input.getKey(Input.KEY_RIGHT)
-    var paddleSpeed = 1000
+    var paddleSpeed = 650
 
     if(pressingRightKey) {
       _objectPaddle.position.x = _objectPaddle.position.x + paddleSpeed * elapsedTime
@@ -115,6 +125,22 @@ class Breakout {
     _ballDirection.x = _objectBall.position.x - object.position.x
     _ballDirection.y = _objectBall.position.y - object.position.y
     _ballDirection.normalize()
+
+    /*if (_ballDirection.x > 0.707) {
+      _ballDirection.x = 0.707
+      if(_ballDirection.y > 0) {
+          _ballDirection.y = 0.707
+      } else {
+        _ballDirection.y = -0.707
+      }
+    } else if(_ballDirection.x < 0.707) {
+      _ballDirection.x = -0.707
+      if(_ballDirection.y > 0) {
+          _ballDirection.y = 0.707
+      } else {
+        _ballDirection.y = -0.707
+      }
+    }*/
   }
 
   processBall(elapsedTime) {

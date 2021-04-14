@@ -63,6 +63,7 @@ bool processMinigameExitButton(int index) {
 }
 
 void televoidMinigameUpdate() {
+  if(televoidGameState() == GAME_DIALOGUE) return;
   if(num_minigames > 0)
     televoidSetGameState(GAME_MINIGAME);
   if(televoidGameState() == GAME_MINIGAME && num_minigames == 0)
