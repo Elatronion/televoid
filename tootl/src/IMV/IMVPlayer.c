@@ -607,6 +607,7 @@ void system_imv(hge_entity* entity, imv_component* imv) {
           element_material,
           hgeTransform(hgeVec3(x, y, z), hgeVec3(sx, sy, sz), hgeQuaternion(0, 0, 0, 1)),
           hgeResourcesQueryFont("VCR"),
+          HGE_TEXT_ALIGNED_CENTERED,
           current->data
         );
       break;

@@ -212,6 +212,7 @@ void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, const 
     text_material,
     text_transform,
     hgeResourcesQueryFont("VCR"),
+    HGE_TEXT_ALIGNED_LEFT,
     string
   );
 }
