@@ -139,14 +139,20 @@ int main(int argc, char **argv) {
 	hgeResourcesLoadTexture("res/textures/sprites/moose.png", "moose");
 
 	// Dialogue
+	const char* dialogue_character_portraits_path = "res/textures/dialogue/";
 	DIR *dir;
 	struct dirent *ent;
-	if ((dir = opendir ("res/textures/dialogue")) != NULL) {
+	if ((dir = opendir (dialogue_character_portraits_path)) != NULL) {
 		while ((ent = readdir (dir)) != NULL) {
 			char *dot = strrchr(ent->d_name, '.');
 			if (dot && !strcmp(dot, ".png")) {
         ent->d_name[strlen(ent->d_name)-4] = '\0';
         HGE_LOG("Character Portrait %s", ent->d_name);
+				const char* path = malloc(strlen(dialogue_character_portraits_path) + strlen(ent->d_name) + strlen(".png") + 1);
+				sprintf(path, "%s%s.png", dialogue_character_portraits_path, ent->d_name);
+				HGE_LOG("Character Portrait Path: \"%s\"", path);
+				hgeResourcesLoadTexture(path, ent->d_name);
+				free(path);
       }
 		}
 		closedir (dir);
