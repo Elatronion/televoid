@@ -36,7 +36,7 @@ bool InventoryHasItem(int item_id) {
   return false;
 }
 
-float gui_y = 10000.0f; // some default value below screen
+float gui_y = -10000.0f; // some default value below screen
 void televoid_inventory_update() {
   hge_vec2 gui_inventory_resolution = { 128, 18 };
   float gui_width = fminf(hgeWindowWidth(), 800);
@@ -52,6 +52,8 @@ void televoid_inventory_update() {
       break;
   }
   gui_y += (desired_y - gui_y) * 10.f * hgeDeltaTime();
+  float max_height = (float)(-(float)(hgeWindowHeight()) / 2.f) - (float)(gui_y);
+  if(gui_y > max_height) gui_y = max_height;
 
   hge_vec3 gui_inventory_position = { 0, gui_y, 0 };
 
