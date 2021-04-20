@@ -381,28 +381,27 @@ void ParseTMXObject(tmx_object* object) {
   else if(strcmp(object->type, "floor") == 0) ParseTMXFloor(object);
 }
 
-void strip_filename(char *fname)
-{
-    char *end = fname + strlen(fname);
+void strip_filename(char* fname) {
+	char *end = fname + strlen(fname);
 
-    while (end > fname && *end != '/') {
-        --end;
-    }
+	while (end > fname && (*end != '/' && *end != '\\')) {
+		--end;
+	}
 
-    if (end > fname) {
-        *end = '\0';
-    }
+	if(end > fname) {
+		*end = '\0';
+	}
 }
 
 void isolate_filename(char* fname) {
-  char *end = fname + strlen(fname);
+	char *end = fname + strlen(fname);
 
-  while (end > fname && *end != '/') {
-      --end;
-  }
+	while (end > fname && (*end != '/' && *end != '\\')) {
+		--end;
+	}
 
-  if(end != fname) end++;
-  strcpy(fname, end);
+	if(end != fname) end++;
+	strcpy(fname, end);
 }
 
 void ParseTMXData(tmx_map* map, const char* scene_path) {
@@ -435,16 +434,21 @@ void ParseTMXData(tmx_map* map, const char* scene_path) {
         hge_vec3 scl = { layer->content.image->width, layer->content.image->height, 0 };
         hge_vec3 pos = { scl.x/2 + offset_x, -scl.y/2 - offset_y, -depth };
 
-        char image_name[255] = "";
-        strcat(&image_name, layer->content.image->source);
-        isolate_filename(&image_name);
-        char path[255] = "";
-        strcat(&path, scene_path);
+        char* scene_source = malloc(strlen(scene_path));
+      	strcpy(scene_source, scene_path);
+        char* image_source = malloc(strlen(layer->content.image->source));
+      	strcpy(image_source, layer->content.image->source);
+
+        char image_name[255];
+        char path[255];
+
+        strcpy(&image_name, image_source);
+      	isolate_filename(&image_name);
+
+        strcpy(&path, scene_source);
         strip_filename(&path);
         strcat(&path, "/");
         strcat(&path, image_name);
-        HGE_LOG("IMAGE SUPER PATH: \"%s\"\n", layer->content.image->source);
-        HGE_LOG("IMAGE LOADED PATH: \"%s\"\n", path);
 
         tmx_property* property_lit = tmx_get_property(layer->properties, "lit");
         bool lit = false;
