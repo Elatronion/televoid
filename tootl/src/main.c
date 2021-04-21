@@ -133,7 +133,6 @@ int main(int argc, char **argv) {
 	hgeResourcesLoadTexture("res/textures/debug/trigger.png", "debug_trigger_texture");
 	hgeResourcesLoadTexture("res/textures/debug/trigger (active).png", "debug_trigger_texture (active)");
 	hgeResourcesLoadTexture("res/textures/debug/hotspot.png", "debug_hotspot_texture");
-	hgeResourcesLoadTexture("res/ROOM END.png", "TEST");
 	hgeResourcesLoadTexture("res/HGE/DEFAULT NORMAL.png", "HGE DEFAULT NORMAL");
 
 	hgeResourcesLoadTexture("res/textures/sprites/moose.png", "moose");
