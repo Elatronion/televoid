@@ -109,6 +109,54 @@ void televoid_system_global_update(hge_entity* entity, tag_component* global_upd
 	televoidSceneUpdate();
 }
 
+void autoload_dialogue_portraits() {
+	HGE_LOG("Autoloading dialogue portraits");
+	const char* dialogue_character_portraits_path = "res/textures/dialogue/";
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir (dialogue_character_portraits_path)) != NULL) {
+		while ((ent = readdir (dir)) != NULL) {
+			char *dot = strrchr(ent->d_name, '.');
+			if (dot && !strcmp(dot, ".png")) {
+				ent->d_name[strlen(ent->d_name)-4] = '\0';
+				HGE_LOG("Character Portrait %s", ent->d_name);
+				const char* path = malloc(strlen(dialogue_character_portraits_path) + strlen(ent->d_name) + strlen(".png") + 1);
+				sprintf(path, "%s%s.png", dialogue_character_portraits_path, ent->d_name);
+				HGE_LOG("Character Portrait Path: \"%s\"", path);
+				hgeResourcesLoadTexture(path, ent->d_name);
+				free(path);
+			}
+		}
+		closedir (dir);
+	} else {
+		return EXIT_FAILURE;
+	}
+}
+
+void autoload_sfx() {
+	HGE_LOG("Autoloading SFX");
+	const char* dialogue_sfx_path = "res/audio/sfx/";
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir (dialogue_sfx_path)) != NULL) {
+		while ((ent = readdir (dir)) != NULL) {
+			char *dot = strrchr(ent->d_name, '.');
+			if (dot && !strcmp(dot, ".wav")) {
+				ent->d_name[strlen(ent->d_name)-4] = '\0';
+				HGE_LOG("Character SFX %s", ent->d_name);
+				const char* path = malloc(strlen(dialogue_sfx_path) + strlen(ent->d_name) + strlen(".wav") + 1);
+				sprintf(path, "%s%s.wav", dialogue_sfx_path, ent->d_name);
+				HGE_LOG("Character SFX Path: \"%s\"", path);
+				hgeResourcesLoadAudio(path, ent->d_name);
+				free(path);
+			}
+		}
+		closedir (dir);
+	} else {
+		return EXIT_FAILURE;
+	}
+}
+
 int main(int argc, char **argv) {
 	hge_window window = { "Voidjam", 1280, 720 };
 	hgeInit(60, window, HGE_INIT_ECS | HGE_INIT_RENDERING | HGE_INIT_AUDIO);
@@ -137,36 +185,12 @@ int main(int argc, char **argv) {
 
 	hgeResourcesLoadTexture("res/textures/sprites/moose.png", "moose");
 
-	// Dialogue
-	const char* dialogue_character_portraits_path = "res/textures/dialogue/";
-	DIR *dir;
-	struct dirent *ent;
-	if ((dir = opendir (dialogue_character_portraits_path)) != NULL) {
-		while ((ent = readdir (dir)) != NULL) {
-			char *dot = strrchr(ent->d_name, '.');
-			if (dot && !strcmp(dot, ".png")) {
-        ent->d_name[strlen(ent->d_name)-4] = '\0';
-        HGE_LOG("Character Portrait %s", ent->d_name);
-				const char* path = malloc(strlen(dialogue_character_portraits_path) + strlen(ent->d_name) + strlen(".png") + 1);
-				sprintf(path, "%s%s.png", dialogue_character_portraits_path, ent->d_name);
-				HGE_LOG("Character Portrait Path: \"%s\"", path);
-				hgeResourcesLoadTexture(path, ent->d_name);
-				free(path);
-      }
-		}
-		closedir (dir);
-	} else {
-		return EXIT_FAILURE;
-	}
+	autoload_dialogue_portraits();
+	autoload_sfx();
 
 
 	// Meshes
 	//hgeResourcesLoadMesh("res/meshes/test_background.obj", "background mesh");
-
-	// Audio
-	hgeResourcesLoadAudio("res/audio/sfx/ian/steps/step1.wav", "step1");
-	hgeResourcesLoadAudio("res/audio/sfx/ian/steps/step2.wav", "step2");
-	hgeResourcesLoadAudio("res/audio/sfx/ian/steps/step3.wav", "step3");
 
 	//hgeAddBaseSystems();
 	hgeAddSystem(televoid_system_global_update, 1, "global updater");

@@ -15,8 +15,8 @@ class MainMenu {
     ResourceManager.loadTexture("res/textures/sprites/MainMenu/VCR_top.png", "VCR top")
     ResourceManager.loadTexture("res/textures/sprites/MainMenu/VCR_bottom.png", "VCR bottom")
 
-    ResourceManager.loadAudio("res/audio/sfx/vcr/Flap In.wav", "VCR Flap In")
-    ResourceManager.loadAudio("res/audio/sfx/vcr/Flap Out.wav", "VCR Flap Out")
+    //ResourceManager.loadAudio("res/audio/sfx/vcr/Flap In.wav", "VCR Flap In")
+    //ResourceManager.loadAudio("res/audio/sfx/vcr/Flap Out.wav", "VCR Flap Out")
 
 
     // Other Resources //
