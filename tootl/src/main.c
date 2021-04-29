@@ -157,6 +157,30 @@ void autoload_sfx() {
 	}
 }
 
+void autoload_bgm() {
+	HGE_LOG("Autoloading BGM");
+	const char* dialogue_sfx_path = "res/audio/bgm/";
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir (dialogue_sfx_path)) != NULL) {
+		while ((ent = readdir (dir)) != NULL) {
+			char *dot = strrchr(ent->d_name, '.');
+			if (dot && !strcmp(dot, ".wav")) {
+				ent->d_name[strlen(ent->d_name)-4] = '\0';
+				HGE_LOG("BGM %s", ent->d_name);
+				const char* path = malloc(strlen(dialogue_sfx_path) + strlen(ent->d_name) + strlen(".wav") + 1);
+				sprintf(path, "%s%s.wav", dialogue_sfx_path, ent->d_name);
+				HGE_LOG("BGM Path: \"%s\"", path);
+				hgeResourcesLoadAudio(path, ent->d_name);
+				free(path);
+			}
+		}
+		closedir (dir);
+	} else {
+		return EXIT_FAILURE;
+	}
+}
+
 int main(int argc, char **argv) {
 	hge_window window = { "Voidjam", 1280, 720 };
 	hgeInit(60, window, HGE_INIT_ECS | HGE_INIT_RENDERING | HGE_INIT_AUDIO);
@@ -187,6 +211,7 @@ int main(int argc, char **argv) {
 
 	autoload_dialogue_portraits();
 	autoload_sfx();
+	autoload_bgm();
 
 
 	// Meshes
