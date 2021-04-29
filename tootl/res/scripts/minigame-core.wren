@@ -47,6 +47,8 @@ class Window {
   static render(sprite_name, object) {
     render(sprite_name, object.position.x, object.position.y, object.scale.x, object.scale.y, object.rotation)
   }
+
+  foreign static renderText(string, x, y, font_size)
 }
 
 class Input {

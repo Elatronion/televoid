@@ -57,6 +57,37 @@ void wrenRender(WrenVM* vm) {
   );
 }
 
+void wrenRenderText(WrenVM* vm) {
+  const char* string = wrenGetSlotString(vm, 1);
+  float x = wrenGetSlotDouble(vm, 2);
+  float y = wrenGetSlotDouble(vm, 3);
+  float font_size = wrenGetSlotDouble(vm, 4); // 50.f
+
+  hge_shader gui_shader = hgeResourcesQueryShader("gui text");
+
+  float text_height = font_size/2;
+  hge_vec3 text_position = { x, y, 100 };
+
+  hge_material text_material;
+  text_material.color_multiplier = hgeVec4(1, 1, 1, 1);
+
+  hge_transform text_transform = {
+    text_position,
+    hgeVec3(font_size/100.f, font_size/100.f, 0),
+    hgeQuaternion(0, 0, 0, 1)
+  };
+
+
+  hgeRenderText(
+    hgeResourcesQueryShader("gui text"),
+    text_material,
+    text_transform,
+    hgeResourcesQueryFont("VCR"),
+    HGE_TEXT_ALIGNED_CENTERED,
+    string
+  );
+}
+
 void wrenWindowWidth(WrenVM* vm) {
   float window_width = hgeWindowWidth();
   wrenSetSlotDouble(vm, 0, window_width);
@@ -314,6 +345,8 @@ WrenForeignMethodFn bindForeignMethod(
     if (strcmp(className, "Window") == 0) {
       if (isStatic && strcmp(signature, "render(_,_,_,_,_,_)") == 0) {
         return wrenRender;
+      } else if(isStatic && strcmp(signature, "renderText(_,_,_,_)") == 0) {
+        return wrenRenderText;
       } else if(isStatic && strcmp(signature, "getWidth()") == 0) {
         return wrenWindowWidth;
       } else if(isStatic && strcmp(signature, "getHeight()") == 0) {
