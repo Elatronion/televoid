@@ -107,6 +107,7 @@ void televoid_system_global_update(hge_entity* entity, tag_component* global_upd
 	televoid_inventory_update();
 	televoidMinigameUpdate();
 	televoidSceneUpdate();
+	televoidBoomboxUpdate();
 }
 
 void autoload_dialogue_portraits() {
@@ -206,6 +207,9 @@ int main(int argc, char **argv) {
 	hgeResourcesLoadTexture("res/textures/debug/trigger (active).png", "debug_trigger_texture (active)");
 	hgeResourcesLoadTexture("res/textures/debug/hotspot.png", "debug_hotspot_texture");
 	hgeResourcesLoadTexture("res/HGE/DEFAULT NORMAL.png", "HGE DEFAULT NORMAL");
+
+	// GUI
+	hgeResourcesLoadTexture("res/textures/GUI/radio.png", "GUI RADIO");
 
 	hgeResourcesLoadTexture("res/textures/sprites/moose.png", "moose");
 
