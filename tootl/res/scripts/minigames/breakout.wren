@@ -29,7 +29,7 @@ class Breakout {
     reset()
 
     System.print("Wow, some interesting fact!")
-    Dialogue.load("res/dialogue/test.csv")
+    Dialogue.load("res/dialogue/breakout play.csv")
   }
 
   reset() {
@@ -86,10 +86,6 @@ class Breakout {
   }
 
   processInput(elapsedTime) {
-    if(Input.getKeyDown(Input.KEY_W)) {
-      win()
-    }
-
     var pressingLaunchKey = Input.getKeyDown(Input.KEY_SPACE)
     var pressingLeftKey = Input.getKey(Input.KEY_A) || Input.getKey(Input.KEY_LEFT)
     var pressingRightKey = Input.getKey(Input.KEY_D) || Input.getKey(Input.KEY_RIGHT)

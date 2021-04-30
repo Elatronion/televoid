@@ -71,7 +71,7 @@
   </object>
   <object id="34" type="hotspot" x="405.909" y="181.047" width="14" height="35">
    <properties>
-    <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/breakout.wren&quot;)"/>
+    <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/spin_wheel/game.wren&quot;)"/>
    </properties>
   </object>
   <object id="37" type="hotspot" x="180" y="174" width="78" height="36">
