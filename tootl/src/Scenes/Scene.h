@@ -27,7 +27,7 @@ void televoidSceneAddEntity(hge_entity* entity, const char* name);
 void televoidSceneDestroy();
 
 void televoidLoadScene(const char* scene_path);
-void televoidSceneUpdate();
+void televoidSceneUpdate(bool skip);
 
 hge_transform* televoid_player_transform();
 

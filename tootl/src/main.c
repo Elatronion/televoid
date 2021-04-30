@@ -106,7 +106,7 @@ void televoid_system_global_update(hge_entity* entity, tag_component* global_upd
 	gui_shader_math();
 	televoid_inventory_update();
 	televoidMinigameUpdate();
-	televoidSceneUpdate();
+	televoidSceneUpdate(false);
 	televoidBoomboxUpdate();
 }
 
@@ -264,6 +264,7 @@ int main(int argc, char **argv) {
 	}
 
 	televoid_system_global_update(NULL, NULL);
+	televoidSceneUpdate(true);
 	//televoidIMVCreate("res/imv/test.imv");
 
 

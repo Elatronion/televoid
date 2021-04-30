@@ -508,18 +508,34 @@ void LoadScene(const char* scene_path) {
   }
 }
 
+float letterbox_percentage = 0.0f;
+float level_load_countdown = 0.0f;
 char* level_to_load = NULL;
 void televoidLoadScene(const char* scene_path) {
+  if (level_to_load) return;
   level_to_load = malloc(strlen(scene_path)+1);
   strcpy(level_to_load, scene_path);
+  level_load_countdown = 2.f;
 }
 
-void televoidSceneUpdate() {
-  if(level_to_load) {
-    LoadScene(level_to_load);
-    free(level_to_load);
-    level_to_load = NULL;
+void televoidSceneUpdate(bool skip) {
+  hge_shader framebuffer_shader = hgeResourcesQueryShader("framebuffer");
+  hgeUseShader(framebuffer_shader);
+  hgeShaderSetFloat(framebuffer_shader, "letterbox_percentage", letterbox_percentage);
+  if (level_load_countdown <= 0 || skip) {
+    if(hgeDeltaTime() <= (1.f / 30.f)) // Only move the letterbox if game is running over 30 fps
+      letterbox_percentage += (0 - letterbox_percentage) * 10.f * hgeDeltaTime();
+    if(level_to_load) {
+      LoadScene(level_to_load);
+      free(level_to_load);
+      level_to_load = NULL;
+    }
+  } else {
+    level_load_countdown -= hgeDeltaTime();
+    letterbox_percentage += (1 - letterbox_percentage) * 10.f * hgeDeltaTime();
   }
+
+  if(skip) letterbox_percentage = 0.f;
 }
 
 hge_transform* televoid_player_transform() {

@@ -16,6 +16,10 @@ float easeinout(float a, float b, float t) {
   return (pow(t, 2)/(pow(t, 2) + pow(1 - t, 2))) * diff + a;
 }
 
+float lerp(float a, float b, float f) {
+  return a + f * (b - a);
+}
+
 float random (vec2 st) {
     return fract(sin(dot(st.xy,
                          vec2(12.9898,78.233)))*
@@ -80,7 +84,7 @@ void main() {
     color = texture(screenTexture, TexCoords);
   }
 
-  if(TexCoords.y < easeinout(0, 0.5, letterbox_percentage) || TexCoords.y > easeinout(1, 0.5, letterbox_percentage))
+  if(TexCoords.y < lerp(0, 0.5, letterbox_percentage) || TexCoords.y > lerp(1, 0.5, letterbox_percentage))
     color = vec4(0, 0, 0, 1);
 
   // Experiments
