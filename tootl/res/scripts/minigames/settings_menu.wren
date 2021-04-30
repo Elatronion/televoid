@@ -58,12 +58,6 @@ class Bar {
 class OptionsMenu {
   construct init() {
     Options.load()
-    ResourceManager.loadAudio("res/audio/sfx/ian/voice/no1.wav", "VOICE IAN NO1")
-    ResourceManager.loadAudio("res/audio/sfx/ian/voice/no2.wav", "VOICE IAN NO2")
-    ResourceManager.loadAudio("res/audio/sfx/ian/voice/no3.wav", "VOICE IAN NO3")
-    ResourceManager.loadAudio("res/audio/sfx/ian/voice/no4.wav", "VOICE IAN NO4")
-    ResourceManager.loadAudio("res/audio/sfx/ian/voice/no5.wav", "VOICE IAN NO5")
-
     ResourceManager.loadTexture("res/scripts/minigames/settings_assets/bar.png", "SETTINGS BAR")
     ResourceManager.loadTexture("res/scripts/minigames/settings_assets/handle.png", "SETTINGS HANDLE")
     ResourceManager.loadTexture("res/scripts/minigames/settings_assets/button_voice.png", "SETTINGS TEST VOICE")
@@ -71,9 +65,6 @@ class OptionsMenu {
     ResourceManager.loadTexture("res/scripts/minigames/settings_assets/button_bgm.png", "SETTINGS TEST BGM")
 
     ResourceManager.loadTexture("res/scripts/minigames/settings_assets/button_back.png", "SETTINGS BUTTON BACK")
-
-
-    ResourceManager.loadAudio("res/audio/bgm/Townie Loop Sample.wav", "SETTINGS SAMPLE MUSIC")
 
     _runtime = 0
 
@@ -104,13 +95,13 @@ class OptionsMenu {
 
     if(Math.AABB(_button_test_voice, mouse_gameobject) && Input.getMouseDown(Input.MOUSE_LEFT)) {
       var rand_no = Math.rand(1, 5)
-      Audio.playVoice("VOICE IAN NO%(rand_no)")
+      Audio.playVoice("ian no%(rand_no)")
     }
     if(Math.AABB(_button_test_sfx, mouse_gameobject) && Input.getMouseDown(Input.MOUSE_LEFT)) {
       Audio.playSFX("step1")
     }
     if(Math.AABB(_button_test_bgm, mouse_gameobject) && Input.getMouseDown(Input.MOUSE_LEFT)) {
-      Audio.playBGM("SETTINGS SAMPLE MUSIC")
+      Audio.playBGM("Townie Loop Sample")
     }
 
     if(Math.AABB(_button_back, mouse_gameobject) && Input.getMouseDown(Input.MOUSE_LEFT)) {
