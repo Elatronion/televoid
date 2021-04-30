@@ -20,7 +20,7 @@ class MainMenu {
 
 
     // Other Resources //
-    ResourceManager.loadAudio("res/audio/bgm/gone by Brutalmoose.wav", "Gone")
+    //ResourceManager.loadAudio("res/audio/bgm/gone by Brutalmoose.wav", "Gone")
     ResourceManager.loadTexture("res/imv/intro_assets/ian-sit-1.png", "IMV INTRO Ian Sit 1")
     ResourceManager.loadTexture("res/imv/intro_assets/door-close.png", "IMV INTRO Door Close")
     ResourceManager.loadTexture("res/imv/intro_assets/door-open.png", "IMV INTRO Door Open")

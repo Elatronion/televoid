@@ -9,7 +9,7 @@ k hold x 102 0
 
 # music : m
 
-m "Gone"
+m "gone by brutalmoose"
 s 100 "Scene.load("res/scenes/test.tmx")"
 
 e 0 0 -1 100000 100000 0 0 "IMV INTRO WHITE"

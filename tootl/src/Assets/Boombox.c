@@ -3,6 +3,37 @@
 float boombox_animation = 0.0f;
 float boombox_animation_countdown = 0.0f;
 
+void isolate_song(const char* song_by_artist) {
+  char* end = song_by_artist + strlen(song_by_artist);
+
+  while (end > song_by_artist &&
+  !(*end == ' ' && *(end+1) == 'b' && *(end+2) == 'y' && *(end+3) == ' ')) {
+		--end;
+	}
+
+  if (end == song_by_artist) {
+    printf("No artist found.\n");
+  } else {
+    *end = '\0';
+  }
+}
+
+void isolate_artist(const char* song_by_artist) {
+  char* end = song_by_artist + strlen(song_by_artist);
+
+  while (end > song_by_artist &&
+  !(*end == ' ' && *(end+1) == 'b' && *(end+2) == 'y' && *(end+3) == ' ')) {
+		--end;
+	}
+
+  if (end == song_by_artist) {
+    printf("No artist found.\n");
+  } else {
+    ++end;
+  }
+  strcpy(song_by_artist, end);
+}
+
 float volume_master = 1.0f;
 float volume_voice = 1.0f;
 float volume_sfx = 1.0f;
@@ -35,7 +66,17 @@ void televoidBoomboxPlayBGM(const char* name) {
   hge_audiosource audiosource = { hgeResourcesQueryAudio(name), volume_bgm * volume_master };
   hgeAudioSourcePlay(audiosource);
 
-  strcpy(last_played_bgm, name);
+  const char* song_name = malloc(strlen(name));
+  const char* artist_name = malloc(strlen(name));
+
+  strcpy(song_name, name);
+  strcpy(artist_name, name);
+
+  isolate_song(song_name);
+  isolate_artist(artist_name);
+
+  strcpy(last_played_bgm, song_name);
+  strcpy(artist, artist_name);
   boombox_animation_countdown = 6.f;
 }
 
@@ -76,6 +117,7 @@ void televoidBoomboxRender() {
     last_played_bgm
   );
 
+  text_material.color_multiplier = hgeVec4(191.f/255.f, 182.f/255.f, 59.f/255.f, 1);
   text_transform.position.y = position.y - 15;
   text_transform.scale.y = 0.3f;
   hgeRenderText(
