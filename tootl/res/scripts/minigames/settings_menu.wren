@@ -7,6 +7,7 @@ class Bar {
     _left_most_x = _bar.position.x - _bar.scale.x/2
     _right_most_x = _bar.position.x + _bar.scale.x/2
 
+    _y = position.y
 
     var handle_x_position = _left_most_x + (value / max_value) * (_right_most_x - _left_most_x)
 
@@ -22,6 +23,8 @@ class Bar {
   min_value { _min_value }
 
   value { ((_left_most_x+_handle.position.x)/(_right_most_x-_left_most_x) + 1) * _max_value }
+
+  y { _y }
 
   limit_handle_position() {
     if (_handle.position.x < _left_most_x) {
@@ -114,6 +117,14 @@ class OptionsMenu {
     _bar_volume_voice.render()
     _bar_volume_sfx.render()
     _bar_volume_bgm.render()
+
+    var text_size = 75
+    var text_offset = 37
+    Window.renderText("Master Volume", 0, _bar_volume_master.y + text_offset, text_size)
+    Window.renderText("Voice Volume", 0, _bar_volume_voice.y + text_offset, text_size)
+    Window.renderText("Sound FX Volume", 0, _bar_volume_sfx.y + text_offset, text_size)
+    Window.renderText("Music Volume", 0, _bar_volume_bgm.y + text_offset, text_size)
+
 
     Window.render("SETTINGS TEST VOICE", _button_test_voice)
     Window.render("SETTINGS TEST SFX", _button_test_sfx)
