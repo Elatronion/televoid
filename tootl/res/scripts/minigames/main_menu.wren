@@ -57,6 +57,9 @@ class MainMenu {
 
   update(elapsedTime) {
     _runtime = _runtime + elapsedTime
+    if (_VHS_object.position.y > 415) {
+      return
+    }
 
     var vhs_desired_y = 0
 
