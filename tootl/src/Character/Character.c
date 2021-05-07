@@ -103,10 +103,14 @@ void CharacterSystem(hge_entity* e, character_component* character, hge_transfor
 
 void PlayerCharacterControlSystem(hge_entity* e, tag_component* playable, character_component* character) {
   if(hgeInputGetKeyDown(HGE_KEY_ESCAPE)) {
-    if(televoidGameState() == GAME_PLAY)
+    if(televoidGameState() == GAME_PLAY) {
+      televoidBoomboxPlaySFX("Pause");
       televoidSetGameState(GAME_PAUSE);
-    else if(televoidGameState() == GAME_PAUSE)
+    }
+    else if(televoidGameState() == GAME_PAUSE) {
+      televoidBoomboxPlaySFX("Resume");
       televoidSetGameState(GAME_PLAY);
+    }
     return;
   }
 
