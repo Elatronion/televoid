@@ -125,6 +125,18 @@ void televoid_inventory_update() {
       gui_slot_transform
     );
 
+    if(items[i+5].item_id != 0) {
+      item slot_item = televoidGetItemName(items[i+5].item_id);
+      hge_material gui_item_material = { hgeResourcesQueryTexture(slot_item.name), hgeResourcesQueryTexture("HGE DEAFULT NORMAL"), false, hgeVec4(1, 1, 1, 1) };
+      gui_slot_transform.position.z++;
+      hgeRenderSprite(
+        hgeResourcesQueryShader("gui"),
+        gui_item_material,
+        gui_slot_transform
+      );
+
+    }
+
     if(AABB(mouse_transform, gui_slot_transform)) {
       hovered_item_index = i + 5;
     }
