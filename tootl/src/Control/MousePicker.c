@@ -7,6 +7,19 @@ hge_vec3 mousePickerRaycast() {
   return mouse_picker->current_ray;
 }
 
+hge_transform mouseGUITransform() {
+  hge_vec3 mouse_position = hgeInputGetMousePosition();
+  mouse_position.x -= hgeWindowWidth()/2;
+  mouse_position.y = -mouse_position.y;
+  mouse_position.y += hgeWindowHeight()/2;
+  hge_transform mouse_transform = {
+    mouse_position,
+    hgeVec3(0, 0, 0),
+    hgeQuaternion(0, 0, 0, 1)
+  };
+  return mouse_transform;
+}
+
 hge_vec3 calculateMouseRay(hge_transform* transform, mouse_picker_component* mouse_picker) {
   hge_vec3 mouse_normalized = hgeNormalizedDeviceCoords(hgeInputGetMousePosition().x, hgeInputGetMousePosition().y);
   hge_vec2 normalized_coords = hgeVec2(mouse_normalized.x, mouse_normalized.y);

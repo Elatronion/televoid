@@ -7,7 +7,7 @@ typedef struct {
 } mouse_picker_component;
 
 hge_vec3 mousePickerRaycast();
-
+hge_transform mouseGUITransform();
 void system_mouse_picker(hge_entity* entity, hge_transform* transform, mouse_picker_component* mouse_picker);
 
 #endif
