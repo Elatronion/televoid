@@ -1,5 +1,8 @@
 #include "Inventory.h"
 #include "GameState.h"
+#include <HGE/HGE_GameMath.h>
+#include "MousePicker.h"
+#include <math.h>
 
 inventory_item items[10] = {{0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}};
 
@@ -65,6 +68,8 @@ void televoid_inventory_update() {
     gui_inventory_transform
   );
 
+  int hovered_item_index = -1;
+  hge_transform mouse_transform = mouseGUITransform();
 
   hge_material gui_slot_material = { hgeResourcesQueryTexture("GUI Inventory Slot"), hgeResourcesQueryTexture("HGE DEAFULT NORMAL"), false, hgeVec4(1, 1, 1, 1) };
   // left_slots
@@ -96,6 +101,10 @@ void televoid_inventory_update() {
       );
 
     }
+
+    if(AABB(mouse_transform, gui_slot_transform)) {
+      hovered_item_index = 4-i;
+    }
   }
 
   // right slots
@@ -115,7 +124,40 @@ void televoid_inventory_update() {
       gui_slot_material,
       gui_slot_transform
     );
+
+    if(AABB(mouse_transform, gui_slot_transform)) {
+      hovered_item_index = i + 5;
+    }
   }
+
+  // action/item text
+  if (televoidGameState() != GAME_PLAY) return;
+  float font_size = 0.45f;
+  hge_material text_material;
+  text_material.color_multiplier = hgeVec4(1, 1, 1, 1);
+
+
+  hge_transform text_transform = {
+    hgeVec3(0, gui_y + 60, 99),
+    hgeVec3(font_size, font_size, 0),
+    hgeQuaternion(0, 0, 0, 1)
+  };
+
+  int hovered_item_id;
+  item hovered_item;
+  if(hovered_item_index >= 0) {
+    hovered_item_id = InventoryGetItemAtIndex(hovered_item_index);
+    hovered_item = televoidGetItemName(hovered_item_id);
+  }
+  if(hovered_item_id != 0 && hovered_item_index >= 0)
+  hgeRenderText(
+    hgeResourcesQueryShader("gui text"),
+    text_material,
+    text_transform,
+    hgeResourcesQueryFont("VCR"),
+    HGE_TEXT_ALIGNED_CENTERED,
+    hovered_item.name
+  );
 }
 
 int InventoryGetItemAtIndex(int index) {
