@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include <unistd.h>
 
+char last_loaded_scene[255];
+
 typedef struct scene_entity_t {
   const char* name;
   hge_entity* entity;
@@ -498,13 +500,16 @@ void LoadScene(const char* scene_path) {
   ParseTMXData(map, scene_path);
   tmx_map_free(map);
 
-  //strcpy(&last_loaded_scene, scene_path);
+  strcpy(&last_loaded_scene, scene_path);
   //HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
+  SceneSave();
+}
 
-  if(strcmp(scene_path, "res/scenes/main_menu.tmx") != 0 &&
-     strcmp(scene_path, "res/scenes/settings_menu.tmx") != 0 &&
-     strcmp(scene_path, "res/scenes/splash.tmx") != 0) {
-    televoidSave(scene_path);
+void SceneSave() {
+  if(strcmp(last_loaded_scene, "res/scenes/main_menu.tmx") != 0 &&
+     strcmp(last_loaded_scene, "res/scenes/settings_menu.tmx") != 0 &&
+     strcmp(last_loaded_scene, "res/scenes/splash.tmx") != 0) {
+    televoidSave(last_loaded_scene);
   }
 }
 

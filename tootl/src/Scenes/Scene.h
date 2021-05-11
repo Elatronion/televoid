@@ -40,4 +40,6 @@ void televoidCreateProp(const char* name, hge_transform prop_transform, hge_mate
 hge_entity* televoidCreateDialogue(const char* file);
 hge_entity* televoidIMVCreate(const char* path);
 
+void SceneSave();
+
 #endif
