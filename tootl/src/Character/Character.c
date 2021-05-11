@@ -8,6 +8,7 @@
 #include "Boombox.h"
 #include "MousePicker.h"
 #include "GameState.h"
+#include "menu_system.h"
 
 void CharacterGroundClick(character_component* character, hge_vec3 position) {
   if(character->state == CHARACTER_INTERACTING) return;
@@ -100,12 +101,46 @@ void CharacterSystem(hge_entity* e, character_component* character, hge_transfor
 	}
 }
 
+void pausemenu_resume() {
+  televoidSetGameState(GAME_PLAY);
+  televoidBoomboxPlaySFX("Resume");
+}
+void pausemenu_save() {
+  SceneSave();
+  televoidSetGameState(GAME_PLAY);
+  televoidBoomboxPlaySFX("Resume");
+}
+void pausemenu_quit() {
+  SceneSave();
+  hgeStop();
+}
+int current_paused_selection = 0;
+float paused_text_timer = 0.0f;
+void process_paused_fx() {
+  hge_shader framebuffer_shader = hgeResourcesQueryShader("framebuffer");
+  hgeUseShader(framebuffer_shader);
+  hgeShaderSetInt(framebuffer_shader, "paused", televoidGameState() == GAME_PAUSE ? 1 : 0);
+
+  if(televoidGameState() == GAME_PAUSE) {
+    gui_menu menu = menu_create("PAUSED", &current_paused_selection);
+    menu_add_option(&menu, "resume", pausemenu_resume);
+    menu_add_option(&menu, "save", pausemenu_save);
+    menu_add_option(&menu, "quit", pausemenu_quit);
+    if (hgeInputGetKey(HGE_KEY_L))
+    menu_add_option(&menu, "Option 4", pausemenu_resume);
+    process_menu(menu);
+  }
+
+}
 
 void PlayerCharacterControlSystem(hge_entity* e, tag_component* playable, character_component* character) {
+  process_paused_fx();
+
   if(hgeInputGetKeyDown(HGE_KEY_ESCAPE)) {
     if(televoidGameState() == GAME_PLAY) {
       televoidBoomboxPlaySFX("Pause");
       televoidSetGameState(GAME_PAUSE);
+      paused_text_timer = 1.5f;
     }
     else if(televoidGameState() == GAME_PAUSE) {
       televoidBoomboxPlaySFX("Resume");
