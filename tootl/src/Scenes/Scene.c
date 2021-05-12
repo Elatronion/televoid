@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <unistd.h>
+#include "SaveSystem.h"
 
 char last_loaded_scene[255];
 
@@ -507,7 +508,11 @@ void LoadScene(const char* scene_path) {
 
   strcpy(&last_loaded_scene, scene_path);
   //HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
-  SceneSave();
+  if(strcmp(last_loaded_scene, "res/scenes/main_menu.tmx") != 0 &&
+     strcmp(last_loaded_scene, "res/scenes/settings_menu.tmx") != 0 &&
+     strcmp(last_loaded_scene, "res/scenes/splash.tmx") != 0) {
+       televoidGlobalSave();
+  }
 }
 
 void SceneSave() {

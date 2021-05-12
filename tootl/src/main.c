@@ -9,6 +9,8 @@
 
 #include "Floor.h"
 
+#include "SaveSystem.h"
+
 void televoid_system_spritesheet(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
 	// Flip By Reversing X Scale
 	hge_vec3 rendering_scale = transform->scale;
@@ -108,6 +110,7 @@ void televoid_system_global_update(hge_entity* entity, tag_component* global_upd
 	televoidMinigameUpdate();
 	televoidSceneUpdate(false);
 	televoidBoomboxUpdate();
+	televoidSaveUpdate();
 }
 
 void autoload_dialogue_portraits() {
@@ -210,6 +213,7 @@ int main(int argc, char **argv) {
 
 	// GUI
 	hgeResourcesLoadTexture("res/textures/GUI/radio.png", "GUI RADIO");
+	hgeResourcesLoadTexture("res/textures/GUI/floppy.png", "GUI FLOPPY");
 
 	hgeResourcesLoadTexture("res/textures/sprites/moose.png", "moose");
 

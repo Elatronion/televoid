@@ -9,6 +9,7 @@
 #include "MousePicker.h"
 #include "GameState.h"
 #include "menu_system.h"
+#include "SaveSystem.h"
 
 void CharacterGroundClick(character_component* character, hge_vec3 position) {
   if(character->state == CHARACTER_INTERACTING) return;
@@ -111,12 +112,12 @@ void pausemenu_resume() {
   televoidBoomboxPlaySFX("Resume");
 }
 void pausemenu_save() {
-  SceneSave();
+  televoidGlobalSave();
   televoidSetGameState(GAME_PLAY);
   televoidBoomboxPlaySFX("Resume");
 }
 void pausemenu_quit() {
-  SceneSave();
+  televoidGlobalSave();
   hgeStop();
 }
 int current_paused_selection = 0;
