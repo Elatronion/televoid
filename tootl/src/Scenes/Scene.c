@@ -176,6 +176,7 @@ void ParseTMXHotspot(tmx_object* object) {
   tmx_property* property_auto_exec = tmx_get_property(object->properties, "auto_exec");
   tmx_property* property_script = tmx_get_property(object->properties, "script");
   tmx_property* property_snippet = tmx_get_property(object->properties, "snippet");
+  tmx_property* property_wireless = tmx_get_property(object->properties, "wireless");
 
   if(!property_script && !property_snippet) {
     if(object->name) {
@@ -194,6 +195,10 @@ void ParseTMXHotspot(tmx_object* object) {
     hgeQuaternion(0, 0, 0, 1)
   };
 
+  bool wireless = false;
+  if(property_wireless)
+    wireless = property_wireless->value.boolean;
+
   hge_entity* hotspot_entity = NULL;
 
   if(property_script) {
@@ -201,9 +206,9 @@ void ParseTMXHotspot(tmx_object* object) {
       HGE_ERROR("File \"%s\" doesn't exists.", property_script->value.string);
       return;
     }
-    hotspot_entity = televoidCreateHotspot(transform, transform.position, HOTSPOT_INTERACTABLE_SCRIPT, property_script->value.string);
+    hotspot_entity = televoidCreateHotspot(transform, transform.position, HOTSPOT_INTERACTABLE_SCRIPT, wireless, property_script->value.string);
   } else if(property_snippet) {
-    hotspot_entity = televoidCreateHotspot(transform, transform.position, HOTSPOT_INTERACTABLE_SNIPPET, property_snippet->value.string);
+    hotspot_entity = televoidCreateHotspot(transform, transform.position, HOTSPOT_INTERACTABLE_SNIPPET, wireless, property_snippet->value.string);
   }
 
   if(property_auto_exec)
@@ -242,7 +247,7 @@ void ParseTMXItem(tmx_object* object) {
     hgeResourcesQueryTexture("HGE DEFAULT NORMAL")
   };
 
-  hge_entity* item_hotspot_entity = televoidCreateHotspot(transform, transform.position, HOTSPOT_ITEM, object->name);
+  hge_entity* item_hotspot_entity = televoidCreateHotspot(transform, transform.position, HOTSPOT_ITEM, false, object->name);
   hgeAddComponent(item_hotspot_entity, hgeCreateComponent("material", &material, sizeof(material)));
 }
 
@@ -636,7 +641,7 @@ hge_entity* televoidCreatePlayerCamera(hge_vec3 position) {
   return camera_entity;
 }
 
-hge_entity* televoidCreateHotspot(hge_transform transform, hge_vec3 interaction_location, hotspot_type type, const char* data) {
+hge_entity* televoidCreateHotspot(hge_transform transform, hge_vec3 interaction_location, hotspot_type type, bool wireless, const char* data) {
   hge_entity* entity = hgeCreateEntity();
   hgeAddComponent(entity, hgeCreateComponent("transform", &transform, sizeof(transform)));
   hotspot_component hotspot;
@@ -644,6 +649,7 @@ hge_entity* televoidCreateHotspot(hge_transform transform, hge_vec3 interaction_
   hotspot.parent = entity;
   hotspot.interaction_location = interaction_location;
   strcpy(&hotspot.data, data);
+  hotspot.wireless = wireless;
   hgeAddComponent(entity, hgeCreateComponent("hotspot", &hotspot, sizeof(hotspot)));
   televoidSceneAddEntity(entity, "hotspot");
   return entity;

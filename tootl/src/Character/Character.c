@@ -20,6 +20,11 @@ void CharacterGroundClick(character_component* character, hge_vec3 position) {
 void CharacterHotspotClick(character_component* character, hotspot_component* hotspot) {
   if(character->state == CHARACTER_INTERACTING) return;
 
+  if(hotspot->wireless) {
+    televoidHotspotExecute(hotspot);
+    return;
+  }
+
   character->current_hotspot = hotspot;
   character->destination = hotspot->interaction_location;
 }

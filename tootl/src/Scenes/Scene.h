@@ -33,7 +33,7 @@ hge_transform* televoid_player_transform();
 
 hge_entity* televoidCreateIanPlayer(hge_vec3 position, bool face_left);
 hge_entity* televoidCreatePlayerCamera(hge_vec3 position);
-hge_entity* televoidCreateHotspot(hge_transform transform, hge_vec3 interaction_location, hotspot_type type, const char* data);
+hge_entity* televoidCreateHotspot(hge_transform transform, hge_vec3 interaction_location, hotspot_type type, bool wireless, const char* data);
 hge_entity* televoidCreateTrigger(hge_transform transform, unsigned int flags, const char* data);
 void televoidAddMesh(hge_transform transform, const char* meshPath, hge_material material);
 void televoidCreateProp(const char* name, hge_transform prop_transform, hge_material prop_material);
