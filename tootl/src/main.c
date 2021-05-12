@@ -242,10 +242,6 @@ int main(int argc, char **argv) {
 	hgeAddSystem(system_trigger_logic, 2, "transform", "trigger");
 
 	hgeAddSystem(system_floor, 1, "floor");
-	// debug systems
-	hgeAddSystem(system_trigger_renderer, 2, "transform", "trigger");
-	hgeAddSystem(system_hotspot_renderer, 2, "transform", "hotspot");
-	hgeAddSystem(system_floor_debug, 1, "floor");
 
 	// Global Updater
 	hge_entity* global_updater_entity = hgeCreateEntity();
@@ -255,12 +251,26 @@ int main(int argc, char **argv) {
 	// Camera
 	//televoidCreatePlayerCamera(hgeVec3(0, 0, 100));
 
+	bool debug_mode = false;
 	switch(argc) {
-		case 2:
-			televoidLoadScene(argv[1]);
+		case 1:
+			televoidLoadScene("res/scenes/splash.tmx");
 			break;
 		default:
-			televoidLoadScene("res/scenes/splash.tmx");
+			for(int i = 1; i < argc; i++) {
+				if(strcmp(argv[i], "--debug") == 0) {
+					debug_mode = true;
+				} else {
+					televoidLoadScene(argv[i]);
+				}
+			}
+	}
+
+	// debug systems
+	if(debug_mode) {
+		hgeAddSystem(system_trigger_renderer, 2, "transform", "trigger");
+		hgeAddSystem(system_hotspot_renderer, 2, "transform", "hotspot");
+		hgeAddSystem(system_floor_debug, 1, "floor");
 	}
 
 	televoid_system_global_update(NULL, NULL);
