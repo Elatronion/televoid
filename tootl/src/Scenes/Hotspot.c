@@ -41,3 +41,21 @@ void system_hotspot_renderer(hge_entity* entity, hge_transform* transform, hotsp
     );
   }
 }
+
+void system_item_renderer(hge_entity* entity, hge_transform* transform, hotspot_component* hotspot) {
+  hge_material rendering_material = {
+    hgeResourcesQueryTexture("debug_hotspot_texture"),
+    hgeResourcesQueryTexture("HGE DEFAULT NORMAL")
+  };
+
+  int material_id = hgeQuery(entity, "material");
+  if(material_id != -1) {
+    hge_material* item_material = entity->components[material_id].data;
+    rendering_material = *item_material;
+    hgeRenderSprite(
+      hgeResourcesQueryShader("basic"),
+      rendering_material,
+      *transform
+    );
+  }
+}

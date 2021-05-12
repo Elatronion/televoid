@@ -18,5 +18,6 @@ typedef struct {
 } hotspot_component;
 
 void system_hotspot_renderer(hge_entity* e, hge_transform* transform, hotspot_component* hotspot);
+void system_item_renderer(hge_entity* e, hge_transform* transform, hotspot_component* hotspot);
 
 #endif

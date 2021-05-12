@@ -243,6 +243,8 @@ int main(int argc, char **argv) {
 
 	hgeAddSystem(system_floor, 1, "floor");
 
+	hgeAddSystem(system_item_renderer, 2, "transform", "hotspot");
+
 	// Global Updater
 	hge_entity* global_updater_entity = hgeCreateEntity();
 	tag_component global_updater;
