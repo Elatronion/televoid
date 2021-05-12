@@ -39,6 +39,10 @@ float volume_voice = 1.0f;
 float volume_sfx = 1.0f;
 float volume_bgm = 1.0f;
 
+float volume_bgm_fade = 1.0f;
+float desired_volume_bgm_fade = 1.0f;
+hge_audiosource last_played_bgm_audiosource;
+hge_audiosource next_bgm_audiosource;
 char last_played_bgm[255] = "";
 char artist[255] = "";
 
@@ -63,8 +67,9 @@ void televoidBoomboxStopSFX(const char* name) {
 }
 
 void televoidBoomboxPlayBGM(const char* name) {
+  desired_volume_bgm_fade = 0;
   hge_audiosource audiosource = { hgeResourcesQueryAudio(name), volume_bgm * volume_master };
-  hgeAudioSourcePlay(audiosource);
+  next_bgm_audiosource = audiosource;
 
   const char* song_name = malloc(strlen(name));
   const char* artist_name = malloc(strlen(name));
@@ -78,6 +83,13 @@ void televoidBoomboxPlayBGM(const char* name) {
   strcpy(last_played_bgm, song_name);
   strcpy(artist, artist_name);
   boombox_animation_countdown = 6.f;
+
+  if(!hgeAudioSourceIsPlaying(last_played_bgm_audiosource)) {
+    printf("INSTA!\n");
+    desired_volume_bgm_fade = 1;
+    hgeAudioSourcePlay(next_bgm_audiosource);
+    last_played_bgm_audiosource = next_bgm_audiosource;
+  }
 }
 
 void televoidBoomboxStopBGM(const char* name) {
@@ -161,4 +173,15 @@ void televoidBoomboxUpdate() {
   if (boombox_animation > 1.0f) boombox_animation = 1.0f;
 
   televoidBoomboxRender();
+
+  // BGM Volume Fade Between Songs
+  if(desired_volume_bgm_fade == 0 && fabs(volume_bgm_fade - desired_volume_bgm_fade) < 0.01f) {
+    desired_volume_bgm_fade = 1;
+    hgeAudioSourcePlay(next_bgm_audiosource);
+    last_played_bgm_audiosource = next_bgm_audiosource;
+  }
+
+  volume_bgm_fade += (desired_volume_bgm_fade - volume_bgm_fade) * 2.0f * hgeDeltaTime();
+  last_played_bgm_audiosource.volume = volume_bgm_fade * volume_bgm * volume_master;
+  hgeAudioSourceUpdateVolume(last_played_bgm_audiosource);
 }
