@@ -183,7 +183,7 @@ void autoload_bgm() {
 }
 
 int main(int argc, char **argv) {
-	hge_window window = { "Voidjam", 1280, 720 };
+	hge_window window = { "T:OoTL", 1280, 720 };
 	hgeInit(60, window, HGE_INIT_ECS | HGE_INIT_RENDERING | HGE_INIT_AUDIO);
 	st_init();
 
