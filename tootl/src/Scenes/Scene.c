@@ -706,6 +706,10 @@ void televoidCreateProp(const char* name, hge_transform prop_transform, hge_mate
 }
 
 hge_entity* televoidCreateDialogue(const char* file) {
+  if( access( file, F_OK ) == -1 ) {
+    HGE_ERROR("Dialogue file \"%s\" doesn't exists.", file);
+    return;
+  }
   hge_entity* dialogue_entity = hgeCreateEntity();
   dialogue_event_node* head = dialogue_load(file);
   dialogue_component dialogue = {
