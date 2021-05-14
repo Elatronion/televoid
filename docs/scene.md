@@ -46,6 +46,7 @@ Type | string | Must be set to `hotspot` to set object as hotspot.
 snippet | string | A snippet of wren code that will be executed upon interaction.
 script | string | Path to wren script that will be executed upon interaction. e.g. `res/scripts/test.wren`
 auto_exec | bool | Should the script/snippet be executed once the scene loads.
+wireless | bool | If true, the snippet/script will be executed as soon as the player clicks the hotspot. Otherwise, the player's character will move to the hotspot's interaction position and perform the interaction animation.
 
 Hotspots are axis-aligned bounding boxes, rectangles that have no rotation. There are three custom properties that you may add. At minimum, you need a snippet or script.
 
@@ -101,6 +102,7 @@ Property | Type | Description
 --- | --- | ---
 Name | string | This will be the item's name and sprite, loaded from `res/textures/sprites/props/<Name>.png` 
 Type | string | Must be set to `prop` to set object as prop. 
+depth | float | How far is the item. (default is 0) 
 
 Props are axis-aligned bounding boxes, rectangles that have no rotation. The prop will be rendered within the boundaries.
 
