@@ -10,6 +10,7 @@
 #include "Floor.h"
 
 #include "SaveSystem.h"
+#include "MousePicker.h"
 
 void televoid_system_spritesheet(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
 	// Flip By Reversing X Scale
@@ -86,8 +87,9 @@ void system_freemove(hge_entity* entity, tag_component* freemove, hge_transform*
 void televoid_system_follower(hge_entity* entity, hge_transform* transform, follow_component* follow) {
 	if(televoidGameState() == GAME_CUTSCENE) return;
 	if(!follow->target_pos) return;
-	if(!follow->lock_x) transform->position.x += (follow->target_pos->x - transform->position.x) * follow->speed * hgeDeltaTime();
-	if(!follow->lock_y) transform->position.y += (follow->target_pos->y - transform->position.y) * follow->speed * hgeDeltaTime();
+	hge_transform mouse_transform = mouseGUITransform();
+	if(!follow->lock_x) transform->position.x += (mouse_transform.position.x/25 + follow->target_pos->x - transform->position.x) * follow->speed * hgeDeltaTime();
+	if(!follow->lock_y) transform->position.y += (15 + mouse_transform.position.y/25 + follow->target_pos->y - transform->position.y) * follow->speed * hgeDeltaTime();
 	//if(!follow->lock_z) transform->position.z += (follow->target_pos->z - transform->position.z) * follow->speed * hgeDeltaTime();
 	transform->position.z += (100 - transform->position.z) * follow->speed * hgeDeltaTime();
 }
