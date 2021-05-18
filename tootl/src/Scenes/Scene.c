@@ -714,8 +714,8 @@ hge_entity* televoidCreateDialogue(const char* file) {
   dialogue_event_node* head = dialogue_load(file);
   dialogue_component dialogue = {
     head, head,
-    hgeResourcesQueryTexture("FRANK IDLE"),
-    hgeResourcesQueryTexture("FRANK IDLE")
+    hgeResourcesQueryTexture("NULL"),
+    hgeResourcesQueryTexture("NULL")
   };
   hgeAddComponent(dialogue_entity, hgeCreateComponent("dialogue", &dialogue, sizeof(dialogue)));
   televoidSceneAddEntity(dialogue_entity, "dialogue");
