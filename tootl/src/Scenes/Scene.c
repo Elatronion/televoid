@@ -494,10 +494,10 @@ void LoadScene(const char* scene_path) {
   tmx_map *map = tmx_load(scene_path);
   if (!map) {
     tmx_perror("Cannot load map");
-    const char* default_scene = "res/scenes/demo/Outside.tmx";
+    const char* default_scene = "res/scenes/main_menu.tmx";
     HGE_ERROR("Cannot load map \"%s\"!", scene_path);
     HGE_WARNING("Loading default scene \"%s\".", default_scene);
-    televoidLoadScene(default_scene);
+    LoadScene(default_scene);
 		return;
 	}
 
