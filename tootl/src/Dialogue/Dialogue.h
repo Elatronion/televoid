@@ -25,6 +25,7 @@ typedef struct {
   dialogue_event_node* current;
   hge_texture left_character_sprite;
   hge_texture right_character_sprite;
+  bool active_is_right;
 } dialogue_component;
 
 dialogue_event_node* dialogue_event_create(dialogue_event_type type, const char* data);

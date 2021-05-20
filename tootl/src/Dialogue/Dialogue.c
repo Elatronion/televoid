@@ -138,7 +138,7 @@ dialogue_event_node* dialogue_load(const char* file_path) {
 }
 
 
-void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, const char* string) {
+void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, bool right_is_active, const char* string) {
   float y_offset = 0.0f;
   float y_offset_character_left = 0.0f;
   float y_offset_character_right = 0.0f;
@@ -154,6 +154,7 @@ void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, const 
 
 
 
+  hge_material character_left_material = { left_sprite, hgeResourcesQueryTexture("HGE DEFAULT NORMAL"), false, hgeVec4(1, 1, 1, 1) };
   hge_vec3 character_left_scale = { 475, 475, 0 };
   hge_vec3 character_left_position = {
     bg_position.x - bg_scale.x/2 + character_left_scale.x/4,
@@ -161,6 +162,7 @@ void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, const 
     98
   };
 
+  hge_material character_right_material = { right_sprite, hgeResourcesQueryTexture("HGE DEFAULT NORMAL"), false, hgeVec4(1, 1, 1, 1) };
   hge_vec3 character_right_scale = { 475, 475, 0 };
   hge_vec3 character_right_position = {
     bg_position.x + bg_scale.x/2 - character_right_scale.x/4,
@@ -168,7 +170,14 @@ void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, const 
     98
   };
 
-  hge_material character_left_material = { left_sprite, hgeResourcesQueryTexture("HGE DEFAULT NORMAL"), false, hgeVec4(1, 1, 1, 1) };
+  if(!right_is_active) {
+    character_right_position.y -= 50;
+    character_right_material.color_multiplier.w = 0.25f;
+  } else {
+    character_left_position.y -= 50;
+    character_left_material.color_multiplier.w = 0.25f;
+  }
+
   hge_transform character_left_transform = { character_left_position, character_left_scale, hgeQuaternion(0, 0, 0, 1) };
   hgeRenderSprite(
     gui_shader,
@@ -176,7 +185,6 @@ void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, const 
     character_left_transform
   );
 
-  hge_material character_right_material = { right_sprite, hgeResourcesQueryTexture("HGE DEFAULT NORMAL"), false, hgeVec4(1, 1, 1, 1) };
   hge_transform character_right_transform = { character_right_position, character_right_scale, hgeQuaternion(0, 0, 0, 1) };
   hgeRenderSprite(
     gui_shader,
@@ -226,9 +234,11 @@ void dialogue_execute(dialogue_component* dialogue, dialogue_event event) {
       televoidWrenExecuteSnippet(event.data);
     break;
     case DIALOGUE_LEFT_SPRITE:
+      dialogue->active_is_right = false;
       dialogue->left_character_sprite = hgeResourcesQueryTexture(event.data);
     break;
     case DIALOGUE_RIGHT_SPRITE:
+      dialogue->active_is_right = true;
       dialogue->right_character_sprite = hgeResourcesQueryTexture(event.data);
     break;
   }
@@ -256,6 +266,7 @@ void system_dialogue(hge_entity* entity, dialogue_component* dialogue) {
   draw_dialogue_box(
     dialogue->left_character_sprite,
     dialogue->right_character_sprite,
+    dialogue->active_is_right,
     dialogue->current->event.data
   );
 }
