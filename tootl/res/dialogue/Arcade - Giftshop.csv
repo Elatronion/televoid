@@ -1,0 +1,9 @@
+TYPE,DATA
+LEFT,IAN_IDLE
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"Hey hey, I'm Arcade Dude!"
+LEFT,IAN_IDLE
+MESSAGE,"Okaayy..."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"And, well, you can give me tickets!"
+SCRIPT,res/scripts/Arcade - Giftshop.wren

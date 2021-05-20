@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="24" nextobjectid="40">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="25" nextobjectid="47">
  <imagelayer id="23" name="background" offsetx="-229.5" offsety="-154.833">
   <image source="../../../../../../../../mnt/Black6/Projects/Televoid/televoid/tootl/res/scenes/arcade_background.png" width="1280" height="720"/>
   <properties>
@@ -12,7 +12,7 @@
    <property name="depth" type="float" value="0.5"/>
   </properties>
  </imagelayer>
- <imagelayer id="21" name="FX01" offsetx="-238.333" offsety="-182">
+ <imagelayer id="21" name="FX01" visible="0" offsetx="-238.333" offsety="-182">
   <image source="../../../../../../../../mnt/Black6/Projects/Televoid/televoid/tootl/res/scenes/FX01.png" width="1280" height="720"/>
   <properties>
    <property name="depth" type="float" value="0"/>
@@ -66,7 +66,7 @@
   </object>
   <object id="32" type="hotspot" x="429.909" y="181.047" width="14" height="35">
    <properties>
-    <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/breakout.wren&quot;)"/>
+    <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/space_rocks/game.wren&quot;)"/>
    </properties>
   </object>
   <object id="34" type="hotspot" x="405.909" y="181.047" width="14" height="35">
@@ -74,14 +74,48 @@
     <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/spin_wheel/game.wren&quot;)"/>
    </properties>
   </object>
-  <object id="37" type="hotspot" x="180" y="174" width="78" height="36">
+  <object id="37" name="Giftshop" type="hotspot" x="240.303" y="168.364" width="36.7273" height="35.5455">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Giftshop.csv&quot;)"/>
+   </properties>
+  </object>
+  <object id="38" name="exit door" type="hotspot" x="33.625" y="209.875" width="18.1576" height="29.9891">
    <properties>
     <property name="snippet" value=""/>
    </properties>
   </object>
-  <object id="38" type="hotspot" x="33.625" y="209.875" width="18.1576" height="29.9891">
+  <object id="40" name="Item Tester" type="hotspot" x="338.333" y="120.667" width="49.25" height="35">
    <properties>
-    <property name="snippet" value=""/>
+    <property name="snippet">Inventory.add(&quot;blue_key&quot;)
+Inventory.add(&quot;breakout ticket&quot;)
+Inventory.add(&quot;ticket_blue&quot;)
+Inventory.add(&quot;ticket_green&quot;)
+Inventory.add(&quot;ticket_purple&quot;)
+Inventory.add(&quot;wheely-fun ticket&quot;)</property>
+   </properties>
+  </object>
+  <object id="42" type="hotspot" x="-72" y="186" width="90" height="60">
+   <properties>
+    <property name="snippet" value="System.print(&quot;Long Way Down!&quot;)"/>
+    <property name="wireless" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="44" type="hotspot" x="0" y="0" width="12" height="12">
+   <properties>
+    <property name="auto_exec" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playBGM(&quot;spaces by brutalmoose&quot;)"/>
+   </properties>
+  </object>
+  <object id="45" name="Oo" type="hotspot" x="259.616" y="205.688" width="7.03494" height="5.25661">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Oo.csv&quot;)"/>
+    <property name="wireless" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="46" name="Chirp" type="hotspot" x="250.561" y="205.309" width="4.69119" height="5.56096">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Chirp.csv&quot;)"/>
+    <property name="wireless" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

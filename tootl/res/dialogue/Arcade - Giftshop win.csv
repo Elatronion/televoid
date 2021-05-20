@@ -1,0 +1,24 @@
+TYPE,DATA
+RIGHT,ARCADE_DUDE_IDLE
+LEFT,IAN_IDLE
+MESSAGE,"Here you go."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"CONGRATULATIONS!!!"
+MESSAGE,"That is super impressive!!
+You must be some kind of retro king."
+LEFT,IAN_IDLE
+MESSAGE,"Ummm... No, but thanks."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"As a reward, here's your gift!
+An XYZ!"
+LEFT,IAN_IDLE
+MESSAGE,"Thanks, it was sort of nostalgic
+playing all these old games.
+You know, I can't put my finger on it...
+But, even you seem somewhat familiar."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"..."
+LEFT,IAN_IDLE
+SNIPPET,Audio.playSFX("ian seeya")
+MESSAGE,"...
+Well, see you around!"

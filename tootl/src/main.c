@@ -194,6 +194,8 @@ int main(int argc, char **argv) {
 
 	televoidGenerateAllItems();
 
+	hgeResourcesLoadTexture("res/HGE/BLACK.png", "BLACK");
+
 	hgeResourcesLoadTexture("res/textures/sprites/minigame-exit-button.png", "GUI Minigame Exit");
 
 	hgeResourcesLoadTexture("res/textures/sprites/inventory/inventory.png", "GUI Inventory");
@@ -218,6 +220,9 @@ int main(int argc, char **argv) {
 	hgeResourcesLoadTexture("res/textures/GUI/floppy.png", "GUI FLOPPY");
 
 	hgeResourcesLoadTexture("res/textures/sprites/moose.png", "moose");
+
+	hgeResourcesLoadTexture("res/textures/GUI/arcade_screen.png", "arcade screen");
+
 
 	autoload_dialogue_portraits();
 	autoload_sfx();

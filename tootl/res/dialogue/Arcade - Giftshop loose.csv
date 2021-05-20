@@ -1,0 +1,14 @@
+TYPE,DATA
+RIGHT,ARCADE_DUDE_IDLE
+LEFT,IAN_IDLE
+SNIPPET,Audio.playSFX("ian uh1")
+MESSAGE,"Uuuh.."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"It seems like you haven't got enough tickets...
+Come see me once you have one ticket
+from each machine!"
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"Then, and only then, will you receive a gift!"
+SNIPPET,Audio.playSFX("ian uh2")
+LEFT,IAN_IDLE
+MESSAGE,"Ummm..."

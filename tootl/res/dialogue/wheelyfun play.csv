@@ -1,14 +1,17 @@
 TYPE,DATA
-LEFT,IAN_IDLE
 RIGHT,NULL
+LEFT,IAN_HAPPY
 SNIPPET,Audio.playVoice("ian laugh3")
 MESSAGE,"Ah man, a spinning wheel!
 I LOVE these!
 They always give them some kind of wacky name,
 I wonder what this one is called?"
+LEFT,IAN_ANGRY
+SNIPPET,Audio.playVoice("ian no2")
 MESSAGE,"'Wheely Fun' oh god.
 
 t h e  p u n s  t h e y  h u r t"
+LEFT,IAN_IDLE
 MESSAGE,"You know, arcades have included spinning wheels 
 of all kinds for the longest time,
 but they are far from what popularize them...

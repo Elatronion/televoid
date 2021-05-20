@@ -53,12 +53,13 @@ class Breakout {
     _numBlocks = 0
     _blocks = []
 
+    var blocks_margin = 10
     for (y in 0..6) { //0..4
-    for (x in 0..6) {
+    for (x in 1..5) {
       _numBlocks = _numBlocks+1
       _blocks.add(
         GameObject.new(
-          Vec2.new(-_gameWidth/2 + x * 64*scalar, _gameHeight/2 - y * 15 * scalar),
+          Vec2.new(-_gameWidth/2 + x * 64*scalar, _gameHeight/2 - y * 15 * scalar - (15 * scalar) - blocks_margin),
           Vec2.new(64 * scalar, 15 * scalar)
         )
       )
@@ -68,7 +69,6 @@ class Breakout {
 
   win() {
     _gameState = Breakout.STATE_WIN
-    System.print("Wow, I won! :D")
     Inventory.add("breakout ticket")
   }
 
@@ -81,7 +81,6 @@ class Breakout {
     } else {
       _gameState = Breakout.STATE_MENU
       reset()
-      System.print("Aww man, I lost! D:")
     }
   }
 
@@ -205,18 +204,21 @@ class Breakout {
   }
 
   render() {
-
+    Window.render("arcade screen", 0, 0, 1920, 1080)
     if(_gameState == Breakout.STATE_MENU) {
       Window.render("BREAKOUT GUI PRESS_START", 0, 0, 64 * 4, 64 * 4)
+      Window.render("BLACK", 0, 0, _gameWidth, _gameHeight)
       return
     } else if(_gameState == Breakout.STATE_WIN) {
       Window.render("BREAKOUT GUI YOU_WIN", 0, 0, 64 * 4, 64 * 4)
+      Window.render("BLACK", 0, 0, _gameWidth, _gameHeight)
       return
     }
 
     if(_lives > 0) {
+      var margin = 10
       for(i in 0.._lives-1) {
-        Window.render("BREAKOUT BALL", -_gameWidth/2 + i * (_objectBall.scale.x + 5), _gameHeight/2 - 5, _objectBall.scale.x, _objectBall.scale.y)
+        Window.render("BREAKOUT BALL", -_gameWidth/2 + i * (_objectBall.scale.x + 5) + _objectBall.scale.x/2 + margin, _gameHeight/2 - 5 - _objectBall.scale.y/2 - margin, _objectBall.scale.x, _objectBall.scale.y)
       }
     }
     for (block in _blocks) {
@@ -225,6 +227,7 @@ class Breakout {
     Window.render("BREAKOUT BALL", _objectBall)
     Window.render("BREAKOUT PADDLE", _objectPaddle)
 
+    Window.render("BLACK", 0, 0, _gameWidth, _gameHeight)
   }
 }
 
