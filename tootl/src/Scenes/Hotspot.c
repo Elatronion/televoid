@@ -43,6 +43,26 @@ void system_hotspot_renderer(hge_entity* entity, hge_transform* transform, hotsp
 }
 
 void system_item_renderer(hge_entity* entity, hge_transform* transform, hotspot_component* hotspot) {
+  hge_transform rendered_transform = *transform;
+  float animation_offset = transform->position.x;
+  float animation_x = hgeRuntime() + animation_offset;
+  rendered_transform.position.y = transform->position.y + cosf(animation_x) * 3;
+  rendered_transform.rotation = hgeQuaternionInitRotation(hgeVec3(0, 1, 0), 0.5f*sinf(animation_x));
+
+  int precision = 100;
+  int repeat_at_second = 10; // 15
+  float animation_repeat_x = ((int)(animation_x*precision) % (repeat_at_second*precision))/(float)(precision);
+
+  float sm_x = animation_repeat_x * 10.f;
+  float x_scale_multiplier = (cosf(sm_x))*(1/(sm_x+0.5f)) + 1;
+  float y_scale_multiplier = (sinf(sm_x))*(1/(sm_x+0.5f)) + 1;
+  if(animation_repeat_x > 4.f) {
+    x_scale_multiplier = 1.f;
+    y_scale_multiplier = 1.f;
+  }
+  rendered_transform.scale.x = 9 * x_scale_multiplier;
+  rendered_transform.scale.y = 9 * y_scale_multiplier;
+
   hge_material rendering_material = {
     hgeResourcesQueryTexture("debug_hotspot_texture"),
     hgeResourcesQueryTexture("HGE DEFAULT NORMAL")
@@ -55,7 +75,7 @@ void system_item_renderer(hge_entity* entity, hge_transform* transform, hotspot_
     hgeRenderSprite(
       hgeResourcesQueryShader("basic"),
       rendering_material,
-      *transform
+      rendered_transform
     );
   }
 }
