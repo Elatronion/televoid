@@ -115,10 +115,10 @@ void ParseTMXPlayerStart(tmx_object* object) {
     else
       start.fade_speed = 0.0f;
 
-  //if(!strcmp(start.previous_scene_that_activates, &last_loaded_scene)) {
+  if(strcmp(start.previous_scene_that_activates, last_loaded_scene) == 0) {
     hge_vec3 ian_pos = { object->x, -object->y, 0 };
     televoidCreateIanPlayer(ian_pos, start.face_left);
-  //}
+  }
 
   printf("player_start:\n\tprevious_scene_that_activates: '%s'\n\tfadein_on_start: %d\n\tfade_speed: %f\n",
   start.previous_scene_that_activates, start.fadein_on_start, start.fade_speed);
@@ -358,6 +358,7 @@ void ParseTMXFloor(tmx_object* object) {
 
   hge_entity* floor_entity = hgeCreateEntity();
   hgeAddComponent(floor_entity, hgeCreateComponent("floor", &floor, sizeof(floor)));
+  televoidSceneAddEntity(floor_entity, "floor");
 }
 
 void ParseTMXObject(tmx_object* object) {
@@ -555,6 +556,7 @@ void televoidSceneUpdate(bool skip) {
 
 hge_transform* televoid_player_transform() {
 	hge_entity* player_entity = hgeQueryEntity(2, "playable", "character");
+  if(!player_entity) return NULL;
 	hge_transform* transform = (hge_transform*)player_entity->components[hgeQuery(player_entity, "transform")].data;
 	return transform;
 }
