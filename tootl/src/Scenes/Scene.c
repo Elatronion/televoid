@@ -538,7 +538,7 @@ void SceneSave() {
      strcmp(last_loaded_scene, "res/scenes/settings_menu.tmx") != 0 &&
      strcmp(last_loaded_scene, "res/scenes/splash.tmx") != 0) {
     hge_transform* player_transform = televoid_player_transform();
-    televoidSave(last_loaded_scene, player_transform->position);
+    if(player_transform) televoidSave(last_loaded_scene, player_transform->position);
   }
 }
 
