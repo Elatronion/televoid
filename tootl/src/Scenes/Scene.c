@@ -8,6 +8,9 @@
 
 char last_loaded_scene[255];
 
+bool force_player_position = false;
+hge_vec3 forced_player_position;
+
 typedef struct scene_entity_t {
   const char* name;
   hge_entity* entity;
@@ -55,13 +58,22 @@ void televoidSceneAddEntity(hge_entity* entity, const char* name) {
   //num_scene_entities++;
 }
 
-void televoidSceneDestroy() {
-  /*
-  for(int i = 0; i < num_scene_entities; i++) {
-    hgeDestroyEntity(scene_entities[i]);
+void televoidSceneDestroyEntity(const char* name) {
+  scene_entity* current = root_scene_entity;
+  while(current->next) {
+    if(strcmp(current->next->name, name) == 0) {
+      scene_entity* freeme = current->next;
+      current->next = current->next->next;
+      free(freeme->name);
+      hgeDestroyEntity(freeme->entity);
+      free(freeme);
+      return;
+    }
+    current = current->next;
   }
-  */
+}
 
+void televoidSceneDestroy() {
   scene_entity* current = root_scene_entity;
   while(current) {
     scene_entity* freeme = current;
@@ -71,7 +83,6 @@ void televoidSceneDestroy() {
     free(freeme);
   }
   root_scene_entity = NULL;
-  //num_scene_entities = 0;
   imvCleanAll();
   televoidSetGameState(GAME_PLAY);
 }
@@ -507,6 +518,12 @@ void LoadScene(const char* scene_path) {
   ParseTMXData(map, scene_path);
   tmx_map_free(map);
 
+  if(force_player_position) {
+    force_player_position = false;
+    televoidSceneDestroyEntity("ian");
+    televoidCreateIanPlayer(forced_player_position, false);
+  }
+
   strcpy(&last_loaded_scene, scene_path);
   //HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
   if(strcmp(last_loaded_scene, "res/scenes/main_menu.tmx") != 0 &&
@@ -520,7 +537,8 @@ void SceneSave() {
   if(strcmp(last_loaded_scene, "res/scenes/main_menu.tmx") != 0 &&
      strcmp(last_loaded_scene, "res/scenes/settings_menu.tmx") != 0 &&
      strcmp(last_loaded_scene, "res/scenes/splash.tmx") != 0) {
-    televoidSave(last_loaded_scene);
+    hge_transform* player_transform = televoid_player_transform();
+    televoidSave(last_loaded_scene, player_transform->position);
   }
 }
 
@@ -552,6 +570,12 @@ void televoidSceneUpdate(bool skip) {
   }
 
   if(skip) letterbox_percentage = 0.f;
+}
+
+void televoidLoadSceneForcePlayer(const char* scene_path, hge_vec3 position) {
+  televoidLoadScene(scene_path);
+  force_player_position = true;
+  forced_player_position = position;
 }
 
 hge_transform* televoid_player_transform() {

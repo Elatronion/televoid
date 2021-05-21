@@ -6,6 +6,7 @@
 #include "ioutils.h"
 
 typedef struct {
+  hge_vec3 position;
   int item0, item1, item2, item3, item4, item5, item6, item7, item8, item9;
   char scene[1000];
 } save_t;
@@ -18,10 +19,11 @@ typedef struct {
 const char* save_file_path = "./save.sav";
 const char* options_file_path = "./options.sav";
 
-void televoidSave(const char* scene) {
+void televoidSave(const char* scene, hge_vec3 position) {
   save_t save_data;
-  int item0, item1, item2, item3, item4, item5, item6, item7, item8, item9;
   char scene_to_load[1000];
+
+  save_data.position = position;
 
   save_data.item0 = InventoryGetItemAtIndex(0);
   save_data.item1 = InventoryGetItemAtIndex(1);
@@ -48,44 +50,6 @@ void televoidSaveOptions() {
 }
 
 void load_game_save() {
-  /*
-  FILE * file;
-  char * line = NULL;
-  size_t len = 0;
-  ssize_t read;
-
-  int item0, item1, item2, item3, item4, item5, item6, item7, item8, item9;
-  char scene_to_load[1000];
-
-  file = fopen(save_file_path, "r");
-  if (file == NULL) {
-      televoidLoadScene("res/scenes/intro.tmx");
-      return;
-  }
-
-  while ((read = hgeGetLine(&line, &len, file)) != -1) {
-    sscanf(line, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%[^\n]",
-    &item0, &item1, &item2, &item3, &item4, &item5, &item6, &item7, &item8, &item9, &scene_to_load);
-
-    InventorySetItemAtIndex(0, item0);
-    InventorySetItemAtIndex(1, item1);
-    InventorySetItemAtIndex(2, item2);
-    InventorySetItemAtIndex(3, item3);
-    InventorySetItemAtIndex(4, item4);
-    InventorySetItemAtIndex(5, item5);
-    InventorySetItemAtIndex(6, item6);
-    InventorySetItemAtIndex(7, item7);
-    InventorySetItemAtIndex(8, item8);
-    InventorySetItemAtIndex(9, item9);
-    InventoryPrint();
-    televoidLoadScene(scene_to_load);
-
-  }
-  fclose(file);
-  if (line)
-      free(line);
-  */
-
   FILE* file = fopen(save_file_path, "r");
   if (file == NULL) {
       televoidLoadScene("res/scenes/intro.tmx");
@@ -105,37 +69,10 @@ void load_game_save() {
   InventorySetItemAtIndex(7, save_data.item7);
   InventorySetItemAtIndex(8, save_data.item8);
   InventorySetItemAtIndex(9, save_data.item9);
-  televoidLoadScene(save_data.scene);
+  televoidLoadSceneForcePlayer(save_data.scene, save_data.position);
 }
 
 void load_game_options() {
-  /*
-  FILE * file;
-  char * line = NULL;
-  size_t len = 0;
-  ssize_t read;
-
-  float volumeMaster, volumeVoice, volumeSFX, volumeBGM;
-
-  file = fopen(options_file_path, "r");
-  if (file == NULL) {
-    return;
-  }
-
-  while ((read = hgeGetLine(&line, &len, file)) != -1) {
-    sscanf(line, "%f,%f,%f,%f",
-      &volumeMaster, &volumeVoice, &volumeSFX, &volumeBGM);
-
-    televoidBoomboxSettingsVolumeSetMaster(volumeMaster);
-    televoidBoomboxSettingsVolumeSetVoice(volumeVoice);
-    televoidBoomboxSettingsVolumeSetSFX(volumeSFX);
-    televoidBoomboxSettingsVolumeSetBGM(volumeBGM);
-
-  }
-  fclose(file);
-  if (line)
-      free(line);
-  */
   FILE* file = fopen(options_file_path, "r");
   if (file == NULL) {
     return;
