@@ -476,7 +476,7 @@ hge_entity* imvLoad(const char* path) {
         tmp[0] = '\0';
         for(int i = 0; i < strlen(data); i++) data[i] = tmp[i+1];
 
-        televoidBoomboxPlayBGM(data);
+        televoidBoomboxPlayBGM(data, false);
       break;
     }
   }

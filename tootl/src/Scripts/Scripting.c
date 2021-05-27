@@ -158,7 +158,12 @@ void wrenPlayVoice(WrenVM* vm) {
 
 void wrenPlayBGM(WrenVM* vm) {
   const char* name_str = wrenGetSlotString(vm, 1);
-  televoidBoomboxPlayBGM(name_str);
+  televoidBoomboxPlayBGM(name_str, true);
+}
+
+void wrenPlayBGMOnce(WrenVM* vm) {
+  const char* name_str = wrenGetSlotString(vm, 1);
+  televoidBoomboxPlayBGM(name_str, false);
 }
 
 void wrenPlaySFX(WrenVM* vm) {
@@ -320,6 +325,8 @@ WrenForeignMethodFn bindForeignMethod(
     } else if (strcmp(className, "Audio") == 0) {
       if (isStatic && strcmp(signature, "playSFX(_)") == 0) {
         return wrenPlaySFX;
+      } else if(isStatic && strcmp(signature, "playBGMOnce(_)") == 0) {
+        return wrenPlayBGMOnce;
       } else if(isStatic && strcmp(signature, "playBGM(_)") == 0) {
         return wrenPlayBGM;
       } else if(isStatic && strcmp(signature, "playVoice(_)") == 0) {

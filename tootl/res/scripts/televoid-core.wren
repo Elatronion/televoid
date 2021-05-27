@@ -22,6 +22,7 @@ class Minigame {
 class Audio {
   foreign static playVoice(name)
   foreign static playBGM(name)
+  foreign static playBGMOnce(name)
   foreign static playSFX(name)
 }
 

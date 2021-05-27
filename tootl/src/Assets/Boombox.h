@@ -23,7 +23,7 @@ void televoidBoomboxSettingsVolumeSetBGM(float volume);
 void televoidBoomboxPlaySFX(const char* name);
 void televoidBoomboxStopSFX(const char* name);
 
-void televoidBoomboxPlayBGM(const char* name);
+void televoidBoomboxPlayBGM(const char* name, bool looping);
 void televoidBoomboxStopBGM(const char* name);
 
 void televoidBoomboxPlayVoice(const char* name);

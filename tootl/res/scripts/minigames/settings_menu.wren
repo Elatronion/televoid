@@ -104,7 +104,7 @@ class OptionsMenu {
       Audio.playSFX("step1")
     }
     if(Math.AABB(_button_test_bgm, mouse_gameobject) && Input.getMouseDown(Input.MOUSE_LEFT)) {
-      Audio.playBGM("Townie Loop Sample")
+      Audio.playBGMOnce("Townie Loop Sample")
     }
 
     if(Math.AABB(_button_back, mouse_gameobject) && Input.getMouseDown(Input.MOUSE_LEFT)) {
@@ -130,6 +130,11 @@ class OptionsMenu {
     Window.render("SETTINGS TEST SFX", _button_test_sfx)
     Window.render("SETTINGS TEST BGM", _button_test_bgm)
     Window.render("SETTINGS BUTTON BACK", _button_back)
+
+    Window.render("BLACK",
+      0, 0,
+      282*8, 175*8
+    )
   }
 }
 
