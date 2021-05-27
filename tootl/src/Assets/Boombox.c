@@ -39,6 +39,9 @@ float volume_voice = 1.0f;
 float volume_sfx = 1.0f;
 float volume_bgm = 1.0f;
 
+float volume_mod_sfx = 0.75;
+float volume_mod_bgm = 0.35;
+
 float volume_bgm_fade = 1.0f;
 float desired_volume_bgm_fade = 1.0f;
 hge_audiosource last_played_bgm_audiosource;
@@ -58,7 +61,7 @@ void televoidBoomboxSettingsVolumeSetSFX(float volume)    { volume_sfx = volume;
 void televoidBoomboxSettingsVolumeSetBGM(float volume)    { volume_bgm = volume; }
 
 void televoidBoomboxPlaySFX(const char* name) {
-  hge_audiosource audiosource = { hgeResourcesQueryAudio(name), volume_sfx * volume_master };
+  hge_audiosource audiosource = { hgeResourcesQueryAudio(name), volume_mod_sfx*volume_sfx * volume_master };
   hgeAudioSourcePlay(audiosource);
 }
 
@@ -69,7 +72,7 @@ void televoidBoomboxStopSFX(const char* name) {
 
 void televoidBoomboxPlayBGM(const char* name, bool looping) {
   desired_volume_bgm_fade = 0;
-  hge_audiosource audiosource = { hgeResourcesQueryAudio(name), volume_bgm * volume_master };
+  hge_audiosource audiosource = { hgeResourcesQueryAudio(name), (volume_mod_bgm * volume_bgm) * volume_master };
   next_bgm_audiosource = audiosource;
   next_bgm_looping = looping;
 
@@ -179,12 +182,13 @@ void televoidBoomboxUpdate() {
   // BGM Volume Fade Between Songs
   if(desired_volume_bgm_fade == 0 && fabs(volume_bgm_fade - desired_volume_bgm_fade) < 0.01f) {
     desired_volume_bgm_fade = 1;
+    hgeAudioSourceStop(last_played_bgm_audiosource);
     hgeAudioSourcePlay(next_bgm_audiosource);
     hgeAudioSourceSetLooping(next_bgm_audiosource, next_bgm_looping);
     last_played_bgm_audiosource = next_bgm_audiosource;
   }
 
   volume_bgm_fade += (desired_volume_bgm_fade - volume_bgm_fade) * 2.0f * hgeDeltaTime();
-  last_played_bgm_audiosource.volume = volume_bgm_fade * volume_bgm * volume_master;
+  last_played_bgm_audiosource.volume = volume_bgm_fade * (volume_mod_bgm * volume_bgm) * volume_master;
   hgeAudioSourceUpdateVolume(last_played_bgm_audiosource);
 }
