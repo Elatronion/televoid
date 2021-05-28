@@ -1,0 +1,9 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_HAPPY
+MESSAGE,"Oh yeah, the blowtorch!"
+LEFT,IAN_IDLE
+MESSAGE,"This should only take a sec..."
+SNIPPET,Audio.playSFX("blow torch")
+SNIPPET,Animation.load("res/imv/Kitchen - blow torch.imv")
+SNIPPET,System.print("LOAD FRIDGE INSIDE")

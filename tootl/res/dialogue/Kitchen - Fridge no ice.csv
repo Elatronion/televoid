@@ -1,0 +1,5 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,NULL
+MESSAGE,"A bit of ice fell off..."
+SNIPPET,Inventory.add("fridge ice")

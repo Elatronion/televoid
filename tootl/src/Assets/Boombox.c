@@ -39,8 +39,9 @@ float volume_voice = 1.0f;
 float volume_sfx = 1.0f;
 float volume_bgm = 1.0f;
 
-float volume_mod_sfx = 0.75;
-float volume_mod_bgm = 0.35;
+float volume_mod_voice = 0.45f;
+float volume_mod_sfx = 0.75f;
+float volume_mod_bgm = 0.35f;
 
 float volume_bgm_fade = 1.0f;
 float desired_volume_bgm_fade = 1.0f;
@@ -103,7 +104,7 @@ void televoidBoomboxStopBGM(const char* name) {
 }
 
 void televoidBoomboxPlayVoice(const char* name) {
-  hge_audiosource audiosource = { hgeResourcesQueryAudio(name), volume_voice * volume_master };
+  hge_audiosource audiosource = { hgeResourcesQueryAudio(name), volume_mod_voice * volume_voice * volume_master };
   hgeAudioSourcePlay(audiosource);
 }
 

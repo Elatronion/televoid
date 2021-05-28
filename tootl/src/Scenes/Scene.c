@@ -11,6 +11,10 @@ char last_loaded_scene[255];
 bool force_player_position = false;
 hge_vec3 forced_player_position;
 
+bool default_start = false;
+hge_vec3 default_start_position;
+bool default_face_left;
+
 typedef struct scene_entity_t {
   const char* name;
   hge_entity* entity;
@@ -129,6 +133,13 @@ void ParseTMXPlayerStart(tmx_object* object) {
   if(strcmp(start.previous_scene_that_activates, last_loaded_scene) == 0) {
     hge_vec3 ian_pos = { object->x, -object->y, 0 };
     televoidCreateIanPlayer(ian_pos, start.face_left);
+  }
+
+  if(strcmp(start.previous_scene_that_activates, "") == 0) {
+    hge_vec3 ian_pos = { object->x, -object->y, 0 };
+    default_start = true;
+    default_start_position = ian_pos;
+    default_face_left = start.face_left;
   }
 
   printf("player_start:\n\tprevious_scene_that_activates: '%s'\n\tfadein_on_start: %d\n\tfade_speed: %f\n",
@@ -517,6 +528,11 @@ void LoadScene(const char* scene_path) {
   //televoidUnloadScene();
   ParseTMXData(map, scene_path);
   tmx_map_free(map);
+
+  if(default_start) {
+    default_start = false;
+    televoidCreateIanPlayer(default_start_position, default_face_left);
+  }
 
   if(force_player_position) {
     force_player_position = false;

@@ -1,0 +1,11 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_ANGRY
+SNIPPET,Audio.playVoice("ian grr")
+MESSAGE,"This damn fridge won't open!
+It's frozen shut."
+LEFT,IAN_THINKING
+MESSAGE,"If only there was a way to heat it up...
+Maybe that could melt the ice
+enough to let me in."
+SCRIPT,res/scripts/Kitchen - Fridge.wren

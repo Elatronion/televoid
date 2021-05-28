@@ -1,0 +1,5 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_HAPPY
+MESSAGE,"Microwaves look like small TVs."
+SCRIPT,res/scripts/Kitchen - Microwave.wren

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="24" nextobjectid="78">
+ <imagelayer id="14" name="background" offsetx="-642.667" offsety="-214.667">
+  <image source="background.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="100"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="21" name="further ground">
+  <image source="far far ground.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="50"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="20" name="far ground">
+  <image source="far ground.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="25"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="19" name="ground">
+  <image source="ground.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="22" name="foreground" offsetx="-11.1667" offsety="11.8333">
+  <image source="foreground.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="-25"/>
+  </properties>
+ </imagelayer>
+ <objectgroup color="#ffff00" id="15" name="hotspot">
+  <object id="76" name="OST" type="hotspot" x="0" y="0" width="6" height="6">
+   <properties>
+    <property name="auto_exec" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playBGM(&quot;sad agai by brutalmoose&quot;)"/>
+   </properties>
+  </object>
+  <object id="77" name="Perfection Salad Transformation" type="hotspot" x="0" y="12" width="6" height="6">
+   <properties>
+    <property name="auto_exec" type="bool" value="true"/>
+    <property name="snippet">if(Inventory.has(&quot;unrefrigerated perfection salad&quot;)) {
+	Inventory.remove(&quot;unrefrigerated perfection salad&quot;)
+	Inventory.add(&quot;perfection salad&quot;)
+	Dialogue.load(&quot;res/dialogue/Fridge - Perfection Salad.csv&quot;)
+}</property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="18" name="floor">
+  <object id="66" type="floor" x="142.545" y="274.727">
+   <polyline points="0,0 11.7045,3.27273 44.5455,-1.18182 73.1818,4.63636 103.818,21.8182 126.727,32.1818 159.091,38.8182 240.545,55 259.636,55.8182 281.273,55.9091 320.909,46.7273 341.364,53.7273 374.273,58 396.636,60 439.091,60.3636 468.818,60.9091 488.273,62.0909 525.091,57.6364 546.818,48.6364"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="23" name="items">
+  <object id="73" name="tv dinner" type="item" x="582.227" y="316.955" width="9" height="9"/>
+ </objectgroup>
+ <objectgroup color="#0055ff" id="17" name="props"/>
+ <objectgroup color="#00ff00" id="16" name="trigger">
+  <object id="68" name="Exit" type="trigger" x="125.175" y="242.428" width="16.5593" height="32.2344">
+   <properties>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Kitchen/Kitchen.tmx&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="13" name="spawn">
+  <object id="34" name="DEFAULT" type="player_start" x="159.008" y="276.978">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

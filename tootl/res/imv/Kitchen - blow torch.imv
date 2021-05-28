@@ -1,0 +1,8 @@
+# Animation Length in Seconds: 20
+
+o easeinout "camera"
+k easeinout x 20 890
+k easeinout y 20 -490
+k easeinout z 20 25
+
+s 18 "Scene.load("res/scenes/Kitchen/Fridge/Fridge.tmx")"
