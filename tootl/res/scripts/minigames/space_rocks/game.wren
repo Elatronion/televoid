@@ -87,10 +87,10 @@ class SpaceRocks {
   }
 
   generate_rock_field() {
-    for (i in 0..4) {
+    for (i in 0..0) {
       generate_random_spacerock(128)
     }
-    for (i in 0..3) {
+    for (i in 0..1) {
       generate_random_spacerock(64)
     }
     for (i in 0..2) {

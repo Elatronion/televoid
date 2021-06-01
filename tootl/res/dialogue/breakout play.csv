@@ -1,18 +1,20 @@
 TYPE,DATA
 RIGHT,NULL
-LEFT,IAN_IDLE
+LEFT,IAN_HAPPY
 MESSAGE,"What a classic: Breakout."
+LEFT,IAN_IDLE
 MESSAGE,"Breakout is an arcade game developed and published
 by Atari, Inc., and released on May 13, 1976.
 It was conceptualized by Nolan Bushnell and
-Steve Bristow, influenced by 
+Steve Bristow, influenced by
 the seminal 1972 Atari arcade game Pong."
 MESSAGE,"In Breakout, a layer of bricks lines the top third
-of the screen and the goal is to destroy them all 
+of the screen and the goal is to destroy them all
 by repeatedly bouncing a ball off a paddle into them
 ...
 Truly the pinnacle of high octane action."
 SNIPPET,Audio.playVoice("ian uh1")
+LEFT,IAN_THINKING
 MESSAGE,"I'm not kidding!
 I mean, the game still holds up today!
 That must mean something, right?

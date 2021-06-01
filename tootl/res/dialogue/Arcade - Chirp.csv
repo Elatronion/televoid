@@ -1,4 +1,7 @@
 TYPE,DATA
-LEFT,NULL
 RIGHT,NULL
-MESSAGE,"Such a cute bird, I bet they fly super fast!"
+LEFT,IAN_HAPPY
+MESSAGE,"Such a cute bird!
+I bet it flies super fast and wins all the races."
+LEFT,IAN_ANGRY
+MESSAGE,"Unlike a certain baby..."

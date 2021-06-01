@@ -28,6 +28,7 @@ struct PointLight {
 struct Material {
   sampler2D diffuse;
   sampler2D normal;
+  vec4 color_multiplier;
 };
 
 #define NR_POINT_LIGHTS 10
@@ -122,6 +123,8 @@ void main() {
     FragColor = texture(material.diffuse, TexCoord);
     if(FragColor.a == 0) discard;
   }
+
+  FragColor *= material.color_multiplier;
 
   if(!dither(FragColor.a, 0)) {
     discard;

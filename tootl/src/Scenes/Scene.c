@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include "SaveSystem.h"
+#include "Infinihallway.h"
 
 char last_loaded_scene[255];
 
@@ -267,7 +268,9 @@ void ParseTMXItem(tmx_object* object) {
 
   hge_material material = {
     hgeResourcesQueryTexture(object->name),
-    hgeResourcesQueryTexture("HGE DEFAULT NORMAL")
+    hgeResourcesQueryTexture("HGE DEFAULT NORMAL"),
+    true,
+    hgeVec4(1, 1, 1, 1)
   };
 
   hge_entity* item_hotspot_entity = televoidCreateHotspot(transform, transform.position, HOTSPOT_ITEM, false, object->name);
@@ -508,6 +511,17 @@ void ParseTMXData(tmx_map* map, const char* scene_path) {
   }
 }
 
+void create_infinihallway() {
+  hge_entity* infinihallway_entity = hgeCreateEntity();
+  infinihallway_component infinihallway;
+  infinihallway.dead_end = 1;
+  hgeAddComponent(infinihallway_entity, hgeCreateComponent("infinihallway", &infinihallway, sizeof(infinihallway)));
+  televoidSceneAddEntity(infinihallway_entity, "infinihallway");
+
+  infinihallway_create_door_hotspot(6, "res/scripts/Infinihallway/Door 6.wren");
+  infinihallway_create_door_hotspot(7, "res/scripts/Infinihallway/Door 7.wren");
+}
+
 void LoadScene(const char* scene_path) {
   televoidMinigameClean();
   televoidSceneDestroy();
@@ -541,11 +555,15 @@ void LoadScene(const char* scene_path) {
   }
 
   strcpy(&last_loaded_scene, scene_path);
-  //HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
+  HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
   if(strcmp(last_loaded_scene, "res/scenes/main_menu.tmx") != 0 &&
      strcmp(last_loaded_scene, "res/scenes/settings_menu.tmx") != 0 &&
      strcmp(last_loaded_scene, "res/scenes/splash.tmx") != 0) {
        televoidGlobalSave();
+  }
+
+  if(strcmp(last_loaded_scene, "res/scenes/Infinihallway/Infinihallway.tmx") == 0) {
+    create_infinihallway();
   }
 }
 
@@ -601,6 +619,13 @@ hge_transform* televoid_player_transform() {
 	return transform;
 }
 
+spritesheet_component* televoid_player_spritesheet() {
+	hge_entity* player_entity = hgeQueryEntity(2, "playable", "spritesheet");
+  if(!player_entity) return NULL;
+	spritesheet_component* spritesheet = (spritesheet_component*)player_entity->components[hgeQuery(player_entity, "spritesheet")].data;
+	return spritesheet;
+}
+
 hge_entity* televoidCreateIanPlayer(hge_vec3 position, bool face_left) {
   if(hgeQueryEntity(2, "character", "playable")) return;
   hge_entity* entity = hgeCreateEntity();
@@ -621,7 +646,9 @@ hge_entity* televoidCreateIanPlayer(hge_vec3 position, bool face_left) {
   hgeAddComponent(entity, hgeCreateComponent("transform", &transform, sizeof(transform)));
   hge_material material = {
     hgeResourcesQueryTexture("moose"),
-    hgeResourcesQueryTexture("HGE DEFAULT NORMAL")
+    hgeResourcesQueryTexture("HGE DEFAULT NORMAL"),
+    true,
+    hgeVec4(1, 1, 1, 1)
   };
   spritesheet_component spritesheet = {
     0.0f,

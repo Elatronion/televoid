@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="14" nextobjectid="35">
+ <objectgroup color="#ffff00" id="11" name="Hotspots">
+  <object id="25" name="OST" type="hotspot" x="0" y="0" width="6" height="6">
+   <properties>
+    <property name="auto_exec" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playBGM(&quot;spaces by brutalmoose&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#8000ff" id="12" name="Player Starting Positions">
+  <object id="30" name="Ian Spawn from Intro (door 6)" type="player_start" x="336" y="18">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value="res/scenes/intro.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="31" name="Ian Spawn from Kitchen" type="player_start" x="387" y="18">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value="res/scenes/Kitchen/Kitchen.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="33" name="Ian Spawn from NULL (test)" type="player_start" x="282" y="18">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value=""/>
+   </properties>
+   <point/>
+  </object>
+  <object id="34" name="HUB Start" type="player_start" x="30" y="18">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value="res/scenes/HUB/HUB.tmx"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="13" name="items">
+  <object id="32" name="recipe" type="item" x="354" y="6" width="9" height="9"/>
+ </objectgroup>
+</map>

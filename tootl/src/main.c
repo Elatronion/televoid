@@ -12,6 +12,9 @@
 #include "SaveSystem.h"
 #include "MousePicker.h"
 
+#include "Infinihallway.h"
+#include "fader_sprite.h"
+
 void televoid_system_spritesheet(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
 	// Flip By Reversing X Scale
 	hge_vec3 rendering_scale = transform->scale;
@@ -203,11 +206,13 @@ int main(int argc, char **argv) {
 
 	// Shaders
 	hgeResourcesLoadShader("res/shaders/gui.vs", NULL, "res/shaders/gui.fs", "gui");
-  //hgeResourcesLoadShader("res/shaders/text.vs", NULL, "res/shaders/text.fs", "text");
+  hgeResourcesLoadShader("res/shaders/text.vs", NULL, "res/shaders/text.fs", "text");
 	hgeResourcesLoadShader("res/shaders/gui text.vs", NULL, "res/shaders/text.fs", "gui text");
 
 	// Fonts
 	hgeResourcesLoadFont("res/fonts/VCR OSD Mono.ttf", "VCR");
+	hgeResourcesLoadFont("res/fonts/slkscr.ttf", "pixel");
+	hgeResourcesLoadFont("res/fonts/slkscrb.ttf", "radio");
 
 	// Sprites
 	hgeResourcesLoadTexture("res/textures/debug/trigger.png", "debug_trigger_texture");
@@ -215,11 +220,15 @@ int main(int argc, char **argv) {
 	hgeResourcesLoadTexture("res/textures/debug/hotspot.png", "debug_hotspot_texture");
 	hgeResourcesLoadTexture("res/HGE/DEFAULT NORMAL.png", "HGE DEFAULT NORMAL");
 
+	hgeResourcesLoadTexture("res/textures/sprites/Outervoid/Hallway Section.png", "hallway section");
+	hgeResourcesLoadTexture("res/textures/sprites/Outervoid/Hallway - Destroyed.png", "hallway section destroyed");
+	hgeResourcesLoadTexture("res/textures/sprites/Outervoid/space.png", "SPACE");
+
 	// GUI
 	hgeResourcesLoadTexture("res/textures/GUI/radio.png", "GUI RADIO");
 	hgeResourcesLoadTexture("res/textures/GUI/floppy.png", "GUI FLOPPY");
 
-	hgeResourcesLoadTexture("res/textures/sprites/moose.png", "moose");
+	hgeResourcesLoadTexture("res/textures/sprites/moose4.png", "moose");
 
 	hgeResourcesLoadTexture("res/textures/GUI/arcade_screen.png", "arcade screen");
 
@@ -254,7 +263,10 @@ int main(int argc, char **argv) {
 
 	hgeAddSystem(system_floor, 1, "floor");
 
-	hgeAddSystem(system_item_renderer, 2, "transform", "hotspot");
+	hgeAddSystem(system_item_renderer, 3, "transform", "hotspot", "material");
+
+	hgeAddSystem(system_infinihallway, 1, "infinihallway");
+	hgeAddSystem(system_fader_sprite, 2, "transform", "fader sprite");
 
 	// Global Updater
 	hge_entity* global_updater_entity = hgeCreateEntity();

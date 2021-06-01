@@ -4,12 +4,12 @@ LEFT,IAN_HAPPY
 SNIPPET,Audio.playVoice("ian laugh1")
 MESSAGE,"Asteroids, such a throwback!
 This is definitely up there as one of the most known
-arcade classics! Though, for a game created in 1979, 
+arcade classics! Though, for a game created in 1979,
 it had a higher resolution than games we play today!
 That's because it uses vector graphics."
 LEFT,IAN_IDLE
 MESSAGE,"This space-themed multidirectional shooter
-arcade game designed by Lyle Rains and Ed Logg was 
+arcade game designed by Lyle Rains and Ed Logg was
 one of the first major hits of the golden age of
 arcade games; the game sold over 70,000 cabinets
 and proved both popular with players..."
@@ -19,7 +19,7 @@ As aforementioned, the game is rendered on a vector
 display; a type of CRT, similar to that of an early
 oscilloscope. In a vector display, the image is
 composed of drawn lines..."
-MESSAGE,"...rather than a grid of glowing pixels 
+MESSAGE,"...rather than a grid of glowing pixels
 as in raster graphics. Such is the case for games
 like PacMan. This limitation is what gives Asteroids
 it's simple white shape aesthetic.
@@ -36,4 +36,5 @@ LEFT,IAN_IDLE
 MESSAGE,"Ship : WASD or Arrow Keys
 Shoot : Spacebar
 Restart : R"
+LEFT,IAN_ANGRY
 MESSAGE,"Who made this, an idiot?"

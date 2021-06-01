@@ -1,0 +1,7 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_IDLE
+MESSAGE,"Door 7, this should be the place!"
+LEFT,IAN_THINKING
+MESSAGE,"Strange, I don't remember this door being unlocked..."
+SNIPPET,Scene.load("res/scenes/Kitchen/Kitchen.tmx")

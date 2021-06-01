@@ -1,0 +1,48 @@
+TYPE,DATA
+RIGHT,SAM_IDLE
+LEFT,IAN_HAPPY
+SNIPPET,Audio.playBGM("Too Cool by Kevin MacLeod")
+MESSAGE,"Is that... Sprocket Sam?"
+RIGHT,SAM_IDLE
+MESSAGE,"You know it, kid! I'm the dude with the bike.
+
+But it's in the shop so I went for a hike!"
+LEFT,IAN_HAPPY
+MESSAGE,"Oh wow, you're rhyming and even wearing a
+'RIDE SAFE AND LOVE IT' shirt!
+That's awesome."
+RIGHT,SAM_IDLE
+MESSAGE,"My stomach is asking me for some good food!
+
+Maybe you'd like to help me change my mood?"
+LEFT,IAN_IDLE
+MESSAGE,"Oh, yes! Sorry.
+Your bike is in the shop and your hungry.
+..."
+LEFT,IAN_ANGRY
+MESSAGE,"Wait, I don't even know where we are!"
+LEFT,IAN_THINKING
+MESSAGE,"Where would I find food?"
+RIGHT,SAM_IDLE
+MESSAGE,"I heard of a cooking show that makes food from heaven.
+
+I wonder what's behind door number seven!"
+SNIPPET,Audio.playVoice("ian what")
+LEFT,IAN_THINKING
+MESSAGE,"What?"
+RIGHT,SAM_IDLE
+MESSAGE,"Make me something healthy to please my palate.
+
+The 1950s wealthy jelly; the perfect salad."
+LEFT,IAN_IDLE
+MESSAGE,"The perfect salad?"
+RIGHT,SAM_IDLE
+MESSAGE,"To help you out, take this recipe.
+
+I'm sure when you are cooking,
+it will be the necessity!"
+SNIPPET,Inventory.add("recipe")
+LEFT,IAN_IDLE
+MESSAGE,"You just keep recipes on you...
+And I still don't know where we are!"
+SNIPPET,Audio.playBGM("warmup by brutalmoose")

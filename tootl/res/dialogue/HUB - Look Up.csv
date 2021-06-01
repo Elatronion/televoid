@@ -1,0 +1,6 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_THINKING
+MESSAGE,"Yikes, that's unsettling!"
+LEFT,IAN_ANGRY
+MESSAGE,"I feel watched..."

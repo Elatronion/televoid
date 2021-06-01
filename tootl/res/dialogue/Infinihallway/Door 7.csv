@@ -1,0 +1,5 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_THINKING
+MESSAGE,"Huh, I don't remember this door being unlocked..."
+SNIPPET,Scene.load("res/scenes/Kitchen/Kitchen.tmx")

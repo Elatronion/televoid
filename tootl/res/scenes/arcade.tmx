@@ -51,7 +51,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#8000ff" id="3" name="Player Starting Positions">
-  <object id="22" name="Ian Spawn from NULL" type="player_start" x="42" y="240">
+  <object id="22" name="Ian Spawn from NULL" type="player_start" x="48" y="240">
    <properties>
     <property name="face_left" type="bool" value="false"/>
     <property name="fade_speed" type="float" value="1.234"/>
@@ -84,9 +84,9 @@
     <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Giftshop.csv&quot;)"/>
    </properties>
   </object>
-  <object id="38" name="exit door" type="hotspot" x="33.625" y="209.875" width="18.1576" height="29.9891">
+  <object id="38" name="exit door" type="hotspot" x="38.6875" y="210.813" width="14.8451" height="29.1141">
    <properties>
-    <property name="snippet" value=""/>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/HUB/HUB.tmx&quot;)"/>
    </properties>
   </object>
   <object id="40" name="Item Tester" type="hotspot" x="354" y="144" width="84" height="35">
@@ -96,7 +96,7 @@ Inventory.add(&quot;wheely-fun ticket&quot;)
 Inventory.add(&quot;spacerocks ticket&quot;)</property>
    </properties>
   </object>
-  <object id="42" name="endless pit" type="hotspot" x="-276" y="90" width="274" height="475.5">
+  <object id="42" name="endless pit" type="hotspot" x="-300" y="90" width="274" height="475.5">
    <properties>
     <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Pit.csv&quot;)"/>
     <property name="wireless" type="bool" value="true"/>
@@ -105,7 +105,7 @@ Inventory.add(&quot;spacerocks ticket&quot;)</property>
   <object id="44" type="hotspot" x="0" y="0" width="12" height="12">
    <properties>
     <property name="auto_exec" type="bool" value="true"/>
-    <property name="snippet" value="Audio.playBGM(&quot;spaces by brutalmoose&quot;)"/>
+    <property name="snippet" value="Audio.playBGM(&quot;Moose by nokibient&quot;)"/>
    </properties>
   </object>
   <object id="45" name="Oo" type="hotspot" x="259.616" y="205.688" width="7.03494" height="5.25661">
@@ -125,7 +125,7 @@ Inventory.add(&quot;spacerocks ticket&quot;)</property>
     <property name="snippet" value="Minigame.load(&quot;res/scripts/minigames/space_rocks/game.wren&quot;)"/>
    </properties>
   </object>
-  <object id="51" name="endless pit" type="hotspot" x="486" y="90" width="274" height="475.5">
+  <object id="51" name="endless pit" type="hotspot" x="498" y="90" width="274" height="475.5">
    <properties>
     <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Pit.csv&quot;)"/>
     <property name="wireless" type="bool" value="true"/>

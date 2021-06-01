@@ -1,0 +1,8 @@
+# Animation Length in Seconds: 10
+
+o easeinout "camera"
+k easeinout x 10 78
+k easeinout y 10 -140
+k easeinout z 10 150
+
+s 8 "Dialogue.load("res/dialogue/HUB - Look Up.csv")"

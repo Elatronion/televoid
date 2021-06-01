@@ -10,7 +10,7 @@ k hold x 102 0
 # music : m
 
 m "gone by brutalmoose"
-s 100 "Scene.load("res/scenes/test.tmx")"
+s 100 "Scene.load("res/scenes/Infinihallway/Infinihallway.tmx")"
 
 e 0 0 -1 100000 100000 0 0 "IMV INTRO WHITE"
 k hold colorA 0 0

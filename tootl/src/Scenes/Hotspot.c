@@ -21,28 +21,19 @@ void televoidHotspotExecute(hotspot_component* hotspot) {
 void system_hotspot_renderer(hge_entity* entity, hge_transform* transform, hotspot_component* hotspot) {
   hge_material rendering_material = {
     hgeResourcesQueryTexture("debug_hotspot_texture"),
-    hgeResourcesQueryTexture("HGE DEFAULT NORMAL")
+    hgeResourcesQueryTexture("HGE DEFAULT NORMAL"),
+    false,
+    hgeVec4(1, 1, 1, 0.75f)
   };
 
-  int material_id = hgeQuery(entity, "material");
-  if(material_id != -1) {
-    hge_material* item_material = entity->components[material_id].data;
-    rendering_material = *item_material;
-    hgeRenderSprite(
-      hgeResourcesQueryShader("basic"),
-      rendering_material,
-      *transform
-    );
-  } else if(true) {
-    hgeRenderSprite(
-      hgeResourcesQueryShader("basic"),
-      rendering_material,
-      *transform
-    );
-  }
+  hgeRenderSprite(
+    hgeResourcesQueryShader("basic"),
+    rendering_material,
+    *transform
+  );
 }
 
-void system_item_renderer(hge_entity* entity, hge_transform* transform, hotspot_component* hotspot) {
+void system_item_renderer(hge_entity* entity, hge_transform* transform, hotspot_component* hotspot, hge_material* material) {
   hge_transform rendered_transform = *transform;
   float animation_offset = transform->position.x;
   float animation_x = hgeRuntime() + animation_offset;
@@ -65,17 +56,16 @@ void system_item_renderer(hge_entity* entity, hge_transform* transform, hotspot_
 
   hge_material rendering_material = {
     hgeResourcesQueryTexture("debug_hotspot_texture"),
-    hgeResourcesQueryTexture("HGE DEFAULT NORMAL")
+    hgeResourcesQueryTexture("HGE DEFAULT NORMAL"),
+    true,
+    hgeVec4(1, 1, 1, 1)
   };
 
-  int material_id = hgeQuery(entity, "material");
-  if(material_id != -1) {
-    hge_material* item_material = entity->components[material_id].data;
-    rendering_material = *item_material;
-    hgeRenderSprite(
-      hgeResourcesQueryShader("basic"),
-      rendering_material,
-      rendered_transform
-    );
-  }
+  rendering_material = *material;
+  hgeRenderSprite(
+    hgeResourcesQueryShader("basic"),
+    rendering_material,
+    rendered_transform
+  );
+
 }

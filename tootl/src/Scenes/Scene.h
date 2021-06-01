@@ -32,6 +32,7 @@ void televoidLoadScene(const char* scene_path);
 void televoidSceneUpdate(bool skip);
 
 hge_transform* televoid_player_transform();
+spritesheet_component* televoid_player_spritesheet();
 
 hge_entity* televoidCreateIanPlayer(hge_vec3 position, bool face_left);
 hge_entity* televoidCreatePlayerCamera(hge_vec3 position);

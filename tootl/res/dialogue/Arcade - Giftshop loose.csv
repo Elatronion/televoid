@@ -6,9 +6,25 @@ MESSAGE,"Uuuh.."
 RIGHT,ARCADE_DUDE_IDLE
 MESSAGE,"It seems like you haven't got enough tickets...
 Come see me once you have one ticket
-from each machine!"
+from each machine!
+You MUST play and win every game!"
 RIGHT,ARCADE_DUDE_IDLE
-MESSAGE,"Then, and only then, will you receive a gift!"
-SNIPPET,Audio.playSFX("ian uh2")
+MESSAGE,"Then, and only then, will you receive a gift!
+An AWESOME gift.
+A RAD GIFT!"
+SNIPPET,Audio.playSFX("ian no4")
 LEFT,IAN_IDLE
-MESSAGE,"Ummm..."
+MESSAGE,"No, wait. That's not how arcades work.
+Your telling me that these machines won't spit out a
+varying amount of tickets based on my abilities
+but instead only reward me for beating the
+game outright?"
+LEFT,IAN_ANGRY
+MESSAGE,"And that I MUST win at every single game in your
+arcade just to get ONE gift!?"
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"...
+We don't have many gifts...
+Plus, the games are free to play!"
+LEFT,IAN_IDLE
+MESSAGE,"Mmmkay..."

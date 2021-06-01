@@ -124,25 +124,25 @@ void televoidBoomboxRender() {
   hge_material text_material;
   text_material.color_multiplier = hgeVec4(132.f/255.f, 190.f/255.f, 58.f/255.f, 1);
   hge_vec3 text_position = { position.x - 135, position.y + 5, 99 };
-  hge_vec3 text_scale = { 0, 0.5f, 0 };
+  hge_vec3 text_scale = { 0, 0.35f, 0 };
   hge_transform text_transform = { text_position, text_scale, hgeQuaternion(0, 0, 0, 1) };
   hgeRenderText(
     hgeResourcesQueryShader("gui text"),
     text_material,
     text_transform,
-    hgeResourcesQueryFont("VCR"),
+    hgeResourcesQueryFont("radio"),
     HGE_TEXT_ALIGNED_LEFT,
     last_played_bgm
   );
 
   text_material.color_multiplier = hgeVec4(191.f/255.f, 182.f/255.f, 59.f/255.f, 1);
   text_transform.position.y = position.y - 15;
-  text_transform.scale.y = 0.3f;
+  text_transform.scale.y = 0.25f;
   hgeRenderText(
     hgeResourcesQueryShader("gui text"),
     text_material,
     text_transform,
-    hgeResourcesQueryFont("VCR"),
+    hgeResourcesQueryFont("radio"),
     HGE_TEXT_ALIGNED_LEFT,
     artist
   );

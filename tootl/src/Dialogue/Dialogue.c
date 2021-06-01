@@ -193,7 +193,7 @@ void draw_dialogue_box(hge_texture left_sprite, hge_texture right_sprite, bool r
   );
 
 
-  hge_material gui_background_material = { hgeResourcesQueryTexture("dialogue background"), hgeResourcesQueryTexture("HGE DEFAULT NORMAL"), false, hgeVec4(0, 0, 0, 0.25f) };
+  hge_material gui_background_material = { hgeResourcesQueryTexture("dialogue background"), hgeResourcesQueryTexture("HGE DEFAULT NORMAL"), false, hgeVec4(1, 0, 1, 0.75f) };
   hge_transform bg_transform = { bg_position, bg_scale, hgeQuaternion(0, 0, 0, 1) };
   hgeRenderSprite(
     gui_shader,
