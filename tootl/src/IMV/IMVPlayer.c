@@ -118,7 +118,7 @@ char* imvPropertyDataAtTime(imv_property* property, float timestamp) {
 
   return data;
 }
-
+ // 0x58586973 == 0x58586973
 void imvUpdateAllPropertyValues(imv_element* element, float timestamp) {
   imv_property* current = element->root_property;
   while(current) {
@@ -162,7 +162,7 @@ imv_keyframe* imvCreateDataKeyframe(const char* data, float timestamp) {
 
 imv_property* imvCreateProperty(const char* name, float value) {
   imv_property* property = (imv_property*) malloc(sizeof(imv_property));
-  property->name = malloc(strlen(name)+1);
+  //property->name = malloc(strlen(name)+1);
   strcpy(property->name, name);
   strcpy(property->data, "NULL");
   property->value = value;
@@ -236,7 +236,7 @@ void imvCleanProperty(imv_property* property) {
   if(prev) prev->next = next;
   if(next) next->prev = prev;
 
-  free(property->name);
+  //free(property->name);
   free(property);
 }
 
@@ -360,9 +360,9 @@ hge_entity* imvLoad(const char* path) {
       exit(EXIT_FAILURE);
 
   imv_element* element = NULL;
-  char tmp[255];
-  char data[255];
-  char property[255];
+  char tmp[DATA_STR_SIZE];
+  char data[DATA_STR_SIZE];
+  char property[DATA_STR_SIZE];
   float x, y, z, sx, sy, sz, r;
   float timestamp, value;
 

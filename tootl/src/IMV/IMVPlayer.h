@@ -3,7 +3,7 @@
 #include <HGE/HGE_Core.h>
 #include "GameState.h"
 
-#define DATA_STR_SIZE 100
+#define DATA_STR_SIZE 255
 
 typedef enum {
   IMV_KEYFRAME_ERROR,
@@ -22,7 +22,7 @@ typedef struct imv_keyframe_t {
 } imv_keyframe;
 
 typedef struct imv_property_t {
-  const char* name;
+  char name[32];
   char data[DATA_STR_SIZE];
   float value;
   imv_keyframe* root_keyframe;
