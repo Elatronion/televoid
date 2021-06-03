@@ -1,0 +1,14 @@
+TYPE,DATA
+LEFT,IAN_IDLE
+RIGHT,SAM_IDLE
+MESSAGE,"I smell something salty and bad.
+
+Just the thought of eating it is just so sad."
+LEFT,IAN_ANGRY
+MESSAGE,"..."
+RIGHT,SAM_IDLE
+MESSAGE,"That tv dinner should be thrown away!
+
+To this I say neigh,
+My kidneys, they say yay!"
+SCRIPT,res/scripts/HUB - Sam cooked tv dinner.wren

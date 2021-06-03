@@ -1,0 +1,11 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_THINKING
+MESSAGE,"This seems to be some kind of panel...
+Probably to open that door.
+I see a series of symbols etched onto the
+panel's side. Maybe it means something..."
+LEFT,IAN_IDLE
+MESSAGE,"A helmet, a X, a Y, and a moose."
+LEFT,IAN_THINKING
+MESSAGE,"Hm."

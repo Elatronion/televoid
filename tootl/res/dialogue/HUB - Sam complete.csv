@@ -1,0 +1,9 @@
+TYPE,DATA
+LEFT,IAN_IDLE
+RIGHT,SAM_IDLE
+MESSAGE,"For that delicious salad, I thank you once again!
+
+Now use that helmet to protect your brain!"
+LEFT,IAN_IDLE
+MESSAGE,"Mmmkay.."
+SNIPPET,Audio.playBGM("warmup by brutalmoose")

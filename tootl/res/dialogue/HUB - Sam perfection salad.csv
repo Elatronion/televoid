@@ -1,0 +1,18 @@
+TYPE,DATA
+RIGHT,SAM_IDLE
+LEFT,IAN_IDLE
+MESSAGE,"Here's your 'perfection salad'."
+RIGHT,SAM_IDLE
+MESSAGE,"Eating this will be such a thrill!
+
+Here, have this helmet as a sign of good will."
+SNIPPET,Inventory.remove("recipe")
+SNIPPET,Inventory.remove("perfection salad")
+SNIPPET,Inventory.add("helmet")
+LEFT,IAN_HAPPY
+MESSAGE,"Oh wow, thanks!"
+LEFT,IAN_THINKING
+MESSAGE,"Hm..."
+LEFT,IAN_ANGRY
+MESSAGE,"Wait, it this MY helmet!?"
+SNIPPET,Audio.playBGM("warmup by brutalmoose")

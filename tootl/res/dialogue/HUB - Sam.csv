@@ -1,7 +1,6 @@
 TYPE,DATA
 RIGHT,SAM_IDLE
 LEFT,IAN_HAPPY
-SNIPPET,Audio.playBGM("Too Cool by Kevin MacLeod")
 MESSAGE,"Is that... Sprocket Sam?"
 RIGHT,SAM_IDLE
 MESSAGE,"You know it, kid! I'm the dude with the bike.
@@ -24,7 +23,8 @@ MESSAGE,"Wait, I don't even know where we are!"
 LEFT,IAN_THINKING
 MESSAGE,"Where would I find food?"
 RIGHT,SAM_IDLE
-MESSAGE,"I heard of a cooking show that makes food from heaven.
+MESSAGE,"I heard of a cooking show that
+makes food from heaven.
 
 I wonder what's behind door number seven!"
 SNIPPET,Audio.playVoice("ian what")
@@ -40,7 +40,7 @@ RIGHT,SAM_IDLE
 MESSAGE,"To help you out, take this recipe.
 
 I'm sure when you are cooking,
-it will be the necessity!"
+it will be a necessity!"
 SNIPPET,Inventory.add("recipe")
 LEFT,IAN_IDLE
 MESSAGE,"You just keep recipes on you...

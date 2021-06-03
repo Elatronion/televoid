@@ -10,8 +10,8 @@ LEFT,IAN_IDLE
 MESSAGE,"Ummm... No, but thanks."
 RIGHT,ARCADE_DUDE_IDLE
 MESSAGE,"As a reward, here's your gift!
-An XYZ!"
-LEFT,IAN_IDLE
+A stuffed toy moose!"
+LEFT,IAN_HAPPY
 MESSAGE,"Thanks, it was sort of nostalgic
 playing all these old games.
 You know, I can't put my finger on it...
@@ -22,3 +22,8 @@ LEFT,IAN_IDLE
 SNIPPET,Audio.playSFX("ian seeya")
 MESSAGE,"...
 Well, see you around!"
+SNIPPET,Inventory.remove("breakout ticket")
+SNIPPET,Inventory.remove("wheely-fun ticket")
+SNIPPET,Inventory.remove("spacerocks ticket")
+SNIPPET,Inventory.remove("invaders ticket")
+SNIPPET,Inventory.add("brutal moose")
