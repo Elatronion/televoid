@@ -2,6 +2,8 @@
 
 # Animation Length in Seconds: 102
 
+s 10 "Inventory.add("flag intro")"
+
 # Used To Keep Animation Alive, Please Fix... #
 e 1280 720 0 0 0 0 0 "GUI Inventory Slot"
 k hold x 0 0
