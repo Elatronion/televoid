@@ -9,7 +9,7 @@ k linear y 0 0
 k linear x 1 0
 k linear y 1 35
 
-d 5 "'Invaders' Minigame"
+d 5 "'Invaders' Minigame, Testing"
 d 10 "Story & Concepts, Character Portrait Art, Motivator"
 d 15 "Story & Concepts"
 d 20 "Story & Concepts, Project Manager, Programming, Scene Creation"
@@ -18,7 +18,7 @@ d 30 "Story & Concepts, Background Concept Art"
 d 35 "Story & Concepts, 'SAM' Character Portrait Art, Motivator"
 d 40 "Story & Concepts"
 d 45 "Radio ('radio.png') Art Resource"
-d 50 "Story & Concepts, Art, Scene Creation, Motivator"
+d 50 "Story & Concepts, Art, Scene Creation, Testing, Motivator"
 d 55 "Story & Concepts"
 d 60 "cheesy by Ian MacLeod (brutalmoose)"
 d 65 "door by Ian MacLeod (brutalmoose)"
