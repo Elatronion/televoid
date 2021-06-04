@@ -181,7 +181,7 @@ imv_property* imvCreateDataProperty(const char* name, const char* data) {
 imv_element* imvCreateElement(imv_element_type type, const char* data) {
   imv_element* element = (imv_element*) malloc(sizeof(imv_element));
   element->type = type;
-  element->data = malloc(strlen(data)+1);
+  //element->data = malloc(strlen(data)+1);
   strcpy(element->data, data);
   element->root_property = NULL;
   element->prev = NULL;
@@ -253,7 +253,7 @@ void imvCleanElement(imv_element* element) {
   if(prev) prev->next = next;
   if(next) next->prev = prev;
 
-  free(element->data);
+  //free(element->data);
   free(element);
 }
 

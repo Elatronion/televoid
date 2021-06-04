@@ -40,7 +40,7 @@ typedef enum {
 
 typedef struct imv_element_t {
   imv_element_type type;
-  const char* data;
+  char data[DATA_STR_SIZE];
   imv_property* root_property;
   struct imv_element_t* prev;
   struct imv_element_t* next;
