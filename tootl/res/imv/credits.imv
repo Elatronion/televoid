@@ -1,0 +1,113 @@
+# Credits IMV by Ezra Hradecky (Elatronion)
+m "cheesy by brutalmoose"
+
+### Titles ###
+t 0 0 0 0.5 "CREDITS"
+# Set Position
+k linear x 0 0
+k linear y 0 0
+k linear x 1 0
+k linear y 1 35
+
+d 5 "'Invaders' Minigame"
+d 10 "Story & Concepts, Character Portrait Art, Motivator"
+d 15 "Story & Concepts"
+d 20 "Story & Concepts, Project Manager, Programming, Scene Creation"
+d 25 "Story & Concepts, Motivator"
+d 30 "Story & Concepts, Background Concept Art"
+d 35 "Story & Concepts, 'SAM' Character Portrait Art, Motivator"
+d 40 "Story & Concepts"
+d 45 "Radio ('radio.png') Art Resource"
+d 50 "Story & Concepts, Art, Scene Creation, Motivator"
+d 55 "Story & Concepts"
+d 60 "cheesy by Ian MacLeod (brutalmoose)"
+d 65 "door by Ian MacLeod (brutalmoose)"
+d 70 "gone by Ian MacLeod (brutalmoose)"
+d 75 "maze (wip) by Ian MacLeod (brutalmoose)"
+d 80 "Moose by nokibient"
+d 85 "our heavenly bodies by Ian MacLeod (brutalmoose)"
+d 90 "sad again (wip) by Ian MacLeod (brutalmoose)"
+d 95 "spaces by Ian MacLeod (brutalmoose)"
+d 100 "spooky (wip) by Ian MacLeod (brutalmoose)"
+d 105 "sweet dreams by Ian MacLeod (brutalmoose)"
+d 110 "Too Cool by Kevin MacLeod"
+d 115 "Townie Loop by Kevin MacLeod"
+d 120 "Tree Of Life by nokibient"
+d 125 "warmup by Ian MacLeod (brutalmoose)"
+d 130 "'Zazie' Kevin MacLeod (incompetech.com)"
+d 135 ""
+d 1000 "FIN"
+
+### Links ###
+t 0 0 0 0.5 ""
+
+d 60 "https://soundcloud.com/brutalmoose/cheesy"
+d 65 "https://soundcloud.com/brutalmoose/door"
+d 70 "https://soundcloud.com/brutalmoose/gone"
+d 75 "https://soundcloud.com/brutalmoose/maze-wip"
+d 80 "https://soundcloud.com/nokbient/moose"
+d 85 "https://soundcloud.com/brutalmoose/our-heavenly-bodies"
+d 90 "https://soundcloud.com/brutalmoose/sad-again-wip"
+d 95 "https://soundcloud.com/brutalmoose/spaces"
+d 100 "https://soundcloud.com/brutalmoose/spooky-wip"
+d 105 "https://soundcloud.com/brutalmoose/sweet-dreams"
+d 110 "Link: https://incompetech.filmmusic.io/song/4534-too-cool"
+d 115 "Link: https://incompetech.filmmusic.io/song/4541-townie-loop"
+d 120 "https://soundcloud.com/nokbient/tree-of-life"
+d 125 "https://soundcloud.com/brutalmoose/warmup"
+d 130 "Licensed under Creative Commons: By Attribution 4.0 License"
+d 135 "Thank YOU for playing!"
+d 1000 "FIN"
+
+### People / Licenses ###
+t 0 0 0 1 "Alphabetically"
+# Set Position
+k linear x 0 0
+k linear y 0 0
+k linear x 1 0
+k linear y 1 -35
+# Set Fontsize
+k hold sy 0 1
+
+# Make Text Yellow
+k linear colorR 0 0
+k linear colorG 0 0
+k linear colorB 0 0
+k linear colorA 0 0
+k linear colorR 1 0.996078431373
+k linear colorG 1 0.8
+k linear colorB 1 0.043137254902
+
+d 5 "Alexis.M (Katsuro)"
+d 10 "Ari.S (Pearofthestars)"
+d 15 "Cecelia.M"
+d 20 "Ezra.H (Elatronion)"
+d 25 "Felix.D"
+d 30 "Keaton.H"
+d 35 "Kitpigeon"
+d 40 "Levi.M"
+d 45 "Mr.Monocle"
+d 50 "Normal Canard"
+d 55 "Watson.J"
+k hold sy 60 0.5
+d 60 "Show him some love!"
+d 65 "Show him some love!"
+d 70 "Show him some love!"
+d 75 "Show him some love!"
+d 80 "Thank you for allowing us to use your awesome song!"
+d 85 "Show him some love!"
+d 90 "Show him some love!"
+d 95 "Show him some love!"
+d 100 "Show him some love!"
+d 105 "Show him some love!"
+d 110 "License: https://filmmusic.io/standard-license"
+d 115 "License: https://filmmusic.io/standard-license"
+d 120 "Thank you for allowing us to use your awesome song!"
+d 125 "Show him some love!"
+d 130 "http://creativecommons.org/licenses/by/4.0/"
+d 135 "Created using the Hyper Game Engine"
+d 1000 "FIN"
+k hold sy 1000 0.5
+
+
+s 1000 "Scene.load("res/scenes/main_menu.tmx")"

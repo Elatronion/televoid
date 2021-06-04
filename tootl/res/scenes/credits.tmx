@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="15" nextobjectid="30">
+ <objectgroup color="#00ff00" id="10" name="Props"/>
+ <objectgroup color="#8000ff" id="3" name="Player Starting Positions"/>
+ <objectgroup color="#ffffff" id="9" name="Lights">
+  <object id="19" type="light" x="0" y="0">
+   <properties>
+    <property name="ambient" type="color" value="#ff000000"/>
+    <property name="diffuse" type="color" value="#ff000000"/>
+    <property name="dir_x" type="float" value="0.5"/>
+    <property name="dir_y" type="float" value="-0.5"/>
+    <property name="dir_z" type="float" value="0"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff6347" id="5" name="Triggers"/>
+ <objectgroup color="#ffff00" id="11" name="Hotspots">
+  <object id="29" name="Credits Animation" type="hotspot" x="0" y="18" width="6" height="6">
+   <properties>
+    <property name="auto_exec" type="bool" value="true"/>
+    <property name="snippet" value="Animation.load(&quot;res/imv/credits.imv&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="8" name="Items"/>
+</map>
