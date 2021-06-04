@@ -1,0 +1,31 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_IDLE
+MESSAGE,"This game is called 'Invaders'.
+I wonder if it's anything like the 1978 shoot 'em up
+arcade game developed by Tomohiro Nishikado:
+Space Invaders."
+MESSAGE,"Manufactured and sold by Taito in Japan,
+and licensed by the Midway division of Bally for
+overseas distribution, Space Invaders, within the
+shooter game genre, was the first fixed shooter and
+set the template for the shoot 'em up genre."
+MESSAGE,"The goal is to defeat wave after wave of descending
+aliens with a horizontally moving laser to earn as
+many points as possible."
+LEFT,IAN_ANGRY
+MESSAGE,"But, following with tradition with all the other
+games in this arcade, this isn't anything like
+Space Invaders... I feel like I'm in some kind of...
+'bootleg' arcade."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"Actually, I was thinking of renaming this arcade to
+something along those lines!"
+LEFT,IAN_IDLE
+MESSAGE,"... Oh?"
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"Yeah, tell me what you think:
+- The Normalbootleg Arcade -"
+LEFT,IAN_ANGRY
+MESSAGE,"I think that's a terrible name,
+and you should feel ashamed."

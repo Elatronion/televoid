@@ -1,5 +1,5 @@
 import "minigame-core" for Vec2, GameObject, Window, Input, ResourceManager, Math
-import "televoid-core" for Audio, Inventory
+import "televoid-core" for Audio, Inventory, Dialogue
 
 class Alien {
     construct new(position, health, sprite) {
@@ -86,6 +86,7 @@ class SpaceInvaders {
         ResourceManager.loadTexture("res/scripts/minigames/invaders/assets/ship.png", "INVADERS HEALTH")
 
         reset()
+        Dialogue.load("res/dialogue/Arcade - Play Invaders.csv")
     }
 
     reset() {
@@ -284,6 +285,7 @@ class SpaceInvaders {
         }
         render_bullets()
         render_aliens()
+        Window.render("BLACK", 0, 0, _gameWidth, _gameHeight)
     }
 }
 
