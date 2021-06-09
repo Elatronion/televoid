@@ -3,6 +3,7 @@ in vec2 TexCoords;
 out vec4 color;
 
 uniform int paused;
+uniform int fast_foward;
 
 uniform vec2 u_resolution;
 uniform float runtime;
@@ -197,6 +198,15 @@ void main() {
   }
   vertJerkOpt = 0.0;
   vertMovementOpt = 0.0;
+
+  if(fast_foward == 1) {
+    vertJerkOpt =     1.0;
+    vertMovementOpt = 1.0;
+    bottomStaticOpt = 1.0;
+    scalinesOpt =     1.0;
+    rgbOffsetOpt =    1.0;
+    horzFuzzOpt =     1.0;
+  }
 
   vec2 uv =  gl_FragCoord.xy/u_resolution.xy;
 

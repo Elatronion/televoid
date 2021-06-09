@@ -484,7 +484,7 @@ hge_entity* imvLoad(const char* path) {
   printf("LOADED!\n");
 
   hge_entity* imv_entity = hgeCreateEntity();
-  imv_component imv = { animation };
+  imv_component imv = { animation, false };
   hgeAddComponent(imv_entity, hgeCreateComponent("imv", &imv, sizeof(imv)));
   return imv_entity;
 }
@@ -512,12 +512,35 @@ float imvFurthestKeyframeTime(imv_component* imv) {
   return timestamp;
 }
 
+/*
+void skip_imv(imv_component* imv) {
+  imv_element* current = animation->root_element;
+  while(current) {
+    if(
+      current->type == IMV_ELEMENT_SCRIPT ||
+      current->type == IMV_ELEMENT_SNIPPET
+    ) {
+      imvPropertyWithName(current, "execution timestamp")
+    }
+    current = current->next;
+  }
+}
+*/
+
 void system_imv(hge_entity* entity, imv_component* imv) {
-  imv->animation->timestamp += hgeDeltaTime();
+  float playback_speed = 1.f;
+  if(hgeInputGetKeyDown(HGE_KEY_F)) {
+    imv->skip = true;
+    hgeShaderSetInt(hgeResourcesQueryShader("framebuffer"), "fast_foward", true);
+  }
+  if(imv->skip) playback_speed = 10.f;
+  imv->animation->timestamp += playback_speed * hgeDeltaTime();
+
 
   if(imv->animation->timestamp <= imvFurthestKeyframeTime(imv)) {
     televoidSetGameState(GAME_CUTSCENE);
   } else {
+    if(imv->skip) return;
     televoidSetGameState(GAME_PLAY);
     imvIMVS_remove(imv->animation);
     imvClean(imv->animation);

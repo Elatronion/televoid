@@ -116,6 +116,9 @@ void televoid_system_global_update(hge_entity* entity, tag_component* global_upd
 	televoidSceneUpdate(false);
 	televoidBoomboxUpdate();
 	televoidSaveUpdate();
+
+	if(televoidGameState() != GAME_CUTSCENE)
+	hgeShaderSetInt(hgeResourcesQueryShader("framebuffer"), "fast_foward", false);
 }
 
 void autoload_dialogue_portraits() {
@@ -254,8 +257,8 @@ int main(int argc, char **argv) {
 	if(false) hgeAddSystem(system_freemove, 2, "freemove", "transform");
 	hgeAddSystem(system_mouse_picker, 2, "transform", "mouse picker");
 
-	hgeAddSystem(system_dialogue, 1, "dialogue");
 	hgeAddSystem(system_imv, 1, "imv");
+	hgeAddSystem(system_dialogue, 1, "dialogue");
 
 	hgeAddSystem(system_mesh_renderer, 2, "transform", "mesh");
 

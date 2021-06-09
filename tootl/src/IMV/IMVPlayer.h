@@ -54,6 +54,7 @@ typedef struct {
 
 typedef struct {
   imv_animation* animation;
+  bool skip;
 } imv_component;
 
 void imvPushProperty(imv_element* element, imv_property* property);
