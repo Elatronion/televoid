@@ -121,6 +121,7 @@ class Breakout {
         string = "YOU WIN"
       } else if(_landed_section == _purple_section) {
         string = "YOU WON AN INVITATION"
+        Inventory.add("party invitation (arcade)")
       } else {
         string = "YOU LOOSE"
       }
