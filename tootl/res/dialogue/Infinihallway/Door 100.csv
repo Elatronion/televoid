@@ -1,0 +1,5 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_IDLE
+MESSAGE,"Oh hey, this door is unlocked!"
+SNIPPET,Scene.load("res/scenes/Infinihallway/Door 100/Door 100.tmx")

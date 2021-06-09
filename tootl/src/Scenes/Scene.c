@@ -520,6 +520,8 @@ void create_infinihallway() {
 
   infinihallway_create_door_hotspot(6, "res/scripts/Infinihallway/Door 6.wren");
   infinihallway_create_door_hotspot(7, "res/scripts/Infinihallway/Door 7.wren");
+  infinihallway_create_door_hotspot(69, "res/scripts/Infinihallway/Door 69.wren");
+  infinihallway_create_door_hotspot(100, "res/scripts/Infinihallway/Door 100.wren");
 }
 
 void LoadScene(const char* scene_path) {

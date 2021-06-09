@@ -1,0 +1,49 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_IDLE
+MESSAGE,"Ummm, hi?"
+RIGHT,IAN_IDLE
+MESSAGE,"!?
+How did you get here?
+You're not suppose to be here!"
+LEFT,IAN_IDLE
+MESSAGE,"Where is here?
+I just thought something special might of happened at
+some key doors. Try to find a pattern or something.
+Most doors are locked in that hallway, thought
+I'd try my luck, you know."
+RIGHT,IAN_IDLE
+MESSAGE,"Ugh, I guess door 100 wasn't the best hiding spot...
+Listen, you can't stay here. It's... not allowed. They won't allow it.
+But we may have a chance to talk later! I'm the programmer of the game your playing.
+This is just a digital deterministic projections of myself. I'll always say the same thing every time you talk to me!
+repeating myself. My queue is for the bowling sce-"
+RIGHT,IAN_VOID
+MESSAGE,"Uuuggghh- ACK!"
+LEFT,IAN_VOID
+MESSAGE,"!!!"
+RIGHT,IAN_VOID
+MESSAGE,"[IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+INE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+N IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+ [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+INE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+S FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]"
+LEFT,IAN_IDLE
+RIGHT,IAN_IDLE
+MESSAGE,"I'll... your..."
+MESSAGE,"You."
+MESSAGE,"Are."
+MESSAGE,"Invited."
+MESSAGE,"To."
+MESSAGE,"Go."
+MESSAGE,"Bowling."
+MESSAGE,"..."
+LEFT,IAN_IDLE
+MESSAGE,"..."
+RIGHT,IAN_IDLE
+MESSAGE,"You must make sure you are invited..."
+MESSAGE,"Otherwise, it'll ch-"
+SNIPPET,Inventory.add("party invitation (door 100)")
+SNIPPET,Scene.load("res/scenes/HUB/HUB.tmx")

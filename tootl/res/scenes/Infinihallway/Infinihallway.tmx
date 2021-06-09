@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="14" nextobjectid="36">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="14" nextobjectid="37">
  <objectgroup color="#ffff00" id="11" name="Hotspots">
   <object id="25" name="OST" type="hotspot" x="0" y="594" width="6" height="6">
    <properties>
@@ -37,7 +37,7 @@
    </properties>
    <point/>
   </object>
-  <object id="33" name="Ian Spawn from NULL (test)" type="player_start" x="282" y="18">
+  <object id="33" name="Ian Spawn from NULL (test)" type="player_start" x="5479.39" y="5.78788">
    <properties>
     <property name="face_left" type="bool" value="false"/>
     <property name="fade_speed" type="float" value="1.234"/>
