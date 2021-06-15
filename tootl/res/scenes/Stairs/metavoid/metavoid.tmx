@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="31" nextobjectid="70">
+ <imagelayer id="20" name="background" offsetx="-528" offsety="-288">
+  <image source="bg.png"/>
+ </imagelayer>
+ <imagelayer id="19" name="floor" offsetx="-528" offsety="-401">
+  <image source="floor.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="14" name="stairs" offsetx="-528" offsety="-401">
+  <image source="stairs.png"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="28" name="stairs in" offsetx="-1134" offsety="-272.5">
+  <image source="stairs.png"/>
+  <properties>
+   <property name="depth" type="float" value="0.5"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="21" name="elevator" offsetx="-528" offsety="-401">
+  <image source="elevator.png"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="29" name="door" offsetx="-528" offsety="-401">
+  <image source="door.png"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="26" name="table" offsetx="-528" offsety="-401">
+  <image source="table.png"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="22" name="flower" visible="0" offsetx="-528" offsety="-401">
+  <image source="flower.png"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="23" name="glue" visible="0" offsetx="-528" offsety="-401">
+  <image source="glue.png"/>
+  <properties>
+   <property name="depth" type="float" value="0"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="24" name="glue splat" offsetx="-700" offsety="-401">
+  <image source="glue splash.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="0.75"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="25" name="sign" offsetx="-528" offsety="-401">
+  <image source="sign.png"/>
+  <properties>
+   <property name="depth" type="float" value="5"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="27" name="window" offsetx="-528" offsety="-401">
+  <image source="window.png"/>
+  <properties>
+   <property name="depth" type="float" value="5"/>
+  </properties>
+ </imagelayer>
+ <objectgroup color="#ffff00" id="15" name="hotspot">
+  <object id="53" name="flower" type="hotspot" x="418.642" y="-16.4545" width="7" height="16">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/camflower.csv&quot;)
+</property>
+    <property name="wireless" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="54" name="glue" type="hotspot" x="73.8864" y="-10.5227" width="19" height="11">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/glue.csv&quot;)
+</property>
+   </properties>
+  </object>
+  <object id="59" name="Exit" type="hotspot" x="-114" y="-30" width="16.7468" height="29.9219">
+   <properties>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/HUB/HUB.tmx&quot;)"/>
+   </properties>
+  </object>
+  <object id="68" name="meta ian" type="hotspot" x="381.045" y="-23.1818" width="15.2727" height="22.1818">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/metavoid - metaian.csv&quot;)"/>
+    <property name="wireless" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="18" name="floor" visible="0">
+  <object id="55" type="floor" x="-122.909" y="-0.159091">
+   <polyline points="-0.1,-0.0888889 529.909,-0.0909091 571.909,-72.0909"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="30" name="Copy of floor" visible="0">
+  <object id="61" type="floor" x="-122.909" y="-0.159091">
+   <polyline points="-79.0077,119.159 -0.1,-0.0888889 529.909,-0.0909091 571.909,-72.0909"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#0055ff" id="17" name="props">
+  <object id="48" name="flower" type="prop" x="418.642" y="-16.4545" width="7" height="16">
+   <properties>
+    <property name="depth" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="50" name="glue" type="prop" x="73.8864" y="-10.5188" width="19" height="11">
+   <properties>
+    <property name="depth" type="float" value="0.5"/>
+   </properties>
+  </object>
+  <object id="69" name="plant" type="prop" x="387.375" y="-39" width="30" height="40">
+   <properties>
+    <property name="depth" type="float" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" id="16" name="trigger">
+  <object id="45" name="SPLURP" type="trigger" x="16.8864" y="-3.52273" width="5" height="3">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+    <property name="exec_on_enter" type="bool" value="false"/>
+    <property name="exec_on_exit" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playSFX(&quot;splurp&quot;)"/>
+   </properties>
+  </object>
+  <object id="51" name="SPLURP" type="trigger" x="61.3864" y="-3.52273" width="5" height="3">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+    <property name="exec_on_enter" type="bool" value="false"/>
+    <property name="exec_on_exit" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playSFX(&quot;splurp&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="13" name="spawn">
+  <object id="34" name="DEFAULT" type="player_start" x="-105.598" y="0.310336">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

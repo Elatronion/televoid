@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="31" nextobjectid="65">
+ <imagelayer id="20" name="background" offsetx="-528" offsety="-288">
+  <image source="bg.png" width="1294" height="588"/>
+ </imagelayer>
+ <imagelayer id="19" name="floor" offsetx="-528" offsety="-401">
+  <image source="floor.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="14" name="stairs" offsetx="-528" offsety="-401">
+  <image source="stairs.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="28" name="stairs in" offsetx="-1134" offsety="-272.5">
+  <image source="stairs.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="0.5"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="21" name="elevator" offsetx="-528" offsety="-401">
+  <image source="elevator.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="29" name="door" offsetx="-528" offsety="-401">
+  <image source="door.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="26" name="table" offsetx="-528" offsety="-401">
+  <image source="table.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="22" name="flower" visible="0" offsetx="-528" offsety="-401">
+  <image source="flower.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="1"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="23" name="glue" visible="0" offsetx="-528" offsety="-401">
+  <image source="glue.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="0"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="24" name="glue splat" offsetx="-528" offsety="-401">
+  <image source="glue splash.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="5"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="25" name="sign" offsetx="-528" offsety="-401">
+  <image source="sign.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="5"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="27" name="window" offsetx="-528" offsety="-401">
+  <image source="window.png" width="1294" height="588"/>
+  <properties>
+   <property name="depth" type="float" value="5"/>
+  </properties>
+ </imagelayer>
+ <objectgroup color="#ffff00" id="15" name="hotspot">
+  <object id="36" name="ELEVATOR" type="hotspot" x="-13.9989" y="-35.9844" width="27.9968" height="34.9844">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/elevator.csv&quot;)"/>
+   </properties>
+  </object>
+  <object id="40" type="hotspot" x="233.127" y="-43.2422" width="22.2468" height="15.8594">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/stairs sign.csv&quot;)
+</property>
+   </properties>
+  </object>
+  <object id="41" name="STAIRS SIGN" type="hotspot" x="247.252" y="-46.0547" width="24.3718" height="15.8594">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/stairs sign.csv&quot;)"/>
+   </properties>
+  </object>
+  <object id="42" type="hotspot" x="261.502" y="-50.0547" width="25.9968" height="15.3594">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/stairs sign.csv&quot;)
+</property>
+   </properties>
+  </object>
+  <object id="43" type="hotspot" x="275.752" y="-54.4297" width="25.9968" height="15.3594">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/stairs sign.csv&quot;)
+</property>
+   </properties>
+  </object>
+  <object id="53" name="flower" type="hotspot" x="151" y="-28" width="7" height="16">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/camflower.csv&quot;)
+</property>
+   </properties>
+  </object>
+  <object id="54" name="glue" type="hotspot" x="246" y="-10" width="19" height="11">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/glue.csv&quot;)
+</property>
+   </properties>
+  </object>
+  <object id="59" name="Metavoid" type="hotspot" x="74.125" y="-30.8125" width="16.7468" height="29.9219">
+   <properties>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Stairs/metavoid/metavoid.tmx&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="18" name="floor" visible="0">
+  <object id="55" type="floor" x="-122.909" y="-0.159091">
+   <polyline points="-0.1,-0.0888889 529.909,-0.0909091 571.909,-72.0909"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="30" name="Copy of floor">
+  <object id="61" type="floor" x="-122.909" y="-0.159091">
+   <polyline points="-79.0077,119.159 -0.1,-0.0888889 529.909,-0.0909091 571.909,-72.0909"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#0055ff" id="17" name="props">
+  <object id="48" name="flower" type="prop" x="151" y="-28" width="7" height="16">
+   <properties>
+    <property name="depth" type="float" value="0.5"/>
+   </properties>
+  </object>
+  <object id="50" name="glue" type="prop" x="246" y="-9.99609" width="19" height="11">
+   <properties>
+    <property name="depth" type="float" value="0.5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00ff00" id="16" name="trigger">
+  <object id="45" name="SPLURP" type="trigger" x="189" y="-3" width="5" height="3">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+    <property name="exec_on_enter" type="bool" value="false"/>
+    <property name="exec_on_exit" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playSFX(&quot;splurp&quot;)"/>
+   </properties>
+  </object>
+  <object id="51" name="SPLURP" type="trigger" x="233.5" y="-3" width="5" height="3">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+    <property name="exec_on_enter" type="bool" value="false"/>
+    <property name="exec_on_exit" type="bool" value="true"/>
+    <property name="snippet" value="Audio.playSFX(&quot;splurp&quot;)"/>
+   </properties>
+  </object>
+  <object id="56" name="Going Up" type="trigger" x="384" y="-96" width="63" height="7.33333">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+    <property name="exec_on_enter" type="bool" value="true"/>
+    <property name="exec_on_exit" type="bool" value="false"/>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Stairs/Stairs.tmx&quot;)"/>
+   </properties>
+  </object>
+  <object id="62" name="Going Down" type="trigger" x="-252.167" y="58.6667" width="63" height="7.33333">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+    <property name="exec_on_enter" type="bool" value="true"/>
+    <property name="exec_on_exit" type="bool" value="false"/>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Stairs/Stairs.tmx&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="13" name="spawn">
+  <object id="34" name="DEFAULT" type="player_start" x="384" y="0">
+   <properties>
+    <property name="face_left" type="bool" value="true"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>
