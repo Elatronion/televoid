@@ -1,0 +1,6 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_HAPPY
+MESSAGE,"Such a nice looking plant."
+RIGHT,PLANT_IDLE
+MESSAGE,"Such a nice looking Ian."

@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include "SaveSystem.h"
 #include "Infinihallway.h"
+#include "bowling.h"
 
 char last_loaded_scene[255];
 
@@ -528,7 +529,9 @@ void LoadScene(const char* scene_path) {
   televoidMinigameClean();
   televoidSceneDestroy();
 
-  televoidCreatePlayerCamera(hgeVec3(0, 0, 100));
+  if(strcmp(scene_path, "res/scenes/bowling.tmx") != 0) {
+    televoidCreatePlayerCamera(hgeVec3(0, 0, 100));
+  }
 
   tmx_map *map = tmx_load(scene_path);
   if (!map) {
@@ -566,6 +569,8 @@ void LoadScene(const char* scene_path) {
 
   if(strcmp(last_loaded_scene, "res/scenes/Infinihallway/Infinihallway.tmx") == 0) {
     create_infinihallway();
+  } else if(strcmp(last_loaded_scene, "res/scenes/bowling.tmx") == 0) {
+    create_bowling_scene();
   }
 }
 

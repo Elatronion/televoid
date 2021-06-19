@@ -15,6 +15,8 @@
 #include "Infinihallway.h"
 #include "fader_sprite.h"
 
+#include "bowling.h"
+
 void televoid_system_spritesheet(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
 	// Flip By Reversing X Scale
 	hge_vec3 rendering_scale = transform->scale;
@@ -300,6 +302,8 @@ int main(int argc, char **argv) {
 		hgeAddSystem(system_hotspot_renderer, 2, "transform", "hotspot");
 		hgeAddSystem(system_floor_debug, 1, "floor");
 	}
+
+	init_bowling_resources();
 
 	televoid_system_global_update(NULL, NULL);
 	televoidSceneUpdate(true);

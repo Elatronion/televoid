@@ -29,6 +29,8 @@ void televoidBoomboxStopBGM(const char* name);
 void televoidBoomboxPlayVoice(const char* name);
 void televoidBoomboxStopVoice(const char* name);
 
+void televoidBoomboxPlayDEVTALK(const char* name);
+
 void televoidBoomboxUpdate();
 
 #endif

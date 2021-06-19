@@ -113,6 +113,11 @@ void televoidBoomboxStopVoice(const char* name) {
   hgeAudioSourceStop(audiosource);
 }
 
+void televoidBoomboxPlayDEVTALK(const char* name) {
+  hge_audiosource audiosource = { hgeResourcesQueryAudio(name), 1.f };
+  hgeAudioSourcePlay(audiosource);
+}
+
 void televoidBoomboxRender() {
   hge_shader gui_shader = hgeResourcesQueryShader("gui");
 
