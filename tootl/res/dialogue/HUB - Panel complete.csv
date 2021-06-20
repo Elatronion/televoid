@@ -1,3 +1,14 @@
 TYPE,DATA
 RIGHT,NULL
 LEFT,IAN_IDLE
+MESSAGE,"Well, I got everything marked on this panel...
+Is- Is something supposed to happen, or...
+Hm, there's a slot for the VHS, guess I should
+insert it..."
+SNIPPET,Audio.playSFX("VCR Flap In")
+SNIPPET,Audio.playBGMOnce("NULL")
+MESSAGE,"..."
+SNIPPET,Audio.playVoice("ian uh2")
+MESSAGE,"Uhm..."
+SNIPPET,Audio.playSFX("big door open")
+SNIPPET,Scene.load("res/scenes/End/End.tmx")

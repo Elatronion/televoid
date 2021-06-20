@@ -15,7 +15,7 @@
  <objectgroup color="#ffff00" id="15" name="hotspot">
   <object id="36" name="Exit" type="hotspot" x="817.251" y="480.057" width="14.7468" height="28.9844">
    <properties>
-    <property name="snippet" value="Scene.load(&quot;res/scenes/Infinihallway/Infinihallway.tmx&quot;)"/>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/HUB/HUB.tmx&quot;)"/>
    </properties>
   </object>
   <object id="59" name="Ingredients" type="hotspot" x="899.172" y="488.417" width="20.565" height="6.80258">
@@ -57,7 +57,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#0055ff" id="17" name="props">
-  <object id="72" name="blow torch" type="item" x="846" y="492" width="9" height="9"/>
+  <object id="72" name="party invitation (kitchen)" type="item" x="840.545" y="491.636" width="9" height="9"/>
  </objectgroup>
  <objectgroup color="#00ff00" id="16" name="trigger"/>
  <objectgroup color="#ff00ff" id="13" name="spawn">

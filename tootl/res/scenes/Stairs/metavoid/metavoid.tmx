@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="31" nextobjectid="70">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="32" nextobjectid="78">
  <imagelayer id="20" name="background" offsetx="-528" offsety="-288">
   <image source="bg.png"/>
  </imagelayer>
- <imagelayer id="19" name="floor" offsetx="-528" offsety="-401">
+ <imagelayer id="19" name="floor" visible="0" offsetx="-528" offsety="-401">
   <image source="floor.png" width="1294" height="588"/>
   <properties>
    <property name="depth" type="float" value="1"/>
@@ -69,32 +69,6 @@
    <property name="depth" type="float" value="5"/>
   </properties>
  </imagelayer>
- <objectgroup color="#ffff00" id="15" name="hotspot">
-  <object id="53" name="flower" type="hotspot" x="418.642" y="-16.4545" width="7" height="16">
-   <properties>
-    <property name="snippet">Dialogue.load(&quot;res/dialogue/camflower.csv&quot;)
-</property>
-    <property name="wireless" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="54" name="glue" type="hotspot" x="73.8864" y="-10.5227" width="19" height="11">
-   <properties>
-    <property name="snippet">Dialogue.load(&quot;res/dialogue/glue.csv&quot;)
-</property>
-   </properties>
-  </object>
-  <object id="59" name="Exit" type="hotspot" x="-114" y="-30" width="16.7468" height="29.9219">
-   <properties>
-    <property name="snippet" value="Scene.load(&quot;res/scenes/HUB/HUB.tmx&quot;)"/>
-   </properties>
-  </object>
-  <object id="68" name="meta ian" type="hotspot" x="381.045" y="-23.1818" width="15.2727" height="22.1818">
-   <properties>
-    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/metavoid - metaian.csv&quot;)"/>
-    <property name="wireless" type="bool" value="false"/>
-   </properties>
-  </object>
- </objectgroup>
  <objectgroup color="#ff0000" id="18" name="floor" visible="0">
   <object id="55" type="floor" x="-122.909" y="-0.159091">
    <polyline points="-0.1,-0.0888889 529.909,-0.0909091 571.909,-72.0909"/>
@@ -106,7 +80,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#0055ff" id="17" name="props">
-  <object id="48" name="flower" type="prop" x="418.642" y="-16.4545" width="7" height="16">
+  <object id="48" name="flower" type="prop" x="464.278" y="-14.8181" width="7" height="16">
    <properties>
     <property name="depth" type="float" value="3"/>
    </properties>
@@ -116,9 +90,75 @@
     <property name="depth" type="float" value="0.5"/>
    </properties>
   </object>
-  <object id="69" name="plant" type="prop" x="387.375" y="-39" width="30" height="40">
+  <object id="69" name="void plant" type="prop" x="376.625" y="-38.0625" width="30" height="40">
    <properties>
-    <property name="depth" type="float" value="5"/>
+    <property name="depth" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="71" name="printer" type="prop" x="363.08" y="-5.76136" width="15" height="6">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+   </properties>
+  </object>
+  <object id="73" name="chair" type="prop" x="380.864" y="-21.6534" width="15" height="22">
+   <properties>
+    <property name="depth" type="float" value="-5"/>
+   </properties>
+  </object>
+  <object id="74" name="table" type="prop" x="398.631" y="-10.9773" width="16" height="11">
+   <properties>
+    <property name="depth" type="float" value="-4"/>
+   </properties>
+  </object>
+  <object id="75" name="TV1" type="prop" x="399.63" y="-22.9694" width="15" height="12">
+   <properties>
+    <property name="depth" type="float" value="-4"/>
+   </properties>
+  </object>
+  <object id="77" name="door" type="prop" x="-113.977" y="-29" width="15" height="29">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="31" name="items">
+  <object id="70" name="party invitation (stairs)" type="item" x="731.689" y="-24.3182" width="9" height="9"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="15" name="hotspot">
+  <object id="53" name="flower" type="hotspot" x="464.278" y="-14.8181" width="7" height="16">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/camflower.csv&quot;)
+</property>
+    <property name="wireless" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="54" name="glue" type="hotspot" x="73.8864" y="-10.5227" width="19" height="11">
+   <properties>
+    <property name="snippet">Dialogue.load(&quot;res/dialogue/glue.csv&quot;)
+</property>
+   </properties>
+  </object>
+  <object id="59" name="Exit" type="hotspot" x="-114" y="-28.9565" width="15.1381" height="28.8784">
+   <properties>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Stairs/Stairs.tmx&quot;)"/>
+   </properties>
+  </object>
+  <object id="68" name="chair" type="hotspot" x="380.894" y="-21.6619" width="15" height="22">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/metavoid - chair.csv&quot;)"/>
+    <property name="wireless" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="72" name="printer" type="hotspot" x="363.088" y="-5.85226" width="15.054" height="6.1193">
+   <properties>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/metavoid - printer.csv&quot;)"/>
+    <property name="wireless" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="76" name="tv" type="hotspot" x="399.625" y="-23.0313" width="15" height="12">
+   <properties>
+    <property name="script" value="res/scripts/metavoid - TV.wren"/>
+    <property name="wireless" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>
@@ -141,7 +181,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#ff00ff" id="13" name="spawn">
-  <object id="34" name="DEFAULT" type="player_start" x="-105.598" y="0.310336">
+  <object id="34" name="DEFAULT" type="player_start" x="-106.946" y="-0.124447">
    <properties>
     <property name="face_left" type="bool" value="false"/>
     <property name="fade_speed" type="float" value="1.234"/>

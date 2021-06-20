@@ -33,7 +33,7 @@
    <property name="depth" type="float" value="1"/>
   </properties>
  </imagelayer>
- <imagelayer id="26" name="table" offsetx="-528" offsety="-401">
+ <imagelayer id="26" name="table" offsetx="-636" offsety="-401">
   <image source="table.png" width="1294" height="588"/>
   <properties>
    <property name="depth" type="float" value="1"/>
@@ -112,7 +112,7 @@
   </object>
   <object id="59" name="Exit" type="hotspot" x="74.125" y="-30.8125" width="16.7468" height="29.9219">
    <properties>
-    <property name="snippet" value="Scene.load(&quot;res/scenes/HUB/HUB.tmx&quot;)"/>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Infinihallway/Infinihallway.tmx&quot;)"/>
    </properties>
   </object>
  </objectgroup>
@@ -127,7 +127,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#0055ff" id="17" name="props">
-  <object id="48" name="flower" type="prop" x="151" y="-28" width="7" height="16">
+  <object id="48" name="flower" type="prop" x="42" y="-28" width="7" height="16">
    <properties>
     <property name="depth" type="float" value="0.5"/>
    </properties>

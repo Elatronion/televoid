@@ -3,9 +3,10 @@ RIGHT,NULL
 LEFT,IAN_THINKING
 MESSAGE,"This seems to be some kind of panel...
 Probably to open that door.
-I see a series of symbols etched onto the
-panel's side. Maybe it means something..."
+I see a series of symbols on the panel.
+Maybe they mean something?"
 LEFT,IAN_IDLE
-MESSAGE,"A helmet, a X, a Y, and a moose."
+MESSAGE,"A VHS, a helmet, and a... moose?"
 LEFT,IAN_THINKING
-MESSAGE,"Hm."
+MESSAGE,"Hm, I do see a slot a VHS could slip into.
+Maybe it's some kind of weird keycard-like system."

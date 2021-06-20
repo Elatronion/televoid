@@ -3,7 +3,7 @@ RIGHT,NULL
 LEFT,IAN_THINKING
 MESSAGE,"Hm, I wonder what this large metal door is hiding..."
 LEFT,IAN_HAPPY
-MESSAGE,"Oh, there's a peep hole!
+MESSAGE,"There a bit of a crack in the door I can see through.
 Guess I won't have to wonder for long."
 SNIPPET,Audio.playBGM("Tree Of Life by nokibient")
 LEFT,IAN_IDLE
@@ -13,15 +13,22 @@ RIGHT,FRANK_ANGRY
 MESSAGE,"WHAT DO YOU MEAN JAMIE IS HERE!?"
 RIGHT,FRANK_ACCUSE
 MESSAGE,"Isn't it your job or something to keep him safe?"
+RIGHT,FRANK_SMUG
+MESSAGE,"What do YOU think is going to happen when he tries to
+explore that hallway a bit further. It never ends!!
+Is this really what you want to happen to him?
+We can't know what's behind every single door, it
+would require a manual check of each one!
+Who has the time to do that!?"
 LEFT,UNKNOWN
 MESSAGE,". . ."
 MESSAGE,"[IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
-      [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
-   [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+N IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+S FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
 [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
-      [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
-   [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
-[IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]"
+AN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+NE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]
+ IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]"
 SNIPPET,Audio.playVoice("ian what")
 LEFT,IAN_THINKING
 MESSAGE,"Wha- What the fuck!?"

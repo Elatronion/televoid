@@ -1,0 +1,9 @@
+# Animation Length in Seconds: 10
+
+o easeinout "camera"
+k easeinout x 5 693
+k easeinout y 5 -118
+k easeinout z 5 100
+k easeinout z 23 25
+
+s 20 "Scene.load("res/scenes/credits.tmx")"

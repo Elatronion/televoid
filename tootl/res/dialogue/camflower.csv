@@ -1,0 +1,10 @@
+TYPE,DATA
+LEFT,IAN_THINKING
+MESSAGE,"Hmmmm... This flower... looks... weird..."
+LEFT,IAN_ANGRY
+MESSAGE,"Is that a camer-"
+RIGHT,NULL
+SNIPPET,Audio.playSFX("Resume")
+MESSAGE,"*BADUUP*"
+LEFT,IAN_IDLE
+MESSAGE,"!?"

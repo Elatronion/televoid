@@ -10,7 +10,7 @@ class MainMenu {
     ResourceManager.loadTexture("res/scripts/minigames/settings_assets/gear.png", "SETTINGS GEAR")
 
     ResourceManager.loadTexture("res/textures/sprites/MainMenu/wood.png", "WOOD TABLE BACKGROUND")
-    ResourceManager.loadTexture("res/textures/sprites/MainMenu/TelevoidLogo.png", "VHS")
+    ResourceManager.loadTexture("res/textures/sprites/MainMenu/TelevoidLogo.png", "MENU VHS")
 
     ResourceManager.loadTexture("res/textures/sprites/MainMenu/VCR_top.png", "VCR top")
     ResourceManager.loadTexture("res/textures/sprites/MainMenu/VCR_bottom.png", "VCR bottom")
@@ -119,7 +119,7 @@ class MainMenu {
       VHS_scale.x, VHS_scale.y
     )
 
-    Window.render("VHS",
+    Window.render("MENU VHS",
       _VHS_object.position.x, _VHS_object.position.y,
       _VHS_object.scale.x, _VHS_object.scale.y
     )

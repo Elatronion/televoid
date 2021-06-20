@@ -535,6 +535,16 @@ void create_infinihallway() {
   infinihallway_create_door_hotspot(100, "res/scripts/Infinihallway/Door 100.wren");
 }
 
+bool is_special_scene(const char* scene) {
+  return (
+    strcmp(scene, "res/scenes/main_menu.tmx") == 0 ||
+    strcmp(scene, "res/scenes/settings_menu.tmx") == 0 ||
+    strcmp(scene, "res/scenes/splash.tmx") == 0 ||
+    strcmp(scene, "res/scenes/End/End.tmx") == 0 ||
+    strcmp(scene, "res/scenes/bowling.tmx") == 0
+  );
+}
+
 void LoadScene(const char* scene_path) {
   televoidMinigameClean();
   televoidSceneDestroy();
@@ -571,9 +581,7 @@ void LoadScene(const char* scene_path) {
 
   strcpy(&last_loaded_scene, scene_path);
   HGE_LOG("Last Loaded Scene: \"%s\"", last_loaded_scene);
-  if(strcmp(last_loaded_scene, "res/scenes/main_menu.tmx") != 0 &&
-     strcmp(last_loaded_scene, "res/scenes/settings_menu.tmx") != 0 &&
-     strcmp(last_loaded_scene, "res/scenes/splash.tmx") != 0) {
+  if(!is_special_scene(last_loaded_scene)) {
        televoidGlobalSave();
   }
 
@@ -585,9 +593,7 @@ void LoadScene(const char* scene_path) {
 }
 
 void SceneSave() {
-  if(strcmp(last_loaded_scene, "res/scenes/main_menu.tmx") != 0 &&
-     strcmp(last_loaded_scene, "res/scenes/settings_menu.tmx") != 0 &&
-     strcmp(last_loaded_scene, "res/scenes/splash.tmx") != 0) {
+  if(!is_special_scene(last_loaded_scene)) {
     hge_transform* player_transform = televoid_player_transform();
     if(player_transform) {
       hge_vec3 player_position = player_transform->position;

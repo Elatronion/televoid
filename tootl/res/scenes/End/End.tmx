@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="24" nextobjectid="95">
+ <imagelayer id="14" name="background" visible="0" offsetx="-642.667" offsety="-214.667">
+  <image source="background.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="100"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="21" name="further ground" visible="0">
+  <image source="far far ground.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="50"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="20" name="far ground" visible="0">
+  <image source="far ground.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="25"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="19" name="ground">
+  <image source="ground.png" width="1386" height="238"/>
+  <properties>
+   <property name="depth" type="float" value="3"/>
+  </properties>
+ </imagelayer>
+ <imagelayer id="22" name="foreground" visible="0" offsetx="-11.1667" offsety="11.8333">
+  <image source="foreground.png" width="1920" height="1080"/>
+  <properties>
+   <property name="depth" type="float" value="-25"/>
+  </properties>
+ </imagelayer>
+ <objectgroup color="#ff0000" id="18" name="floor">
+  <object id="78" type="floor" x="264" y="162">
+   <polyline points="0,0 66,-30 132,0 198,-30 270,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#0055ff" id="17" name="props">
+  <object id="85" name="contruction sign" type="prop" x="226.727" y="118.273" width="29" height="29">
+   <properties>
+    <property name="depth" type="float" value="-10"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="86" name="missing image" type="prop" x="180.21" y="101.818" width="29" height="29">
+   <properties>
+    <property name="depth" type="float" value="-2"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="87" name="stoop sign" type="prop" x="587" y="78.5" width="30" height="84">
+   <properties>
+    <property name="depth" type="float" value="-20"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="88" name="TV1" type="prop" x="728.705" y="74.6818" width="15" height="12">
+   <properties>
+    <property name="depth" type="float" value="-10"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="89" name="void plant" type="prop" x="753.326" y="103.121" width="30" height="40">
+   <properties>
+    <property name="depth" type="float" value="-17"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="90" name="chair" type="prop" x="639.667" y="62.3333" width="15" height="22">
+   <properties>
+    <property name="depth" type="float" value="-33"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="91" name="arcade_machine" type="prop" x="642.167" y="160.333" width="14" height="35">
+   <properties>
+    <property name="depth" type="float" value="-30"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="92" name="table" type="prop" x="687.833" y="35.3333" width="16" height="11">
+   <properties>
+    <property name="depth" type="float" value="-6"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="94" name="glue" type="prop" x="720.167" y="160.333" width="19" height="11">
+   <properties>
+    <property name="depth" type="float" value="-45"/>
+    <property name="floater" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="15" name="hotspot">
+  <object id="76" name="OST" type="hotspot" x="0" y="0" width="6" height="6">
+   <properties>
+    <property name="auto_exec" type="bool" value="true"/>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/End - auto.csv&quot;)"/>
+   </properties>
+  </object>
+  <object id="79" name="White" type="hotspot" x="672" y="12" width="42" height="217.5">
+   <properties>
+    <property name="auto_exec" type="bool" value="false"/>
+    <property name="snippet" value="Animation.load(&quot;res/imv/End - White.imv&quot;)"/>
+    <property name="wireless" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="81" name="White" type="hotspot" x="603.667" y="79.6667" width="178.667" height="78">
+   <properties>
+    <property name="auto_exec" type="bool" value="false"/>
+    <property name="snippet" value="Animation.load(&quot;res/imv/End - White.imv&quot;)"/>
+    <property name="wireless" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="82" name="Thin Exit" type="hotspot" x="259.477" y="78.9098" width="8.68185" height="80.4254">
+   <properties>
+    <property name="auto_exec" type="bool" value="false"/>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/End - fake exit.csv&quot;)"/>
+    <property name="wireless" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="84" name="Thin Exit" type="hotspot" x="391.818" y="78.91" width="8.68185" height="80.4254">
+   <properties>
+    <property name="auto_exec" type="bool" value="false"/>
+    <property name="snippet" value="Dialogue.load(&quot;res/dialogue/End - fake exit2.csv&quot;)"/>
+    <property name="wireless" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff00ff" id="23" name="items">
+  <object id="93" name="perfection salad" type="item" x="687.333" y="188" width="9" height="9"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" id="16" name="trigger"/>
+ <objectgroup color="#ff00ff" id="13" name="spawn">
+  <object id="34" name="DEFAULT" type="player_start" x="264" y="162">
+   <properties>
+    <property name="face_left" type="bool" value="false"/>
+    <property name="fade_speed" type="float" value="1.234"/>
+    <property name="fadein_on_start" type="bool" value="true"/>
+    <property name="previous_scene_that_activates" value=""/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

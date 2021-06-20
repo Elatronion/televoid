@@ -112,7 +112,7 @@
   </object>
   <object id="59" name="Exit" type="hotspot" x="74.125" y="-30.8125" width="16.7468" height="29.9219">
    <properties>
-    <property name="snippet" value="Scene.load(&quot;res/scenes/HUB/HUB.tmx&quot;)"/>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Infinihallway/Infinihallway.tmx&quot;)"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,10 @@
+TYPE,DATA
+LEFT,IAN_THINKING
+MESSAGE,"This looks exactly like where I started...
+Have I been turning around in circles?"
+LEFT,IAN_THINKING
+MESSAGE,"..."
+LEFT,IAN_ANGRY
+SNIPPET,Audio.playVoice("ian what")
+MESSAGE,"Hey, the seat of this chair is completely covered
+with glue! I am NOT sitting on that!"

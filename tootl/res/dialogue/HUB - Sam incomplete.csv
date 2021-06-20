@@ -9,10 +9,10 @@ MESSAGE,"I don't even know where we are!"
 LEFT,IAN_THINKING
 MESSAGE,"Where would I find food?"
 RIGHT,SAM_IDLE
-MESSAGE,"I heard of a cooking show that
-makes food from heaven.
+MESSAGE,"Right across this street, I tell you with a beat,
 
-I wonder what's behind door number seven!"
+You'll find the Kitchen with all it's wheat!
+Now whip up something good to eat!"
 SNIPPET,Audio.playVoice("ian what")
 LEFT,IAN_THINKING
 MESSAGE,"What?"

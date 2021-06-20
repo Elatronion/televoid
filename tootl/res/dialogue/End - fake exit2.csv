@@ -1,0 +1,4 @@
+TYPE,DATA
+LEFT,IAN_ANGRY
+SNIPPET,Audio.playVoice("ian grr")
+MESSAGE,"Aw man, I can't squeeze through..."

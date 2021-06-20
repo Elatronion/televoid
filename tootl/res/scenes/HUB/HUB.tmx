@@ -73,8 +73,7 @@
   </object>
   <object id="96" name="Stairs Entrance" type="hotspot" x="217.286" y="292.034" width="16.3031" height="30.1818">
    <properties>
-    <property name="snippet">Scene.load(&quot;res/scenes/Stairs/Stairs.tmx&quot;)
-Audio.playBGM(&quot;maze by brutalmoose&quot;)</property>
+    <property name="snippet" value="Scene.load(&quot;res/scenes/Kitchen/Kitchen.tmx&quot;)"/>
     <property name="wireless" type="bool" value="false"/>
    </properties>
   </object>

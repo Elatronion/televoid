@@ -1,0 +1,20 @@
+TYPE,DATA
+RIGHT,ARCADE_DUDE_IDLE
+LEFT,IAN_IDLE
+MESSAGE,"Do YOU want to be rad?
+Because I have a problem, maybe you can help me.
+Do you have anything that can melt thick ice?"
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"..."
+MESSAGE,"Uhm... Sorry, it's just..."
+MESSAGE,"You kind of caught me off guard there
+with the whole 'rad' thing...
+Well, since you played all my games...
+I guess you're RAD enough to borrow my blow torch!
+Just don't damage it please."
+LEFT,IAN_HAPPY
+MESSAGE,"Thank you so much, that's real RAD of you!"
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"RAD!"
+SNIPPET,Inventory.remove("fridge ice")
+SNIPPET,Inventory.add("blow torch")

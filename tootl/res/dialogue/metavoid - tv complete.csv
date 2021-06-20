@@ -1,0 +1,18 @@
+TYPE,DATA
+LEFT,IAN_IDLE
+MESSAGE,"Guess I'll just... feed the TV a TV dinner
+Ha ha, so funny...
+Ha ha ha..."
+SNIPPET,Audio.playVoice("unknown")
+RIGHT,UNKNOWN
+MESSAGE,"EMg%3_BTc4(Rj5ixxdJh9YrdGyXbgG3w:AWVB3h?kr8m(*(uWh&R2#nbGh$W!}h%q7yWY!-F=UWz$x(8
+}q%w}g33iRJx4WQgK82.j&;=gftMf?KC@6%4@=ZYGkbGDYu&L(DhH$k57Dn,MN;6UfQd85,(S@wrNqNk
+i79/J8{(Gk(Um5w(qF}[IAN IS FINE]H!r/RZfp2[nwx3zU]3Ad)j2n6K_uYw7_6Auff$G--#zt6ghamJ?
+...Lteqh586fg@?JP!vZW2)BdQ{k]L8YD-ABaYQGAR*u[[fC)$xakbf9!FhwQ]hNkv9{$GWP#5N-7PxY
+dQ{+8h!]PSHgYvZL5d4Qb9egkj/=%9bR{re}Z36Mn,Eg&a$Q{L*h7K}BF@/H{Y][%h}5x}3jDuLU{USJ
+($8FG#_m(uhhz&w7(Jwq4WiZNZ,VyV75BB/BtmN-)K@&eM[@gYrnaDwaRcS4ity8KTPn%dZN!RN@mMr]
+7V$VpcEZh;(;-MB}GJ4@UK(yaV-@t7.cze!KHzDYY5MKK%Wf9meDWVDU:e$ny(Up/,[fY:Fg!W9q]!.d
+u}y]LRbN)X$FW=*LT8rd!+S!iy_)fz)qv:FMNtkj*pn93=[QD:qVUfFR$MdJgiCqPPd}eq[xi64rdyGB
+qhRNggJ]z;y[nR&&q@x[VwKm-YR3Q=:wQpZ*bZq@[E%Vjw.C335xyGN8begCw(X}2GdeDqFy4f(YvUFg
+K.j4f2i%v7=9x3%h.@HNGpp)k&D;zWgW/b4C=6$kExD,Gu.N5{[w8XFg;HLtrY+#94Y?MKx;Et+4M%5%"
+SNIPPET,Inventory.add("VHS")

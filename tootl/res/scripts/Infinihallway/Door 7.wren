@@ -1,7 +1,4 @@
-import "televoid-core" for Scene, Inventory, Dialogue
+import "televoid-core" for Scene, Inventory, Dialogue, Audio
 
-if (Inventory.has("recipe")) {
-  Dialogue.load("res/dialogue/Infinihallway/Door 7 recipe.csv")
-} else {
-  Dialogue.load("res/dialogue/Infinihallway/Door 7.csv")
-}
+Audio.playBGM("maze by brutalmoose")
+Scene.load("res/scenes/Stairs/Stairs.tmx")

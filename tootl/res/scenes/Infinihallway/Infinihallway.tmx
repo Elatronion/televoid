@@ -28,16 +28,16 @@
    </properties>
    <point/>
   </object>
-  <object id="31" name="Ian Spawn from Kitchen" type="player_start" x="387" y="18">
+  <object id="31" name="Ian Spawn from Stairs" type="player_start" x="387" y="18">
    <properties>
     <property name="face_left" type="bool" value="false"/>
     <property name="fade_speed" type="float" value="1.234"/>
     <property name="fadein_on_start" type="bool" value="true"/>
-    <property name="previous_scene_that_activates" value="res/scenes/Kitchen/Kitchen.tmx"/>
+    <property name="previous_scene_that_activates" value="res/scenes/Stairs/Stairs.tmx"/>
    </properties>
    <point/>
   </object>
-  <object id="33" name="Ian Spawn from NULL (test)" type="player_start" x="5479.39" y="5.78788">
+  <object id="33" name="Ian Spawn from NULL (test)" type="player_start" x="387.03" y="17.9053">
    <properties>
     <property name="face_left" type="bool" value="false"/>
     <property name="fade_speed" type="float" value="1.234"/>
