@@ -1,5 +1,5 @@
 # Intro animation by Ezra Hradecky (Elatronion)
-
+# Art assets by Normal Canard
 # Animation Length in Seconds: 102
 
 s 10 "Inventory.add("flag intro")"
@@ -17,9 +17,9 @@ s 100 "Scene.load("res/scenes/Infinihallway/Infinihallway.tmx")"
 e 0 0 -1 100000 100000 0 0 "IMV INTRO WHITE"
 k hold colorA 0 0
 k hold colorA 70.23 1
-k hold colorA 96 0
+#k hold colorA 96 0
 # ...
-k easeinout colorA 102 0
+k easeinout colorA 102 1
 e 0 0 0 1000 1000 0 0 "IMV INTRO IAN-WIND-frame1"
 d 70.500000 "IMV INTRO IAN-WIND-frame1"
 d 70.830002 "IMV INTRO IAN-WIND-frame2"
@@ -98,25 +98,25 @@ d 94.590134 "IMV INTRO IAN-WIND-frame2"
 d 94.920135 "IMV INTRO IAN-WIND-frame3"
 d 95.250137 "IMV INTRO IAN-WIND-frame1"
 d 95.580139 "IMV INTRO IAN-WIND-frame2"
-d 95.910141 "IMV INTRO IAN-WIND-frame3"
-d 96.240143 "IMV INTRO IAN-WIND-frame1"
-d 96.570145 "IMV INTRO IAN-WIND-frame2"
-d 96.900146 "IMV INTRO IAN-WIND-frame3"
-d 97.230148 "IMV INTRO IAN-WIND-frame1"
-d 97.560150 "IMV INTRO IAN-WIND-frame2"
-d 97.890152 "IMV INTRO IAN-WIND-frame3"
-d 98.220154 "IMV INTRO IAN-WIND-frame1"
-d 98.550156 "IMV INTRO IAN-WIND-frame2"
-d 98.880157 "IMV INTRO IAN-WIND-frame3"
-d 99.210159 "IMV INTRO IAN-WIND-frame1"
-d 99.540161 "IMV INTRO IAN-WIND-frame2"
-d 99.870163 "IMV INTRO IAN-WIND-frame3"
-d 100.200165 "IMV INTRO IAN-WIND-frame1"
-d 100.530167 "IMV INTRO IAN-WIND-frame2"
-d 100.860168 "IMV INTRO IAN-WIND-frame3"
-d 101.190170 "IMV INTRO IAN-WIND-frame1"
-d 101.520172 "IMV INTRO IAN-WIND-frame2"
-d 101.850174 "IMV INTRO IAN-WIND-frame3"
+d 95.910141 "IMV INTRO IAN-WIND-frame6"
+d 96.240143 "IMV INTRO IAN-WIND-frame4"
+d 96.570145 "IMV INTRO IAN-WIND-frame5"
+d 96.900146 "IMV INTRO IAN-WIND-frame6"
+d 97.230148 "IMV INTRO IAN-WIND-frame4"
+d 97.560150 "IMV INTRO IAN-WIND-frame5"
+d 97.890152 "IMV INTRO IAN-WIND-frame6"
+d 98.220154 "IMV INTRO IAN-WIND-frame4"
+d 98.550156 "IMV INTRO IAN-WIND-frame5"
+d 98.880157 "IMV INTRO IAN-WIND-frame6"
+d 99.210159 "IMV INTRO IAN-WIND-frame4"
+d 99.540161 "IMV INTRO IAN-WIND-frame5"
+d 99.870163 "IMV INTRO IAN-WIND-frame6"
+d 100.200165 "IMV INTRO IAN-WIND-frame4"
+d 100.530167 "IMV INTRO IAN-WIND-frame5"
+d 100.860168 "IMV INTRO IAN-WIND-frame6"
+d 101.190170 "IMV INTRO IAN-WIND-frame4"
+d 101.520172 "IMV INTRO IAN-WIND-frame5"
+d 101.850174 "IMV INTRO IAN-WIND-frame6"
 
 k linear sx 70.5 1000
 k linear sy 70.5 1000
@@ -126,7 +126,7 @@ k linear sy 102 800
 
 k hold colorA 0 0
 k hold colorA 70.23 1
-k hold colorA 96 0
+#k hold colorA 96 0
 # ...
 k hold colorA 102 0
 
@@ -288,7 +288,7 @@ k linear sz 120 0
 
 k hold colorA 0 1
 k hold colorA 40.73 0
-k hold colorA 96 1
+#k hold colorA 96 1
 # ...
 k hold colorA 102 0
 

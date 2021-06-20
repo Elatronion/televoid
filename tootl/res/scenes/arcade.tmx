@@ -12,7 +12,7 @@
    <property name="depth" type="float" value="0.5"/>
   </properties>
  </imagelayer>
- <imagelayer id="21" name="FX01" visible="0" offsetx="-238.333" offsety="-182">
+ <imagelayer id="21" name="FX01" offsetx="-436.166" offsety="-150.833">
   <image source="../../../../../../../../mnt/Black6/Projects/Televoid/televoid/tootl/res/scenes/FX01.png" width="1280" height="720"/>
   <properties>
    <property name="depth" type="float" value="0"/>
@@ -112,13 +112,13 @@ Inventory.add(&quot;invaders ticket&quot;)</property>
   <object id="45" name="Oo" type="hotspot" x="259.616" y="205.688" width="7.03494" height="5.25661">
    <properties>
     <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Oo.csv&quot;)"/>
-    <property name="wireless" type="bool" value="true"/>
+    <property name="wireless" type="bool" value="false"/>
    </properties>
   </object>
   <object id="46" name="Chirp" type="hotspot" x="250.561" y="205.309" width="4.69119" height="5.56096">
    <properties>
     <property name="snippet" value="Dialogue.load(&quot;res/dialogue/Arcade - Chirp.csv&quot;)"/>
-    <property name="wireless" type="bool" value="true"/>
+    <property name="wireless" type="bool" value="false"/>
    </properties>
   </object>
   <object id="49" type="hotspot" x="425.938" y="180.938" width="14" height="35">

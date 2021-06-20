@@ -36,6 +36,9 @@ class MainMenu {
     ResourceManager.loadTexture("res/imv/intro_assets/ian-wind-1.png", "IMV INTRO IAN-WIND-frame1")
     ResourceManager.loadTexture("res/imv/intro_assets/ian-wind-2.png", "IMV INTRO IAN-WIND-frame2")
     ResourceManager.loadTexture("res/imv/intro_assets/ian-wind-3.png", "IMV INTRO IAN-WIND-frame3")
+    ResourceManager.loadTexture("res/imv/intro_assets/ian-wind-4.png", "IMV INTRO IAN-WIND-frame4")
+    ResourceManager.loadTexture("res/imv/intro_assets/ian-wind-5.png", "IMV INTRO IAN-WIND-frame5")
+    ResourceManager.loadTexture("res/imv/intro_assets/ian-wind-6.png", "IMV INTRO IAN-WIND-frame6")
 
     _runtime = 0
 

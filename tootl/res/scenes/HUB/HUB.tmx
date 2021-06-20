@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="24" nextobjectid="99">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="24" nextobjectid="101">
  <imagelayer id="14" name="background" visible="0" offsetx="-642.667" offsety="-214.667">
   <image source="background.png" width="1920" height="1080"/>
   <properties>
@@ -91,7 +91,16 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#00ff00" id="16" name="trigger"/>
+ <objectgroup color="#00ff00" id="16" name="trigger">
+  <object id="100" name="SPLURP" type="trigger" x="292.461" y="322.056" width="5" height="3">
+   <properties>
+    <property name="depth" type="float" value="1"/>
+    <property name="exec_on_enter" type="bool" value="true"/>
+    <property name="exec_on_exit" type="bool" value="false"/>
+    <property name="snippet" value="Audio.playSFX(&quot;splurp&quot;)"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup color="#ff00ff" id="13" name="spawn">
   <object id="34" name="DEFAULT" type="player_start" x="224.75" y="324.75">
    <properties>
