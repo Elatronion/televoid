@@ -324,7 +324,17 @@ void ParseTMXProp(tmx_object* object) {
   material.lit = false;
   material.color_multiplier = hgeVec4(1, 1, 1, 1);
 
-  televoidCreateProp(object->name, transform, material);
+  tmx_property* property_floater = tmx_get_property(object->properties, "floater");
+  hge_entity* prop_entity = televoidCreateProp(object->name, transform, material);
+  if(property_floater && property_floater->value.boolean) {
+    component_floater floater = {
+      3.f,
+      1.f,
+      hgeRadians(12.f),
+      transform
+    };
+    hgeAddComponent(prop_entity, hgeCreateComponent("floater", &floater, sizeof(floater)));
+  }
 }
 
 void ParseTMXLight(tmx_object* object) {
@@ -775,7 +785,7 @@ void televoidAddBackground(hge_vec3 position, hge_vec3 scale, bool lit, const ch
   televoidCreateProp("background", transform, material);
 }
 
-void televoidCreateProp(const char* name, hge_transform prop_transform, hge_material prop_material) {
+hge_entity* televoidCreateProp(const char* name, hge_transform prop_transform, hge_material prop_material) {
   hge_entity* prop_entity = hgeCreateEntity();
   hgeAddComponent(prop_entity, hgeCreateComponent("transform", &prop_transform, sizeof(prop_transform)));
   hgeAddComponent(prop_entity, hgeCreateComponent("material", &prop_material, sizeof(prop_material)));
@@ -783,6 +793,7 @@ void televoidCreateProp(const char* name, hge_transform prop_transform, hge_mate
   prop_component prop;
   hgeAddComponent(prop_entity, hgeCreateComponent("prop", &prop, sizeof(prop)));
   televoidSceneAddEntity(prop_entity, name);
+  return prop_entity;
 }
 
 hge_entity* televoidCreateDialogue(const char* file) {

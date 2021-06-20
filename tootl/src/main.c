@@ -272,6 +272,7 @@ int main(int argc, char **argv) {
 
 	hgeAddSystem(system_infinihallway, 1, "infinihallway");
 	hgeAddSystem(system_fader_sprite, 2, "transform", "fader sprite");
+	hgeAddSystem(system_floater, 2, "transform", "floater");
 
 	// Global Updater
 	hge_entity* global_updater_entity = hgeCreateEntity();

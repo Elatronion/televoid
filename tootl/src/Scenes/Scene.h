@@ -20,6 +20,7 @@
 
 #include "IMVPlayer.h"
 #include "Floor.h"
+#include "Floater.h"
 
 hge_entity* televoidSceneGetEntity(const char* name);
 
@@ -39,7 +40,7 @@ hge_entity* televoidCreatePlayerCamera(hge_vec3 position);
 hge_entity* televoidCreateHotspot(hge_transform transform, hge_vec3 interaction_location, hotspot_type type, bool wireless, const char* data);
 hge_entity* televoidCreateTrigger(hge_transform transform, unsigned int flags, const char* data);
 void televoidAddMesh(hge_transform transform, const char* meshPath, hge_material material);
-void televoidCreateProp(const char* name, hge_transform prop_transform, hge_material prop_material);
+hge_entity* televoidCreateProp(const char* name, hge_transform prop_transform, hge_material prop_material);
 hge_entity* televoidCreateDialogue(const char* file);
 hge_entity* televoidIMVCreate(const char* path);
 
