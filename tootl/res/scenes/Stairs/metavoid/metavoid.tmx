@@ -80,7 +80,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#0055ff" id="17" name="props">
-  <object id="48" name="flower" type="prop" x="464.278" y="-14.8181" width="7" height="16">
+  <object id="48" name="camera" type="prop" x="419.909" y="-15.9091" width="7" height="16">
    <properties>
     <property name="depth" type="float" value="3"/>
    </properties>
@@ -125,13 +125,6 @@
   <object id="70" name="party invitation (stairs)" type="item" x="731.689" y="-24.3182" width="9" height="9"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="15" name="hotspot">
-  <object id="53" name="flower" type="hotspot" x="464.278" y="-14.8181" width="7" height="16">
-   <properties>
-    <property name="snippet">Dialogue.load(&quot;res/dialogue/camflower.csv&quot;)
-</property>
-    <property name="wireless" type="bool" value="false"/>
-   </properties>
-  </object>
   <object id="54" name="glue" type="hotspot" x="73.8864" y="-10.5227" width="19" height="11">
    <properties>
     <property name="snippet">Dialogue.load(&quot;res/dialogue/glue.csv&quot;)
