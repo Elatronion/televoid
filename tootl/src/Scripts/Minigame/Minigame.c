@@ -77,7 +77,7 @@ void televoidMinigameUpdate() {
       }
     }
     // Load the class into slot 0.
-    wrenEnsureSlots(minigames[i].vm, 1);
+    wrenEnsureSlots(minigames[i].vm, 2);
     wrenGetVariable(minigames[i].vm, "main", "game", 0);
     WrenHandle* game_variable = wrenGetSlotHandle(minigames[i].vm, 0);
     wrenSetSlotHandle(minigames[i].vm, 0, game_variable);

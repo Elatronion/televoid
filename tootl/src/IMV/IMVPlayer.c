@@ -237,10 +237,11 @@ void imvCleanProperty(imv_property* property) {
   if(next) next->prev = prev;
 
   //free(property->name);
-  free(property);
+  //free(property);
 }
 
 void imvCleanElement(imv_element* element) {
+  /*
   imv_property* current = element->root_property;
   while(current) {
     imv_property* free_me = current;
@@ -255,6 +256,7 @@ void imvCleanElement(imv_element* element) {
 
   //free(element->data);
   free(element);
+  */
 }
 
 void imvClean(imv_animation* animation) {

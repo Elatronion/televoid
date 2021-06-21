@@ -472,7 +472,6 @@ bool televoidWrenExecute(const char* script_path) {
 
 bool televoidWrenExecuteSnippet(const char* snippet) {
   printf("Executing Snippet \"%s\"!\n", snippet);
-
   WrenConfiguration config;
   wrenInitConfiguration(&config);
   config.writeFn = &writeFn;
@@ -491,11 +490,10 @@ bool televoidWrenExecuteSnippet(const char* snippet) {
       { printf("Compile Error!\n"); } break;
     case WREN_RESULT_RUNTIME_ERROR:
       { printf("Runtime Error!\n"); } break;
-    /*case WREN_RESULT_SUCCESS:
-      { printf("Success!\n"); } break;*/
+    case WREN_RESULT_SUCCESS:
+      { printf("Success!\n"); } break;
   }
 
   wrenFreeVM(vm);
-
   return result;
 }
