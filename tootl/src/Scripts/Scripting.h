@@ -16,7 +16,7 @@ void errorFn(WrenVM* vm, WrenErrorType errorType,
              const char* module, const int line,
              const char* msg);
 
-char* loadModule(WrenVM* vm, const char* name);
+WrenLoadModuleResult loadModule(WrenVM* vm, const char* name);
 
 bool televoidWrenExecute(const char* script_path);
 bool televoidWrenExecuteSnippet(const char* snippet);

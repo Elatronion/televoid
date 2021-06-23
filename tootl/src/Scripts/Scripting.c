@@ -433,13 +433,17 @@ void errorFn(WrenVM* vm, WrenErrorType errorType,
   }
 }
 
-char* loadModule(WrenVM* vm, const char* name) {
+WrenLoadModuleResult loadModule(WrenVM* vm, const char* name) {
   //printf("Load Module: '%s'\n", name);
+  WrenLoadModuleResult result = {0};
   char path[255];
-  strcpy(path, "res/scripts/");
-  strcat(path, name);
-  strcat(path, ".wren");
-  return hgeLoadFileAsString(path);
+  sprintf(
+    path,
+    "res/scripts/%s.wren",
+    name
+  );
+  result.source = hgeLoadFileAsString(path);
+  return result;
 }
 
 bool televoidWrenExecute(const char* script_path) {
@@ -480,10 +484,14 @@ bool televoidWrenExecuteSnippet(const char* snippet) {
   config.loadModuleFn = loadModule;
   WrenVM* vm = wrenNewVM(&config);
 
-  char script[500] = "import \"televoid-core\" for Scene, Inventory, Dialogue, Minigame, Audio, Animation, Character, GameSaver\n";
-  strcat(script, snippet);
+  char source[500];
+  sprintf(
+    source,
+    "import \"televoid-core\" for Scene, Inventory, Dialogue, Minigame, Audio, Animation, Character, GameSaver\n%s",
+    snippet
+  );
 
-  WrenInterpretResult result = wrenInterpret(vm, "main", script);
+  WrenInterpretResult result = wrenInterpret(vm, "main", source);
 
   /*
   switch (result) {
