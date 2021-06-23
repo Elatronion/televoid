@@ -642,8 +642,8 @@ void televoidSceneUpdate(bool skip) {
   hgeUseShader(framebuffer_shader);
   hgeShaderSetFloat(framebuffer_shader, "letterbox_percentage", letterbox_percentage);
   if (level_load_countdown <= 0 || skip) {
-    if(hgeDeltaTime() <= (1.f / 30.f)) // Only move the letterbox if game is running over 30 fps
-      letterbox_percentage += (0 - letterbox_percentage) * 10.f * hgeDeltaTime();
+    //if(hgeDeltaTime() <= (1.f / 30.f)) // Only move the letterbox if game is running over 30 fps
+    letterbox_percentage += (0 - letterbox_percentage) * 10.f * hgeDeltaTime();
     if(level_to_load) {
       LoadScene(level_to_load);
       free(level_to_load);
