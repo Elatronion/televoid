@@ -22,7 +22,7 @@ OR FEAR IT WILL CONSUME YOU
 01000110 01001001 01001110 01000101 01011101"
 LEFT,IAN_ANGRY
 SNIPPET,Audio.playVoice("ian no1")
-MESSAGE,"No."
+MESSAGE,"No. Guess not."
 MESSAGE,"What about this one?"
 RIGHT,PAPER_IDLE
 MESSAGE,"FEED THE TV SOMETHING APPROPRIATE
@@ -50,9 +50,9 @@ OR FEAR IT WILL CONSUME YOU
 01000110 01001001 01001110 01000101 01011101"
 LEFT,IAN_ANGRY
 SNIPPET,Audio.playVoice("ian no5")
-MESSAGE,"No!!! >:(
+MESSAGE,"No!!!
 It's all the same idiotic conspiratorial random
-made up bull!"
+made up bull! How fucking annoying!"
 LEFT,IAN_IDLE
 MESSAGE,"..."
 MESSAGE,"I... I'm sure it wasn't you who wrote all of these..."

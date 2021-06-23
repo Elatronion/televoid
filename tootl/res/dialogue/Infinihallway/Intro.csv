@@ -2,22 +2,34 @@ TYPE,DATA
 RIGHT,NULL
 LEFT,IAN_ANGRY
 MESSAGE,"..."
-MESSAGE,"1209 days..."
-MESSAGE,"I've been here... 1209 days..."
+MESSAGE,"1208 days..."
+MESSAGE,"I've been here... 1208 days..."
 LEFT,IAN_IDLE
 MESSAGE,"..."
+MESSAGE,"Or... Maybe 1209 days.
+It's possible I lost count."
+MESSAGE,"Not like there's a calender here,
+or a clock."
+MESSAGE,"..."
 LEFT,IAN_HAPPY
-MESSAGE,"Wait, your back!?
-After all this time, your finally back!"
+MESSAGE,"Wait, what? Is that you?" 
+MESSAGE,"You're back!?
+After all this time, you're finally back!
+I can't believe it!"
 LEFT,IAN_IDLE
-MESSAGE,"I thought for sure you forgot about me..."
+MESSAGE,"I thought for sure you'd 
+forgotten about me..."
 LEFT,IAN_THINKING
 MESSAGE,"Or... am I just imagining things again?"
 LEFT,IAN_IDLE
-MESSAGE,"I've been stuck in this long hallway every since
-I left... I can't see the ends,
-and I fear going much further...
-The door I came from gives me some kind of
-sense of comfort..."
+MESSAGE,"I've been stuck in this long hallway ever since
+I left... ever since I went through the door.
+I can't see the ends, it goes on forever,
+and I fear going much further..."
+LEFT,IAN_IDLE
+MESSAGE,"The door I came from gives me some kind of
+sense of comfort, so
+I stick around, even if I don't go back.
+I don't want to go back, anyway..."
 LEFT,IAN_THINKING
 MESSAGE,"What should I do?"

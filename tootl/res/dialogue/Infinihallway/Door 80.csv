@@ -1,0 +1,9 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_IDLE
+MESSAGE,"I thought about what I said at door 50.
+Maybe it wasn't a good idea to create
+false expectations for door 100."
+LEFT,IAN_ANGRY
+MESSAGE,"All these doors have been locked,
+why would door 100 be any different."

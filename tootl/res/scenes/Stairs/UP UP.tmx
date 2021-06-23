@@ -6,7 +6,7 @@
  <imagelayer id="19" name="floor" offsetx="-528" offsety="-401">
   <image source="floor.png" width="1294" height="588"/>
   <properties>
-   <property name="depth" type="float" value="1"/>
+   <property name="depth" type="float" value="1.1"/>
   </properties>
  </imagelayer>
  <imagelayer id="14" name="stairs" offsetx="-528" offsety="-401">
@@ -98,7 +98,7 @@
 </property>
    </properties>
   </object>
-  <object id="53" name="flower" type="hotspot" x="151" y="-28" width="7" height="16">
+  <object id="53" name="flower" type="hotspot" x="41.9091" y="-28.0341" width="7" height="16">
    <properties>
     <property name="snippet">Dialogue.load(&quot;res/dialogue/camflower.csv&quot;)
 </property>

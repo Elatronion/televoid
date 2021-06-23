@@ -1,0 +1,7 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_IDLE
+MESSAGE,"This one is locked, as expected..."
+LEFT,IAN_THINKING
+MESSAGE,"But... Maybe there's something behind door 100?
+I'm nearly there."

@@ -18,7 +18,7 @@ class Breakout {
     var scalar = 2
     _objectWheel = GameObject.new(
         Vec2.new(0, 0),
-        Vec2.new(300 * scalar, 300 * scalar)
+        Vec2.new((300 * scalar)/1.25, (300 * scalar)/1.25)
     )
 
     _objectArrow = GameObject.new(
@@ -109,8 +109,6 @@ class Breakout {
   render() {
     Window.render("spin_wheel ARROW", _objectArrow)
     Window.render("spin_wheel WHEEL", _objectWheel)
-    var padding = 10
-    Window.renderText("WHEELY FUN", 0, _objectWheel.scale.y/2 + padding, 100)
     var string = "HOLD SPACE"
     if (_spinning_to_play) {
       string = "LET'S SEE WHAT YOU GOT!"
@@ -126,7 +124,9 @@ class Breakout {
         string = "YOU LOOSE"
       }
     }
-    Window.renderText(string, 0, -_objectWheel.scale.y/2 - padding - 35, 100)
+    Window.renderText(string, 480, 270, 75)
+
+    Window.render("wheel-y good background", 0, 0, 1920/1.25, 1080/1.25)
   }
 }
 

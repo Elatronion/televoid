@@ -31,9 +31,9 @@ This isn't Asteroids!"
 LEFT,IAN_HAPPY
 SNIPPET,Audio.playVoice("ian laugh3")
 MESSAGE,"It's called 'Space Rocks'...
-Probably some cheap knockoff."
+Probably some knockoff."
 LEFT,IAN_IDLE
-MESSAGE,"Ship : WASD or Arrow Keys
+MESSAGE,"Rotate Ship : WASD or Arrow Keys
 Shoot : Spacebar
 Restart : R"
 LEFT,IAN_ANGRY

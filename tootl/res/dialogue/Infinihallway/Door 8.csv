@@ -1,0 +1,5 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_IDLE
+MESSAGE,"This door is locked.
+Maybe the next one isn't?"

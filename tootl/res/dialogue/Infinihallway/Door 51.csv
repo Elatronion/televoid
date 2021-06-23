@@ -1,0 +1,9 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_HAPPY
+MESSAGE,"Okay, let's keep moving forward!
+We can't give up now!"
+LEFT,IAN_IDLE
+MESSAGE,"Not after all those doors."
+LEFT,IAN_ANGRY
+MESSAGE,"ONE of them has to open, eventually."

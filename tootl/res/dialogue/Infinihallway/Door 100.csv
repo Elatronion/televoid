@@ -1,5 +1,18 @@
 TYPE,DATA
 RIGHT,NULL
 LEFT,IAN_IDLE
-MESSAGE,"Oh hey, this door is unlocked!"
+MESSAGE,"Here it is..."
+MESSAGE,"Door 100."
+LEFT,IAN_ANGRY
+MESSAGE,"Let's see if this door will open.
+I have my doubts."
+MESSAGE,"Here goes nothing."
+MESSAGE,"..."
+LEFT,IAN_HAPPY
+MESSAGE,"Oh shit, this door is unlocked!?"
+LEFT,IAN_THINKING
+MESSAGE,"Even with the build up, I really didn't expect that.
+I never saw it coming.
+I'm absolutely surprised.
+Shocked. Astonished. Astounded."
 SNIPPET,Scene.load("res/scenes/Infinihallway/Door 100/Door 100.tmx")

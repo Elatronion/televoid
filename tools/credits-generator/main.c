@@ -20,16 +20,16 @@ typedef struct {
 
 int main() {
 	credit_t credits[] = {
-		CREDIT("'Invaders' Minigame, Testing", "Alexis.M (Katsuro)"),
-		CREDIT("Story & Concepts, Character Portrait Art, Motivator", "Ari.S (Pearofthestars)"),
+		CREDIT("'Invaders' Minigame, Windows Testing", "Alexis.M (Katsuro)"),
+		CREDIT("Story & Concepts, Character Portrait Art, Dialogue Editor, Motivator", "Ari.S (Pearofthestars)"),
 		CREDIT("Story & Concepts", "Cecelia.M"),
-		CREDIT("Story & Concepts, Project Manager, Programming, Scene Creation", "Ezra.H (Elatronion)"),
+		CREDIT("Story & Concepts, Project Manager, Programming, Scene Creation, 3D Modeling, Minigame Creation, Game Engineer", "Ezra.H (Elatronion)"),
 		CREDIT("Story & Concepts, Motivator", "Felix.D"),
 		CREDIT("Story & Concepts, Background Concept Art", "Keaton.H"),
-		CREDIT("Story & Concepts, 'SAM' Character Portrait Art, Motivator", "Kitpigeon"),
+		CREDIT("Story & Concepts, 'SAM' Character Portrait Art, Windows Testing, Motivator", "Kitpigeon"),
 		CREDIT("Story & Concepts", "Levi.M"),
 		CREDIT("Radio ('radio.png') Art Resource", "Mr.Monocle"),
-		CREDIT("Story & Concepts, Art, Scene Creation, Testing, Motivator", "Normal Canard"),
+		CREDIT("Story & Concepts, Art, Scene Creation, Windows Testing, Local Frenchman, Motivator", "Normal Canard"),
 		CREDIT("Story & Concepts", "Watson.J")
 	};
 

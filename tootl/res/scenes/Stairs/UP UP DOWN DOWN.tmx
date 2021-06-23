@@ -6,7 +6,7 @@
  <imagelayer id="19" name="floor" offsetx="-528" offsety="-401">
   <image source="floor.png" width="1294" height="588"/>
   <properties>
-   <property name="depth" type="float" value="1"/>
+   <property name="depth" type="float" value="1.1"/>
   </properties>
  </imagelayer>
  <imagelayer id="14" name="stairs" offsetx="-528" offsety="-401">

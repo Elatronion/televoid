@@ -434,7 +434,7 @@ void errorFn(WrenVM* vm, WrenErrorType errorType,
 }
 
 char* loadModule(WrenVM* vm, const char* name) {
-  printf("Load Module: '%s'\n", name);
+  //printf("Load Module: '%s'\n", name);
   char path[255];
   strcpy(path, "res/scripts/");
   strcat(path, name);
@@ -443,7 +443,7 @@ char* loadModule(WrenVM* vm, const char* name) {
 }
 
 bool televoidWrenExecute(const char* script_path) {
-  printf("Executing Script \"%s\"!\n", script_path);
+  //printf("Executing Script \"%s\"!\n", script_path);
 
   WrenConfiguration config;
   wrenInitConfiguration(&config);
@@ -471,7 +471,7 @@ bool televoidWrenExecute(const char* script_path) {
 }
 
 bool televoidWrenExecuteSnippet(const char* snippet) {
-  printf("Executing Snippet \"%s\"!\n", snippet);
+  //printf("Executing Snippet \"%s\"!\n", snippet);
   WrenConfiguration config;
   wrenInitConfiguration(&config);
   config.writeFn = &writeFn;
@@ -485,6 +485,7 @@ bool televoidWrenExecuteSnippet(const char* snippet) {
 
   WrenInterpretResult result = wrenInterpret(vm, "main", script);
 
+  /*
   switch (result) {
     case WREN_RESULT_COMPILE_ERROR:
       { printf("Compile Error!\n"); } break;
@@ -493,6 +494,7 @@ bool televoidWrenExecuteSnippet(const char* snippet) {
     case WREN_RESULT_SUCCESS:
       { printf("Success!\n"); } break;
   }
+  */
 
   wrenFreeVM(vm);
   return result;

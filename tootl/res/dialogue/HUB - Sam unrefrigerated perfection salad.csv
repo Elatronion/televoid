@@ -1,17 +1,17 @@
 TYPE,DATA
 LEFT,IAN_IDLE
 RIGHT,SAM_IDLE
-MESSAGE,"Your perfection salad is really really close, Ian!
+MESSAGE,"Your perfection salad is really close, Ian!
 
 If only it were a little more fro - zen."
 LEFT,IAN_IDLE
 MESSAGE,"Yeah, I suppose you wouldn't want to eat a warm bowl
 of gelatin with mixed salad ingredients...
-That would be t o o much..."
+That sounds worse than mayo and bananas..."
 LEFT,IAN_THINKING
-MESSAGE,"Wait, did you just-"
+MESSAGE,"Wait a minute, did you just-"
 RIGHT,SAM_IDLE
 MESSAGE,"Find a cold place to make this better.
 
-Where you'd be happy you had your sweater!"
+Where you'd be happy you had a sweater!"
 SNIPPET,Audio.playBGM("warmup by brutalmoose")

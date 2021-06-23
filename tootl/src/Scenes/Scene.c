@@ -529,9 +529,33 @@ void create_infinihallway() {
   hgeAddComponent(infinihallway_entity, hgeCreateComponent("infinihallway", &infinihallway, sizeof(infinihallway)));
   televoidSceneAddEntity(infinihallway_entity, "infinihallway");
 
+  infinihallway_create_door_hotspot(1, "res/scripts/Infinihallway/Door 1-5.wren");
+  infinihallway_create_door_hotspot(2, "res/scripts/Infinihallway/Door 1-5.wren");
+  infinihallway_create_door_hotspot(3, "res/scripts/Infinihallway/Door 1-5.wren");
+  infinihallway_create_door_hotspot(4, "res/scripts/Infinihallway/Door 1-5.wren");
+  infinihallway_create_door_hotspot(5, "res/scripts/Infinihallway/Door 1-5.wren");
   infinihallway_create_door_hotspot(6, "res/scripts/Infinihallway/Door 6.wren");
   infinihallway_create_door_hotspot(7, "res/scripts/Infinihallway/Door 7.wren");
+  infinihallway_create_door_hotspot(8, "res/scripts/Infinihallway/Door 8.wren");
+  infinihallway_create_door_hotspot(9, "res/scripts/Infinihallway/Door 9.wren");
+  infinihallway_create_door_hotspot(10, "res/scripts/Infinihallway/Door 10.wren");
+  infinihallway_create_door_hotspot(11, "res/scripts/Infinihallway/Door 11.wren");
+  infinihallway_create_door_hotspot(15, "res/scripts/Infinihallway/Door 15.wren");
+  infinihallway_create_door_hotspot(16, "res/scripts/Infinihallway/Door 16.wren");
+  infinihallway_create_door_hotspot(17, "res/scripts/Infinihallway/Door 17.wren");
+  infinihallway_create_door_hotspot(22, "res/scripts/Infinihallway/Door 22.wren");
+  infinihallway_create_door_hotspot(24, "res/scripts/Infinihallway/Door 24.wren");
+  infinihallway_create_door_hotspot(25, "res/scripts/Infinihallway/Door 25.wren");
+  infinihallway_create_door_hotspot(30, "res/scripts/Infinihallway/Door 30.wren");
+  infinihallway_create_door_hotspot(42, "res/scripts/Infinihallway/Door 42.wren");
+  infinihallway_create_door_hotspot(45, "res/scripts/Infinihallway/Door 45.wren");
+  infinihallway_create_door_hotspot(50, "res/scripts/Infinihallway/Door 50.wren");
+  infinihallway_create_door_hotspot(51, "res/scripts/Infinihallway/Door 51.wren");
   infinihallway_create_door_hotspot(69, "res/scripts/Infinihallway/Door 69.wren");
+  infinihallway_create_door_hotspot(75, "res/scripts/Infinihallway/Door 75.wren");
+  infinihallway_create_door_hotspot(80, "res/scripts/Infinihallway/Door 80.wren");
+  infinihallway_create_door_hotspot(90, "res/scripts/Infinihallway/Door 90.wren");
+  infinihallway_create_door_hotspot(99, "res/scripts/Infinihallway/Door 99.wren");
   infinihallway_create_door_hotspot(100, "res/scripts/Infinihallway/Door 100.wren");
 }
 

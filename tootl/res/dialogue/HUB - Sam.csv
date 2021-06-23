@@ -5,7 +5,7 @@ MESSAGE,"Is that... Sprocket Sam?"
 RIGHT,SAM_IDLE
 MESSAGE,"You know it, kid! I'm the dude with the bike.
 
-But it's in the shop so I went for a hike!"
+But it's in the shop, so I went for a hike!"
 LEFT,IAN_HAPPY
 MESSAGE,"Oh wow, you're rhyming and even wearing a
 'RIDE SAFE AND LOVE IT' shirt!
@@ -16,16 +16,16 @@ MESSAGE,"My stomach is asking me for some good food!
 Maybe you'd like to help me change my mood?"
 LEFT,IAN_IDLE
 MESSAGE,"Oh, yes! Sorry.
-Your bike is in the shop and your hungry.
+Your bike is in the shop and your hungry. Got it.
 ..."
 LEFT,IAN_ANGRY
 MESSAGE,"Wait, I don't even know where we are!"
 LEFT,IAN_THINKING
 MESSAGE,"Where would I find food?"
 RIGHT,SAM_IDLE
-MESSAGE,"Right across this street, I tell you with a beat,
+MESSAGE,"I'll tell you with a beat,
 
-You'll find the Kitchen with all it's wheat!
+Right across this street, you'll find the Kitchen
 Now whip up something good to eat!"
 SNIPPET,Audio.playVoice("ian what")
 LEFT,IAN_THINKING

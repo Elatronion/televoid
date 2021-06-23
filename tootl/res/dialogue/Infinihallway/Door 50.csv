@@ -1,0 +1,11 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_ANGRY
+MESSAGE,"I tried 50 doors, and only ONE was open!?
+But it was back at the start..."
+MESSAGE,"And I really don't want to walk ALL the way back..."
+LEFT,IAN_IDLE
+MESSAGE,"But I don't want to keep going either.
+Does this hallway even end?"
+LEFT,IAN_THINKING
+MESSAGE,"What should I do?"

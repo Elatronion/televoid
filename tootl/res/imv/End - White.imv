@@ -1,5 +1,7 @@
 # Animation Length in Seconds: 10
 
+m "outervoid rise"
+
 o easeinout "camera"
 k easeinout x 5 693
 k easeinout y 5 -118

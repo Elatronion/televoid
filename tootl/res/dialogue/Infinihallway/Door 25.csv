@@ -1,0 +1,8 @@
+TYPE,DATA
+RIGHT,UNKNOWN
+LEFT,IAN_IDLE
+MESSAGE,"I think I hear something..."
+LEFT,IAN_THINKING
+MESSAGE,"..."
+LEFT,IAN_IDLE
+MESSAGE,"It's probably just my imagination."

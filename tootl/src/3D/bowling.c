@@ -65,8 +65,37 @@ void spawn_pins() {
 	}
 }
 
+void bowling_render_text(const char* string) {
+	float text_size = 50.f; // 100.f
+	float text_height = text_size/2;
+	hge_vec3 text_position = { 0, 0, 100 };
+
+	hge_material text_material;
+	text_material.color_multiplier = hgeVec4(1, 1, 1, 1);
+
+	hge_transform text_transform = {
+		text_position,
+		hgeVec3(text_size/100.f, text_size/100.f, 0),
+		hgeQuaternion(0, 0, 0, 1)
+	};
+	hgeRenderText(
+		hgeResourcesQueryShader("gui text"),
+		text_material,
+		text_transform,
+		hgeResourcesQueryFont("VCR"),
+		HGE_TEXT_ALIGNED_CENTERED,
+		string
+	);
+}
+
 void system_bowling_manager(hge_entity* entity, component_bowling_game_manager* bowling_game_manager) {
 	bowling_game_manager->can_throw = false;
+
+	if(bowling_game_manager->current_shot == 25) {
+		bowling_render_text("elatronion@gmail.com");
+	} else if(bowling_game_manager->current_shot == 27) {
+		bowling_render_text("HAPPY BIRTHDAY IAN!");
+	}
 
 	if(bowling_game_manager->returning_timer > 0) {
 		bowling_game_manager->returning_timer -= hgeDeltaTime();
@@ -530,7 +559,18 @@ void plant_talk () {
 	}
 }
 
+void exit_bowling() {
+	hgeStop();
+}
+
 void create_hotspots() {
+
+	hge_transform bowling_exit = {
+		hgeVec3(-4.860329f, 5.999944f, 4.236655f),
+		hgeVec3(1, 10, 1),
+		hgeQuaternion(0, 0, 0, 1)
+	};
+	create_hotspot3D(bowling_exit, exit_bowling);
 
 	hge_transform bowling_alley_play = {
 		hgeVec3(3, 0, -25),

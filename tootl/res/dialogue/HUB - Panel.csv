@@ -3,7 +3,7 @@ RIGHT,NULL
 LEFT,IAN_THINKING
 MESSAGE,"This seems to be some kind of panel...
 Probably to open that door.
-I see a series of symbols on the panel.
+There's symbols on the panel.
 Maybe they mean something?"
 LEFT,IAN_IDLE
 MESSAGE,"A VHS, a helmet, and a... moose?"

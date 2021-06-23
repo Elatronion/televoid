@@ -3,15 +3,15 @@ LEFT,IAN_IDLE
 RIGHT,SAM_IDLE
 MESSAGE,"How has the quest for my stomach gone?
 
-I hope not all is wrong!"
+I hope not all is terribly wrong!"
 LEFT,IAN_ANGRY
 MESSAGE,"I don't even know where we are!"
 LEFT,IAN_THINKING
 MESSAGE,"Where would I find food?"
 RIGHT,SAM_IDLE
-MESSAGE,"Right across this street, I tell you with a beat,
+MESSAGE,"I'll tell you with a beat,
 
-You'll find the Kitchen with all it's wheat!
+Right across this street, you'll find the Kitchen
 Now whip up something good to eat!"
 SNIPPET,Audio.playVoice("ian what")
 LEFT,IAN_THINKING

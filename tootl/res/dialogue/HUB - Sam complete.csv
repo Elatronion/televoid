@@ -6,4 +6,25 @@ MESSAGE,"For that delicious salad, I thank you once again!
 Now use that helmet to protect your brain!"
 LEFT,IAN_IDLE
 MESSAGE,"Mmmkay.."
+
+RIGHT,SAM_IDLE
+MESSAGE,"Behind a door in the hall is your ticket to heaven!"
+
+LEFT,IAN_IDLE
+MESSAGE,"..."
+
+LEFT,IAN_THINKING
+MESSAGE,"Is that all? Aren't you supposed to rhyme? 
+Come on, man."
+
+RIGHT,SAM_IDLE
+MESSAGE,"That'd give away some of the fun of the game!
+
+But if you want a hint, 
+sometimes the floors aren't the same!"
+
+LEFT,IAN_IDLE
+MESSAGE,"That's more like it."
+
+
 SNIPPET,Audio.playBGM("warmup by brutalmoose")

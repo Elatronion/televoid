@@ -26,15 +26,15 @@ struct PointLight {
 };
 
 struct SpotLight {
-    vec3 position;  
+    vec3 position;
     vec3 direction;
     float cutOff;
     float outerCutOff;
-  
+
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
-	
+
     float constant;
     float linear;
     float quadratic;
@@ -103,9 +103,9 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos)
     //float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     // attenuation
     float distance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));    
+    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
     // spotlight intensity
-    float theta = dot(lightDir, normalize(-light.direction)); 
+    float theta = dot(lightDir, normalize(-light.direction));
     float epsilon = light.cutOff - light.outerCutOff;
     float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
     // combine results
@@ -211,11 +211,11 @@ void main() {
 
 	if(FragColor.rgb == vec3(1, 0, 0)) {
 		FragColor.rgb = light_color/1.5;
-		return;	
+		return;
 	}
 	if(FragColor.rgb == vec3(0, 1, 0)) {
 		FragColor.rgb = vec3(1);
-		return;	
+		return;
 	}
 
 

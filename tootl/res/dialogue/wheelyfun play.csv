@@ -4,21 +4,49 @@ LEFT,IAN_HAPPY
 SNIPPET,Audio.playVoice("ian laugh3")
 MESSAGE,"Ah man, a spinning wheel!
 I LOVE these!
-They always give them some kind of wacky name,
+They always have some kind of wacky name,
 I wonder what this one is called?"
 LEFT,IAN_ANGRY
 SNIPPET,Audio.playVoice("ian no2")
-MESSAGE,"'Wheely Fun' oh god.
+MESSAGE,"'Wheely Fun'? Oh god.
 
-t h e  p u n s  t h e y  h u r t"
+Not a pun, anything but a pun."
 LEFT,IAN_IDLE
-MESSAGE,"You know, arcades have included spinning wheels 
+MESSAGE,"You know, arcades have included spinning wheels
 of all kinds for the longest time,
-but they are far from what popularize them...
-Wheel of Fortune, a game show that first ran on TV 
-in 1952, is one of America's most popular game shows."
-MESSAGE,"At it's peaks having over 40 million people watching 
-five night per week!
-I'm not exactly sure when humans started
-putting numbers on wheels. But it does seem like 
-we've always enjoyed our games of chance."
+but what really popularized the game format was..."
+LEFT,IAN_HAPPY
+MESSAGE,"Wheel of Fortune, a game show that first ran on TV
+in 1952; one of America's most popular game shows!"
+MESSAGE,"At it's peak having over 40 million people watching
+five nights per week!"
+LEFT,IAN_IDLE
+MESSAGE,"I'm not exactly sure when humans started
+putting numbers on wheels, but it does seem like
+we've always enjoyed our simple games of chance."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"I see you found the spinning wheel!
+
+Just a little secret between you and me,
+I think it's is the best game here."
+LEFT,IAN_THINKING
+MESSAGE,"Oh, really?"
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"You see, this game was made by yours truly!
+That makes it, by definition or something,
+the most RAD game here!"
+MESSAGE,"Though, there is a down side...
+It's not automated, so it requires
+someone to operate it.
+So, I'll be your operator today!"
+LEFT,IAN_IDLE
+MESSAGE,"..."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"Trust me, it will be wheely fun!"
+LEFT,IAN_ANGRY
+SNIPPET,Audio.playVoice("ian no3")
+MESSAGE,"..."
+RIGHT,ARCADE_DUDE_IDLE
+MESSAGE,"..."
+MESSAGE,"It's simple,
+all you need to do is..."

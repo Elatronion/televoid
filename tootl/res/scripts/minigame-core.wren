@@ -7,6 +7,7 @@ class Vec2 {
   y { _y }
   x=(value) { _x = value }
   y=(value) { _y = value }
+  length { (_x*_x + _y*_y).sqrt }
   normalize() {
     var length = (_x*_x + _y*_y).sqrt
     _x = _x / length

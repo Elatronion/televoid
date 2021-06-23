@@ -1,0 +1,11 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_HAPPY
+MESSAGE,"There must be something behind this door!
+Whatever it is, it will explain everything
+that's been going on!"
+LEFT,IAN_HAPPY
+MESSAGE,"..."
+LEFT,IAN_ANGRY
+MESSAGE,"It's locked. Optimism gets you nowhere,
+obviously."

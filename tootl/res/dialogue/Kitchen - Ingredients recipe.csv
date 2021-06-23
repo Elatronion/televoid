@@ -1,7 +1,8 @@
 TYPE,DATA
 RIGHT,NULL
 LEFT,IAN_IDLE
-MESSAGE,"I guess it's a good thing if I'll be using them in
+MESSAGE,"Oh well, I guess it's a good thing 
+if I'll be using them in
 my recipe! It would seem that everything is
 already here, I just need to prep it."
 SNIPPET,Minigame.load("res/scripts/minigames/Kitchen - Prep/game.wren")

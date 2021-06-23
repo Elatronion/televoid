@@ -5,7 +5,7 @@ MESSAGE,"Here you go."
 RIGHT,ARCADE_DUDE_IDLE
 MESSAGE,"CONGRATULATIONS!!!"
 MESSAGE,"That is super impressive!!
-You must be some kind of retro king."
+You must be some kind of retro arcade king."
 LEFT,IAN_IDLE
 MESSAGE,"Ummm... No, but thanks."
 RIGHT,ARCADE_DUDE_IDLE

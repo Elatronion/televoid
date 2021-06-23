@@ -15,10 +15,10 @@ A RAD GIFT!"
 SNIPPET,Audio.playSFX("ian no4")
 LEFT,IAN_IDLE
 MESSAGE,"No, wait. That's not how arcades work.
-Your telling me that these machines won't spit out a
-varying amount of tickets based on my abilities
-but instead only reward me for beating the
-game outright?"
+You're telling me that these machines won't spit out 
+a varying amount of tickets based on my achievements 
+in the game, but instead only reward me once 
+for beating the game outright?"
 LEFT,IAN_ANGRY
 MESSAGE,"And that I MUST win at every single game in your
 arcade just to get ONE gift!?"

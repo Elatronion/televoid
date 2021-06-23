@@ -1,0 +1,7 @@
+TYPE,DATA
+RIGHT,NULL
+LEFT,IAN_THINKING
+MESSAGE,"I wonder if there's some kind of pattern to follow.
+There must be at least one door here that's unlocked."
+LEFT,IAN_IDLE
+MESSAGE,"Sadly, this one isn't."

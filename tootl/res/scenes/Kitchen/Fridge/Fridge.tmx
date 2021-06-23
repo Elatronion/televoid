@@ -54,7 +54,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#ff00ff" id="23" name="items">
-  <object id="73" name="tv dinner" type="item" x="582.227" y="316.955" width="9" height="9"/>
+  <object id="73" name="frozen tv dinner" type="item" x="582.227" y="316.955" width="9" height="9"/>
  </objectgroup>
  <objectgroup color="#0055ff" id="17" name="props"/>
  <objectgroup color="#00ff00" id="16" name="trigger">

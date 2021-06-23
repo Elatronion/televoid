@@ -236,6 +236,7 @@ int main(int argc, char **argv) {
 	hgeResourcesLoadTexture("res/textures/sprites/moose4.png", "moose");
 
 	hgeResourcesLoadTexture("res/textures/GUI/arcade_screen.png", "arcade screen");
+	hgeResourcesLoadTexture("res/textures/GUI/wheelygoodbackground.png", "wheel-y good background");
 
 
 	autoload_dialogue_portraits();

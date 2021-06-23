@@ -8,16 +8,23 @@ How did you get here?
 You're not suppose to be here!"
 LEFT,IAN_IDLE
 MESSAGE,"Where is here?
-I just thought something special might of happened at
-some key doors. Try to find a pattern or something.
-Most doors are locked in that hallway, thought
-I'd try my luck, you know."
+I just thought something special may 
+eventually happen at one of the doors. 
+I was trying to find a pattern or something, anything."
+LEFT,IAN_IDLE
+MESSAGE,"Most doors are locked in that hallway, thought
+I'd try my luck, you know. No harm in trying."
 RIGHT,IAN_IDLE
 MESSAGE,"Ugh, I guess door 100 wasn't the best hiding spot...
-Listen, you can't stay here. It's... not allowed. They won't allow it.
-But we may have a chance to talk later! I'm the programmer of the game your playing.
-This is just a digital deterministic projections of myself. I'll always say the same thing every time you talk to me!
-repeating myself. My queue is for the bowling sce-"
+Listen, you can't stay here. 
+It's... not allowed. They won't allow it.
+But we may have a chance to talk later! 
+I'm the programmer of the game you're playing."
+RIGHT,IAN_IDLE
+MESSAGE,"This is just a digital deterministic 
+projection of myself. I'll always say the same 
+thing every time you talk to me!
+I'll be repeating myself. My queue is for the bowling sce-"
 RIGHT,IAN_VOID
 MESSAGE,"Uuuggghh- ACK!"
 LEFT,IAN_VOID
@@ -32,7 +39,7 @@ S FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [I
 FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]"
 LEFT,IAN_IDLE
 RIGHT,IAN_IDLE
-MESSAGE,"I'll... your..."
+MESSAGE,"I'll... you..."
 MESSAGE,"You."
 MESSAGE,"Are."
 MESSAGE,"Invited."
@@ -41,7 +48,7 @@ MESSAGE,"Go."
 MESSAGE,"Bowling."
 MESSAGE,"..."
 LEFT,IAN_IDLE
-MESSAGE,"..."
+MESSAGE,"...?"
 RIGHT,IAN_IDLE
 MESSAGE,"You must make sure you are invited..."
 MESSAGE,"Otherwise, it'll ch-"

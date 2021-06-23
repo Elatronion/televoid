@@ -57,7 +57,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#0055ff" id="17" name="props">
-  <object id="72" name="party invitation (kitchen)" type="item" x="947.636" y="492.727" width="9" height="9"/>
+  <object id="72" name="party invitation (kitchen)" type="item" x="840.386" y="491.727" width="9" height="9"/>
   <object id="73" name="gerbs" type="prop" x="834" y="468" width="22" height="28">
    <properties>
     <property name="depth" type="float" value="7"/>

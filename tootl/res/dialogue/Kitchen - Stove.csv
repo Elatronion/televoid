@@ -2,7 +2,7 @@ TYPE,DATA
 RIGHT,NULL
 LEFT,IAN_IDLE
 MESSAGE,"This is a stove.
-It can be used to cook things."
+It can be used to cook things. Obviously."
 LEFT,IAN_THINKING
 SNIPPET,Audio.playVoice("ian uh2")
 MESSAGE,"But... not this one,

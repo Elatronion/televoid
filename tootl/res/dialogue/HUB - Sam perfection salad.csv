@@ -14,5 +14,5 @@ MESSAGE,"Oh wow, thanks!"
 LEFT,IAN_THINKING
 MESSAGE,"Hm..."
 LEFT,IAN_ANGRY
-MESSAGE,"Wait, it this MY helmet!?"
+MESSAGE,"Wait, it this MY helmet!? How did you get this?"
 SNIPPET,Audio.playBGM("warmup by brutalmoose")

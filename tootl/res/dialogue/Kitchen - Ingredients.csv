@@ -2,5 +2,6 @@ TYPE,DATA
 RIGHT,NULL
 LEFT,IAN_IDLE
 MESSAGE,"Apples, chives, a bowl of warm gelatin."
-MESSAGE,"These ingredients seem pretty fresh..."
+MESSAGE,"These ingredients seem pretty fresh... 
+Why are they here?"
 SCRIPT,res/scripts/Kitchen - Ingredients.wren

@@ -1,9 +1,11 @@
 TYPE,DATA
 RIGHT,NULL
 LEFT,IAN_THINKING
-MESSAGE,"Hm, I wonder what this large metal door is hiding..."
+MESSAGE,"Hm, I wonder what this large metal door is hiding... 
+It won't budge."
 LEFT,IAN_HAPPY
-MESSAGE,"There a bit of a crack in the door I can see through.
+MESSAGE,"There a bit of a crack in the door I can
+see through, at least.
 Guess I won't have to wonder for long."
 SNIPPET,Audio.playBGM("Tree Of Life by nokibient")
 LEFT,IAN_IDLE
@@ -15,10 +17,12 @@ RIGHT,FRANK_ACCUSE
 MESSAGE,"Isn't it your job or something to keep him safe?"
 RIGHT,FRANK_SMUG
 MESSAGE,"What do YOU think is going to happen when he tries to
-explore that hallway a bit further. It never ends!!
-Is this really what you want to happen to him?
-We can't know what's behind every single door, it
-would require a manual check of each one!
+explore that hallway a bit further? It never ends!"
+RIGHT,FRANK_SMUG
+MESSAGE,"Is that really what you want to happen to him? 
+For him to get lost in endless doors?
+We can't even know what's behind every single door, 
+it would require a manual check of each one!
 Who has the time to do that!?"
 LEFT,UNKNOWN
 MESSAGE,". . ."
@@ -37,5 +41,6 @@ MESSAGE,"!?"
 LEFT,IAN_IDLE
 MESSAGE,"!?"
 LEFT,IAN_ANGRY
-MESSAGE,"I... I need to find a way to get over there."
+MESSAGE,"I... I need to find a way to get over there.
+Something's going on."
 SNIPPET,Audio.playBGM("warmup by brutalmoose")

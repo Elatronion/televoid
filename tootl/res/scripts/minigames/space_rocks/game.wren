@@ -18,17 +18,17 @@ class SpaceEntity {
     var game_width = 800
     var game_height = 600
 
-    if (_object.position.x > game_width/2) {
-      _object.position.x = -game_width/2
+    if (_object.position.x - _object.scale.x > game_width/2) {
+      _object.position.x = -game_width/2 - _object.scale.x
     }
-    if (_object.position.x < -game_width/2) {
-      _object.position.x = game_width/2
+    if (_object.position.x + _object.scale.x < -game_width/2) {
+      _object.position.x = game_width/2 + _object.scale.x
     }
-    if (_object.position.y > game_height/2) {
-      _object.position.y = -game_height/2
+    if (_object.position.y - _object.scale.y > game_height/2) {
+      _object.position.y = -game_height/2 - _object.scale.y
     }
-    if (_object.position.y < -game_height/2) {
-      _object.position.y = game_height/2
+    if (_object.position.y + _object.scale.y < -game_height/2) {
+      _object.position.y = game_height/2 + _object.scale.y
     }
   }
 
@@ -46,6 +46,66 @@ class SpaceEntity {
   scale=(value) { _object.scale = Vec2.new(value, value) }
   velocity { _velocity }
   velocity=(value) { _velocity = value }
+}
+
+
+class SpaceBullet {
+
+    construct new(position, velocity, scale, sprite) {
+      _object = GameObject.new(
+          position,
+          Vec2.new(scale, scale)
+      )
+      _velocity = velocity
+      _sprite = sprite
+      _destroyed = false
+      _timer = 0
+    }
+  destroyed { _destroyed }
+
+  destroy() {
+    _destroyed = true
+  }
+
+  update(elapsedTime) {
+      _object.position.x = _object.position.x + _velocity.x * elapsedTime
+      _object.position.y = _object.position.y + _velocity.y * elapsedTime
+      var game_width = 800
+      var game_height = 600
+
+      if (_object.position.x - _object.scale.x > game_width/2) {
+        _object.position.x = -game_width/2 - _object.scale.x
+      }
+      if (_object.position.x + _object.scale.x < -game_width/2) {
+        _object.position.x = game_width/2 + _object.scale.x
+      }
+      if (_object.position.y - _object.scale.y > game_height/2) {
+        _object.position.y = -game_height/2 - _object.scale.y
+      }
+      if (_object.position.y + _object.scale.y < -game_height/2) {
+        _object.position.y = game_height/2 + _object.scale.y
+      }
+      _timer = _timer + elapsedTime
+      if(_timer >= 3){
+          destroy()
+      }
+  }
+
+
+    render() {
+      Window.render(_sprite, _object)
+    }
+
+    object { _object }
+
+    position { _object.position }
+    position=(value) { _object.position = value }
+    rotation { _object.rotation }
+    rotation=(value) { _object.rotation = value }
+    scale { _object.scale.x }
+    scale=(value) { _object.scale = Vec2.new(value, value) }
+    velocity { _velocity }
+    velocity=(value) { _velocity = value }
 }
 
 class SpaceRocks {
@@ -70,15 +130,10 @@ class SpaceRocks {
 
     _canShootTimer = 0
     _canShoot = true
-    _entityBullet = SpaceEntity.new(
-        Vec2.new(0, 0),
-        Vec2.new(0, 10),
-        25,
-        "space_rocks star_tiny"
-    )
 
     _spacerocks = []
     _numSpacerocks = 0
+    _bullets = []
 
     generate_rock_field()
 
@@ -104,6 +159,7 @@ class SpaceRocks {
 
     _gameWidth = 800
     _gameHeight = 600
+    _bullets = []
 
     _entityShip = SpaceEntity.new(
         Vec2.new(0, 0),
@@ -170,15 +226,24 @@ class SpaceRocks {
 
   shoot() {
     if(_canShoot) {
+
+
+        var entityBullet = SpaceBullet.new(
+            Vec2.new(0, 0),
+            Vec2.new(0, 10),
+            25,
+            "space_rocks star_tiny"
+        )
       var bullet_speed = 200
-      _entityBullet.position.x = _entityShip.position.x
-      _entityBullet.position.y = _entityShip.position.y
+      entityBullet.position.x = _entityShip.position.x
+      entityBullet.position.y = _entityShip.position.y
       var ship_rotation_rad = (90 - _entityShip.rotation) * (Num.pi/180)
-      _entityBullet.velocity.x = ship_rotation_rad.cos * bullet_speed
-      _entityBullet.velocity.y = ship_rotation_rad.sin * bullet_speed
-      _entityBullet.rotation = _entityShip.rotation
-      _canShootTimer = 3
+      entityBullet.velocity.x = ship_rotation_rad.cos * bullet_speed
+      entityBullet.velocity.y = ship_rotation_rad.sin * bullet_speed
+      entityBullet.rotation = _entityShip.rotation
+      _canShootTimer = 0.35
       _canShoot = false
+      _bullets.add(entityBullet)
     }
   }
 
@@ -224,28 +289,46 @@ class SpaceRocks {
     }
   }
 
-  bullet_hit_logic() {
-    for (i in 0.._numSpacerocks-1) {
-      var spacerock = _spacerocks[i]
-      if(Math.AABB(spacerock.object, _entityBullet.object)) {
-        if(spacerock.scale == 128) {
-          for(i in 0..4) {
-            var random_velx = Math.rand(-100, 100)
-            var random_vely = Math.rand(-100, 100)
-            add_spacerock(Vec2.new(spacerock.position.x, spacerock.position.y), Vec2.new(random_velx, random_vely), 64)
+  bullet_hit_logic(elapsedTime) {
+      for(bullet in _bullets) {
+          bullet.update(elapsedTime)
+          for (i in 0.._numSpacerocks-1) {
+            var spacerock = _spacerocks[i]
+            if(Math.AABB(spacerock.object, bullet.object)) {
+              if(spacerock.scale == 128) {
+                for(i in 0..4) {
+                  var random_velx = Math.rand(-100, 100)
+                  var random_vely = Math.rand(-100, 100)
+                  add_spacerock(Vec2.new(spacerock.position.x, spacerock.position.y), Vec2.new(random_velx, random_vely), 64)
+                }
+              } else if(spacerock.scale == 64) {
+                for(i in 0..4) {
+                  var random_velx = Math.rand(-100, 100)
+                  var random_vely = Math.rand(-100, 100)
+                  add_spacerock(Vec2.new(spacerock.position.x, spacerock.position.y), Vec2.new(random_velx, random_vely), 32)
+                }
+              }
+              remove_spacerock(i)
+              bullet.destroy()
+              break
+            }
           }
-        } else if(spacerock.scale == 64) {
-          for(i in 0..4) {
-            var random_velx = Math.rand(-100, 100)
-            var random_vely = Math.rand(-100, 100)
-            add_spacerock(Vec2.new(spacerock.position.x, spacerock.position.y), Vec2.new(random_velx, random_vely), 32)
+          destroy_bullets()
+      }
+
+  }
+
+  destroy_bullets(){
+      if(_bullets.count > 0) {
+        for(i in 0.._bullets.count-1) {
+          if(_bullets[i].destroyed) {
+            //System.print("Bullet[%(i)] is destroyed.")
+            _bullets.removeAt(i)
+            break
           }
         }
-        remove_spacerock(i)
-        _canShoot = true
-        break
       }
-    }
+
   }
 
   update(elapsedTime) {
@@ -263,14 +346,13 @@ class SpaceRocks {
     handle_input(elapsedTime)
 
     _entityShip.update(elapsedTime)
-    _entityBullet.update(elapsedTime)
+
+    bullet_hit_logic(elapsedTime)
+
+
 
     for (spacerock in _spacerocks) {
       spacerock.update(elapsedTime)
-    }
-
-    if(!_canShoot) {
-      bullet_hit_logic()
     }
 
     if(_canShootTimer > 0) {
@@ -278,6 +360,7 @@ class SpaceRocks {
     } else {
       _canShoot = true
     }
+
   }
 
   render() {
@@ -291,8 +374,8 @@ class SpaceRocks {
 
     Window.render("arcade screen", 0, 0, 1920, 1080)
     _entityShip.render()
-    if (!_canShoot) {
-      _entityBullet.render()
+    for (bullet in _bullets) {
+        bullet.render()
     }
     for (spacerock in _spacerocks) {
       spacerock.render()

@@ -7,18 +7,21 @@ class Alien {
         _health = health
         _sprite = sprite
         _precision = 100000
-        _shoot_speed = Math.rand(3 * _precision, 25 * _precision)/_precision
+        _shoot_speed = Math.rand(1 * _precision, 10 * _precision)/_precision
         _shoot_cooldown = _shoot_speed
         _can_shoot = false
         _destroyed = false
+        _move_speed = 8
     }
 
     position { _position }
     can_shoot { _can_shoot }
     destroyed { _destroyed }
     health { _health }
+    move_speed { _move_speed }
 
     can_shoot=(value) { _can_shoot = value }
+    move_speed=(value) { _move_speed = value }
 
     destroy() {
         _destroyed = true
@@ -28,7 +31,7 @@ class Alien {
     }
 
     update(delta) {
-        _position.y = _position.y - 10 * delta
+        _position.y = _position.y - _move_speed * delta
         _shoot_cooldown = _shoot_cooldown - delta
         if(_shoot_cooldown <= 0) {
           _can_shoot = true
@@ -115,6 +118,12 @@ class SpaceInvaders {
       SpaceInvaders.setGameState(SpaceInvaders.STATE_PLAY)
     }
 
+    speed_up_aliens() {
+      for(alien in _aliens) {
+        alien.move_speed = alien.move_speed + 0.5
+      }
+    }
+
     win() {
         SpaceInvaders.setGameState(SpaceInvaders.STATE_WIN)
         Inventory.add("invaders ticket")
@@ -161,6 +170,7 @@ class SpaceInvaders {
             for(i in 0.._aliens.count-1) {
                 if(_aliens[i].destroyed) {
                     _aliens.removeAt(i)
+                    speed_up_aliens()
                     break
                 }
             }
@@ -185,7 +195,8 @@ class SpaceInvaders {
             }
         }
         if(bullet.direction.y == -1) {
-            if(Math.AABB(_player, GameObject.new(bullet.position, Vec2.new(15,15)))) {
+            var player_collision = GameObject.new(Vec2.new(_player.position.x, _player.position.y), Vec2.new(_player.scale.x/2, _player.scale.y/2))
+            if(Math.AABB(player_collision, GameObject.new(bullet.position, Vec2.new(15,15)))) {
                 bullet.destroy()
                 loose_health()
                 break
@@ -202,7 +213,8 @@ class SpaceInvaders {
                 shoot(alien.position, Vec2.new(0, -1), 200)
                 alien.can_shoot = false
             }
-            if(Math.AABB(GameObject.new(alien.position, Vec2.new(15*3,15*3)), _player)) {
+            var player_collision = GameObject.new(Vec2.new(_player.position.x, _player.position.y), Vec2.new(_player.scale.x/2, _player.scale.y/2))
+            if(Math.AABB(GameObject.new(alien.position, Vec2.new(15*3,15*3)), player_collision)) {
                 loose()
             }
         }

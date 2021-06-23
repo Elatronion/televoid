@@ -7,6 +7,11 @@ class Breakout {
   static STATE_PLAY   { 2 }
   static STATE_WIN    { 3 }
 
+  static DIRECTION_UP     { 0 }
+  static DIRECTION_RIGHT  { 1 }
+  static DIRECTION_DOWN   { 2 }
+  static DIRECTION_LEFT   { 3 }
+
   construct init() {
     ResourceManager.loadTexture("res/scripts/minigames/breakout_assets/paddle.png", "BREAKOUT PADDLE")
     ResourceManager.loadTexture("res/scripts/minigames/breakout_assets/block.png", "BREAKOUT BLOCK")
@@ -23,9 +28,11 @@ class Breakout {
     _gameWidth = 800
     _gameHeight = 600
 
+    _initial_ball_direction = Vec2.new(100, 350)
+
     _gameState = Breakout.STATE_MENU
 
-    _ballSpeed = 500
+    _ballSpeed = 1
     reset()
 
     System.print("Wow, some interesting fact!")
@@ -46,7 +53,7 @@ class Breakout {
     )
 
     _objectPaddle = GameObject.new(
-      Vec2.new(0, -_gameHeight/2),
+      Vec2.new(0, -_gameHeight/2 + 15),
       Vec2.new(64 * scalar, 15 * scalar)
     )
 
@@ -54,13 +61,13 @@ class Breakout {
     _blocks = []
 
     var blocks_margin = 10
-    for (y in 0..6) { //0..4
-    for (x in 1..5) {
+    for (y in 2..5) { //0..4
+    for (x in 0..7) {
       _numBlocks = _numBlocks+1
       _blocks.add(
         GameObject.new(
-          Vec2.new(-_gameWidth/2 + x * 64*scalar, _gameHeight/2 - y * 15 * scalar - (15 * scalar) - blocks_margin),
-          Vec2.new(64 * scalar, 15 * scalar)
+          Vec2.new(-_gameWidth/2 + x * 50*scalar + 50*scalar/2, _gameHeight/2 - y * 15 * scalar - (15 * scalar) - blocks_margin),
+          Vec2.new(50 * scalar, 15 * scalar)
         )
       )
     }
@@ -107,7 +114,8 @@ class Breakout {
       if(pressingLaunchKey) {
         Audio.playSFX("BREAKOUT LAUNCH")
         _gameState = Breakout.STATE_PLAY
-        _ballDirection.y = 1
+        _ballDirection.x = _initial_ball_direction.x
+        _ballDirection.y = _initial_ball_direction.y
       }
     } else if(_gameState == Breakout.STATE_MENU) {
       if(pressingLaunchKey) {
@@ -117,25 +125,36 @@ class Breakout {
   }
 
   bounceBallOffObject(object) {
-    _ballDirection.x = _objectBall.position.x - object.position.x
-    _ballDirection.y = _objectBall.position.y - object.position.y
-    _ballDirection.normalize()
+    var vector_from_object_to_ball = Vec2.new(_objectBall.position.x - object.position.x, _objectBall.position.y - object.position.y)
+    vector_from_object_to_ball.normalize()
 
-    /*if (_ballDirection.x > 0.707) {
-      _ballDirection.x = 0.707
-      if(_ballDirection.y > 0) {
-          _ballDirection.y = 0.707
-      } else {
-        _ballDirection.y = -0.707
+    // FUNCTION //
+    var target = vector_from_object_to_ball
+    var compass = [
+      Vec2.new(0.0, 1.0),   // up
+      Vec2.new(1.0, 0.0),   // right
+      Vec2.new(0.0, -1.0),  // down
+      Vec2.new(-1.0, 0.0)   // left
+    ]
+    var max = 0.0
+    var best_match = -1
+    for(i in 0..3) {
+      var normalized_target = Vec2.new(target.x, target.y)
+      normalized_target.normalize()
+      var compass_dir = compass[i]
+      var dot_product = normalized_target.x * compass_dir.x + normalized_target.y * compass_dir.y
+      if(dot_product > max) {
+        max = dot_product
+        best_match = i
       }
-    } else if(_ballDirection.x < 0.707) {
-      _ballDirection.x = -0.707
-      if(_ballDirection.y > 0) {
-          _ballDirection.y = 0.707
-      } else {
-        _ballDirection.y = -0.707
-      }
-    }*/
+    }
+    var dir = best_match
+
+    if (dir == Breakout.DIRECTION_LEFT || dir == Breakout.DIRECTION_RIGHT) {
+      _ballDirection.x = -_ballDirection.x
+    } else {
+      _ballDirection.y = -_ballDirection.y
+    }
   }
 
   processBall(elapsedTime) {
@@ -148,20 +167,20 @@ class Breakout {
     _objectBall.position.x = _objectBall.position.x + _ballSpeed * _ballDirection.x * elapsedTime
     _objectBall.position.y = _objectBall.position.y + _ballSpeed * _ballDirection.y * elapsedTime
 
-    if(_objectBall.position.x > _gameWidth/2) {
+    if(_objectBall.position.x + _objectBall.scale.x/2 > _gameWidth/2) {
       Audio.playSFX("BREAKOUT PONG")
-      _objectBall.position.x = _gameWidth/2
+      _objectBall.position.x = _gameWidth/2 - _objectBall.scale.x/2
       _ballDirection.x = -_ballDirection.x
     }
-    if(_objectBall.position.x < -_gameWidth/2) {
+    if(_objectBall.position.x - _objectBall.scale.x/2 < -_gameWidth/2) {
       Audio.playSFX("BREAKOUT PONG")
-      _objectBall.position.x = -_gameWidth/2
+      _objectBall.position.x = -_gameWidth/2 + _objectBall.scale.x/2
       _ballDirection.x = -_ballDirection.x
     }
 
-    if(_objectBall.position.y > _gameHeight/2) {
+    if(_objectBall.position.y + _objectBall.scale.y/2 > _gameHeight/2) {
       Audio.playSFX("BREAKOUT PONG")
-      _objectBall.position.y = _gameHeight/2
+      _objectBall.position.y = _gameHeight/2 - _objectBall.scale.y/2
       _ballDirection.y = -_ballDirection.y
     }
     if(_objectBall.position.y < -_gameHeight/2) {
@@ -169,9 +188,29 @@ class Breakout {
     }
 
     if(Math.AABB(_objectPaddle, _objectBall)) {
-      Audio.playSFX("BREAKOUT PADDLE HIT")
-      bounceBallOffObject(_objectPaddle)
+        Audio.playSFX("BREAKOUT PADDLE HIT")
+        if(_objectBall.position.y > _objectPaddle.position.y){
+            bounceBallOffPaddle()
+        }
     }
+  }
+
+  bounceBallOffPaddle() {
+      var center_board = _objectPaddle.position.x
+      var distance = (_objectBall.position.x) - center_board
+      var percentage =  distance / (_objectPaddle.scale.x / 2)
+
+      var strength = 1
+      var old_direction = _ballDirection
+
+      _ballDirection.x = _initial_ball_direction.x * percentage * strength
+
+      var normalized_ball_direction = Vec2.new(_ballDirection.x, _ballDirection.y)
+      normalized_ball_direction.normalize()
+      var old_direction_length = old_direction.length
+      _ballDirection.x = normalized_ball_direction.x * old_direction.length
+      _ballDirection.y = -normalized_ball_direction.y * old_direction.length
+      _objectBall.position.y = _objectPaddle.position.y + _objectBall.scale.y
   }
 
   removeBlock(index) {
