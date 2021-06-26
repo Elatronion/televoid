@@ -2,20 +2,27 @@
 #include "GameState.h"
 
 void televoidHotspotExecute(hotspot_component* hotspot) {
+  printf("START\n");
   switch(hotspot->type) {
     case HOTSPOT_INTERACTABLE_SCRIPT:
+    printf("2\n");
       televoidWrenExecute(hotspot->data);
     break;
     case HOTSPOT_INTERACTABLE_SNIPPET:
+    printf("3\n");
+      printf("hotspot data: \"%s\"\n", hotspot->data);
       televoidWrenExecuteSnippet(hotspot->data);
     break;
     case HOTSPOT_ITEM:
-      printf("Pick up item \"%s\"\n", hotspot->data);
+    printf("4\n");
       InventoryAddItem(televoidGetItemID(hotspot->data));
+      printf("5\n");
       InventoryPrint();
+      printf("6\n");
       hgeDestroyEntity(hotspot->parent);
     break;
   }
+  printf("END\n");
 }
 
 void system_hotspot_renderer(hge_entity* entity, hge_transform* transform, hotspot_component* hotspot) {

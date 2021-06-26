@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="32" nextobjectid="78">
- <imagelayer id="20" name="background" offsetx="-528" offsety="-288">
+ <imagelayer id="20" name="background" visible="0" offsetx="-528" offsety="-288">
   <image source="bg.png"/>
  </imagelayer>
  <imagelayer id="19" name="floor" visible="0" offsetx="-528" offsety="-401">
@@ -9,31 +9,31 @@
    <property name="depth" type="float" value="1"/>
   </properties>
  </imagelayer>
- <imagelayer id="14" name="stairs" offsetx="-528" offsety="-401">
+ <imagelayer id="14" name="stairs" visible="0" offsetx="-528" offsety="-401">
   <image source="stairs.png"/>
   <properties>
    <property name="depth" type="float" value="1"/>
   </properties>
  </imagelayer>
- <imagelayer id="28" name="stairs in" offsetx="-1134" offsety="-272.5">
+ <imagelayer id="28" name="stairs in" visible="0" offsetx="-1134" offsety="-272.5">
   <image source="stairs.png"/>
   <properties>
    <property name="depth" type="float" value="0.5"/>
   </properties>
  </imagelayer>
- <imagelayer id="21" name="elevator" offsetx="-528" offsety="-401">
+ <imagelayer id="21" name="elevator" visible="0" offsetx="-528" offsety="-401">
   <image source="elevator.png"/>
   <properties>
    <property name="depth" type="float" value="1"/>
   </properties>
  </imagelayer>
- <imagelayer id="29" name="door" offsetx="-528" offsety="-401">
+ <imagelayer id="29" name="door" visible="0" offsetx="-528" offsety="-401">
   <image source="door.png"/>
   <properties>
    <property name="depth" type="float" value="1"/>
   </properties>
  </imagelayer>
- <imagelayer id="26" name="table" offsetx="-528" offsety="-401">
+ <imagelayer id="26" name="table" visible="0" offsetx="-528" offsety="-401">
   <image source="table.png"/>
   <properties>
    <property name="depth" type="float" value="1"/>
@@ -45,8 +45,8 @@
    <property name="depth" type="float" value="1"/>
   </properties>
  </imagelayer>
- <imagelayer id="23" name="glue" visible="0" offsetx="-528" offsety="-401">
-  <image source="glue.png"/>
+ <imagelayer id="23" name="glue" offsetx="-700" offsety="-401">
+  <image source="glue.png" width="1294" height="588"/>
   <properties>
    <property name="depth" type="float" value="0"/>
   </properties>
@@ -57,13 +57,13 @@
    <property name="depth" type="float" value="0.75"/>
   </properties>
  </imagelayer>
- <imagelayer id="25" name="sign" offsetx="-528" offsety="-401">
+ <imagelayer id="25" name="sign" visible="0" offsetx="-528" offsety="-401">
   <image source="sign.png"/>
   <properties>
    <property name="depth" type="float" value="5"/>
   </properties>
  </imagelayer>
- <imagelayer id="27" name="window" offsetx="-528" offsety="-401">
+ <imagelayer id="27" name="window" visible="0" offsetx="-528" offsety="-401">
   <image source="window.png"/>
   <properties>
    <property name="depth" type="float" value="5"/>

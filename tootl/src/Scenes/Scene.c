@@ -832,14 +832,18 @@ hge_entity* televoidCreateDialogue(const char* file) {
     return;
   }
   hge_entity* dialogue_entity = hgeCreateEntity();
+  printf("televoidCreateDialogue 1\n");
   dialogue_event_node* head = dialogue_load(file);
+  printf("televoidCreateDialogue 2\n");
   dialogue_component dialogue = {
     head, head,
     hgeResourcesQueryTexture("NULL"),
-    hgeResourcesQueryTexture("NULL")
+    hgeResourcesQueryTexture("NULL"), false
   };
-  hgeAddComponent(dialogue_entity, hgeCreateComponent("dialogue", &dialogue, sizeof(dialogue)));
+  hgeAddComponent(dialogue_entity, hgeCreateComponent("dialogue", &dialogue, sizeof(dialogue_component)));
+  printf("televoidCreateDialogue 3\n");
   televoidSceneAddEntity(dialogue_entity, "dialogue");
+  printf("televoidCreateDialogue 4\n");
 }
 
 hge_entity* televoidIMVCreate(const char* path) {

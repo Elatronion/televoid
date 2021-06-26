@@ -30,7 +30,9 @@ int main() {
 		CREDIT("Story & Concepts", "Levi.M"),
 		CREDIT("Radio ('radio.png') Art Resource", "Mr.Monocle"),
 		CREDIT("Story & Concepts, Art, Scene Creation, Windows Testing, Local Frenchman, Motivator", "Normal Canard"),
-		CREDIT("Story & Concepts", "Watson.J")
+		CREDIT("Additional Programming, Windows Building & Testing", "Thomas.L"),
+		CREDIT("Story & Concepts", "Watson.J"),
+		CREDIT("Outervoid Sounds", "Yann.H (Rad Tikal)")
 	};
 
 	soundtrack_attribution_t soundtrack_attributions[] = {

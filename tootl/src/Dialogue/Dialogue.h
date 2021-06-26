@@ -10,9 +10,10 @@ typedef enum {
   DIALOGUE_RIGHT_SPRITE
 } dialogue_event_type;
 
+#define MAX_DATA_LENGTH 2048
 typedef struct {
   dialogue_event_type type;
-  const char* data;
+  char data[MAX_DATA_LENGTH];
 } dialogue_event;
 
 typedef struct dialogue_event_node_t {

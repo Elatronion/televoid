@@ -6,20 +6,21 @@
 dialogue_event_node* dialogue_event_create(dialogue_event_type type, const char* data) {
   dialogue_event_node* event_node = (dialogue_event_node *) malloc(sizeof(dialogue_event_node));
   event_node->event.type = type;
-  event_node->event.data = (char *) malloc(strlen(data) + 1);
+  //event_node->event.data = (char *) malloc(strlen(data) + 1);
   strcpy(event_node->event.data, data);
+  event_node->event.data[strlen(data)+1] = '\0';
   event_node->next = NULL;
 
-  st_track(event_node->event.data);
+  //st_track(event_node->event.data);
   st_track(event_node);
 
   return event_node;
 }
 
 void dialogue_event_destroy(dialogue_event_node* event_node) {
-  st_untrack(event_node->event.data);
+  //st_untrack(event_node->event.data);
   st_untrack(event_node);
-  free(event_node->event.data);
+  //free(event_node->event.data);
   free(event_node);
 }
 
@@ -43,18 +44,21 @@ void dialogue_event_push_list(dialogue_event_node* head, dialogue_event_node* no
 
 dialogue_event_node* dialogue_load(const char* file_path) {
   dialogue_event_node* head = dialogue_event_create(DIALOGUE_MESSAGE, "This should be ignored...");
+  dialogue_event_push_list(head, dialogue_event_create(DIALOGUE_MESSAGE, "[IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]\nN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]\nS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]\n[IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]\nAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]\nNE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]\n IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE] [IAN IS FINE]"));
 
+
+  /*
   FILE * file;
   char * line = NULL;
   size_t len = 0;
-  ssize_t read;
+  size_t read;
 
   file = fopen(file_path, "r");
   if (file == NULL)
       exit(EXIT_FAILURE);
 
   char type[50];
-  char data[1000];
+  char data[MAX_DATA_LENGTH];
 
   while ((read = hgeGetLine(&line, &len, file)) != -1) {
     sscanf(line, "%[^,],%[^\n]", &type, &data);
@@ -71,23 +75,17 @@ dialogue_event_node* dialogue_load(const char* file_path) {
       dialogue_event_push_list(head, dialogue_event_create(DIALOGUE_RIGHT_SPRITE, data));
     } else if(!strcmp(type, "MESSAGE")) {
 
+      strcat(data, "\n");
       if(data[0] == '"') {
-        while(data[strlen(data)-1] != '"') {
+        while(data[strlen(data)-2] != '"') {
           read = hgeGetLine(&line, &len, file);
-          //strcat(data, "\n");
-          if ((pos=strchr(line, '\n')) != NULL) {
-            *pos = '\0';
-          }
-          strcat(data, "\n");
           strcat(data, line);
         }
-        char tmp_data[1000];
-        strcpy(tmp_data, &data[1]);
-        strcpy(data, tmp_data);
-        while((pos=strchr(data, '"')) != NULL) {
-          *pos = '\0';
-        }
       }
+      char tmp_data[MAX_DATA_LENGTH];
+      strcpy(tmp_data, data);
+      tmp_data[strlen(data)-2] = '\0';
+      strcpy(data, &tmp_data[1]);
 
       dialogue_event_push_list(head, dialogue_event_create(DIALOGUE_MESSAGE, data));
     } else if(!strcmp(type, "SCRIPT")) {
@@ -129,6 +127,7 @@ dialogue_event_node* dialogue_load(const char* file_path) {
   fclose(file);
   if (line)
       free(line);
+  */
 
   dialogue_event_node* tmp = head;
   head = head->next;
