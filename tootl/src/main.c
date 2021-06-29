@@ -1,8 +1,4 @@
-#include <HGE/HGE_Core.h>
-#include <HGE/hge_components.h>
-#include <HGE/HGE_FileUtility.h>
-#include <HGE/HGE_AudioSample.h>
-#include <HGE/HGE_AudioSource.h>
+#include <HGE/HGE.h>
 
 #include "Scene.h"
 #include "dirent.h"
@@ -20,24 +16,23 @@
 void televoid_system_spritesheet(hge_entity* entity, hge_transform* transform, spritesheet_component* spritesheet) {
 	// Flip By Reversing X Scale
 	hge_vec3 rendering_scale = transform->scale;
-	if(spritesheet->flipped)
+	if (spritesheet->flipped)
 		rendering_scale.x = -rendering_scale.x;
 
 	hge_transform rendered_transform = *transform;
 	rendered_transform.scale = rendering_scale;
 	hgeRenderSpriteSheet(hgeResourcesQueryShader("basic"), spritesheet->spritesheet_material, rendered_transform, spritesheet->resolution, spritesheet->frame);
 
-	if(televoidGameState() == GAME_PAUSE) return;
+	if (televoidGameState() == GAME_PAUSE) return;
 
 	// Update Frame X Relative To FPS
 	spritesheet->time += hgeDeltaTime();
-	if (spritesheet->time >= 1.0f/spritesheet->FPS) {
-			spritesheet->frame.x++;
-		if(spritesheet->frame.x > spritesheet->num_frames)
+	if (spritesheet->time >= 1.0f / spritesheet->FPS) {
+		spritesheet->frame.x++;
+		if (spritesheet->frame.x > spritesheet->num_frames)
 			spritesheet->frame.x = 0;
 		spritesheet->time = 0;
 	}
-
 }
 
 /*
@@ -67,48 +62,47 @@ void system_mesh_renderer(hge_entity* entity, hge_transform* transform, hge_mesh
 
 void system_freemove(hge_entity* entity, tag_component* freemove, hge_transform* transform) {
 	float speed = 100;
-	if(hgeInputGetKey(HGE_KEY_A)) {
+	if (hgeInputGetKey(HGE_KEY_A)) {
 		transform->position.x -= speed * hgeDeltaTime();
 	}
-	if(hgeInputGetKey(HGE_KEY_D)) {
+	if (hgeInputGetKey(HGE_KEY_D)) {
 		transform->position.x += speed * hgeDeltaTime();
 	}
-	if(hgeInputGetKey(HGE_KEY_S)) {
+	if (hgeInputGetKey(HGE_KEY_S)) {
 		transform->position.y -= speed * hgeDeltaTime();
 	}
-	if(hgeInputGetKey(HGE_KEY_W)) {
+	if (hgeInputGetKey(HGE_KEY_W)) {
 		transform->position.y += speed * hgeDeltaTime();
 	}
 
-	if(hgeInputGetKey(HGE_KEY_LEFT_SHIFT)) {
+	if (hgeInputGetKey(HGE_KEY_LEFT_SHIFT)) {
 		transform->position.z -= speed * hgeDeltaTime();
 	}
-	if(hgeInputGetKey(HGE_KEY_LEFT_CONTROL)) {
+	if (hgeInputGetKey(HGE_KEY_LEFT_CONTROL)) {
 		transform->position.z += speed * hgeDeltaTime();
 	}
 }
 
-
 void televoid_system_follower(hge_entity* entity, hge_transform* transform, follow_component* follow) {
-	if(televoidGameState() == GAME_CUTSCENE) return;
-	if(!follow->target_pos) return;
+	if (televoidGameState() == GAME_CUTSCENE) return;
+	if (!follow->target_pos) return;
 	hge_transform mouse_transform = mouseGUITransform();
-	if(!follow->lock_x) transform->position.x += (mouse_transform.position.x/25 + follow->target_pos->x - transform->position.x) * follow->speed * hgeDeltaTime();
-	if(!follow->lock_y) transform->position.y += (15 + mouse_transform.position.y/25 + follow->target_pos->y - transform->position.y) * follow->speed * hgeDeltaTime();
+	if (!follow->lock_x) transform->position.x += (mouse_transform.position.x / 25 + follow->target_pos->x - transform->position.x) * follow->speed * hgeDeltaTime();
+	if (!follow->lock_y) transform->position.y += (15 + mouse_transform.position.y / 25 + follow->target_pos->y - transform->position.y) * follow->speed * hgeDeltaTime();
 	//if(!follow->lock_z) transform->position.z += (follow->target_pos->z - transform->position.z) * follow->speed * hgeDeltaTime();
 	transform->position.z += (100 - transform->position.z) * follow->speed * hgeDeltaTime();
 }
 
 void gui_shader_math() {
-  float screen_width = hgeWindowWidth();
-  float screen_height = hgeWindowHeight();
-  hge_mat4 projection_matrix = hgeMat4OrthographicProjection(screen_width, screen_height, -500, 500);
-  for(int i = 0; i < hgeResourcesNumShaders(); i++) {
-    hge_resource_shader* shaders = hgeResourcesGetShaderArray();
-    hge_shader shader = shaders[i].shader;
-    hgeUseShader(shader);
-    hgeShaderSetMatrix4(shader, "pixel_perfect_projection", projection_matrix);
-  }
+	float screen_width = hgeWindowWidth();
+	float screen_height = hgeWindowHeight();
+	hge_mat4 projection_matrix = hgeMat4OrthographicProjection(screen_width, screen_height, -500, 500);
+	for (int i = 0; i < hgeResourcesNumShaders(); i++) {
+		hge_resource_shader* shaders = hgeResourcesGetShaderArray();
+		hge_shader shader = shaders[i].shader;
+		hgeUseShader(shader);
+		hgeShaderSetMatrix4(shader, "pixel_perfect_projection", projection_matrix);
+	}
 }
 
 void televoid_system_global_update(hge_entity* entity, tag_component* global_updater) {
@@ -119,19 +113,23 @@ void televoid_system_global_update(hge_entity* entity, tag_component* global_upd
 	televoidBoomboxUpdate();
 	televoidSaveUpdate();
 
-	if(televoidGameState() != GAME_CUTSCENE)
-	hgeShaderSetInt(hgeResourcesQueryShader("framebuffer"), "fast_foward", false);
+	if (televoidGameState() != GAME_CUTSCENE)
+		hgeShaderSetInt(hgeResourcesQueryShader("framebuffer"), "fast_foward", false);
 }
 
 void autoload_dialogue_portraits() {
+	
 	HGE_LOG("Autoloading dialogue portraits");
 	const char* dialogue_character_portraits_path = "res/textures/dialogue/";
-	DIR *dir;
-	struct dirent *ent;
-	if ((dir = opendir (dialogue_character_portraits_path)) != NULL) {
-		while ((ent = readdir (dir)) != NULL) {
+	DIR* dir;
+	struct dirent* ent;
+	if ((dir = opendir(dialogue_character_portraits_path)) != NULL) {
+
+		while ((ent = readdir(dir)) != NULL) {
+
 			char *dot = strrchr(ent->d_name, '.');
 			if (dot && !strcmp(dot, ".png")) {
+
 				ent->d_name[strlen(ent->d_name)-4] = '\0';
 				HGE_LOG("Character Portrait %s", ent->d_name);
 				const char* path = malloc(strlen(dialogue_character_portraits_path) + strlen(ent->d_name) + strlen(".png") + 1);
@@ -141,7 +139,7 @@ void autoload_dialogue_portraits() {
 				free(path);
 			}
 		}
-		closedir (dir);
+		closedir(dir);
 	} else {
 		return EXIT_FAILURE;
 	}
@@ -195,7 +193,7 @@ void autoload_bgm() {
 	}
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
 	hge_window window = { "T:OoTL", 1280, 720 };
 	hgeInit(60, window, HGE_INIT_ECS | HGE_INIT_RENDERING | HGE_INIT_AUDIO);
 	st_init();
@@ -211,7 +209,7 @@ int main(int argc, char **argv) {
 
 	// Shaders
 	hgeResourcesLoadShader("res/shaders/gui.vs", NULL, "res/shaders/gui.fs", "gui");
-  hgeResourcesLoadShader("res/shaders/text.vs", NULL, "res/shaders/text.fs", "text");
+	hgeResourcesLoadShader("res/shaders/text.vs", NULL, "res/shaders/text.fs", "text");
 	hgeResourcesLoadShader("res/shaders/gui text.vs", NULL, "res/shaders/text.fs", "gui text");
 
 	// Fonts
@@ -257,7 +255,7 @@ int main(int argc, char **argv) {
 	hgeAddSystem(PlayerCharacterControlSystem, 2, "playable", "character");
 	hgeAddSystem(CharacterSystem, 3, "character", "transform", "spritesheet");
 	//hgeAddSystem(system_background_rendering, 2, "background", "transform");
-	if(false) hgeAddSystem(system_freemove, 2, "freemove", "transform");
+	if (false) hgeAddSystem(system_freemove, 2, "freemove", "transform");
 	hgeAddSystem(system_mouse_picker, 2, "transform", "mouse picker");
 
 	hgeAddSystem(system_imv, 1, "imv");
@@ -284,22 +282,23 @@ int main(int argc, char **argv) {
 	//televoidCreatePlayerCamera(hgeVec3(0, 0, 100));
 
 	bool debug_mode = false;
-	switch(argc) {
-		case 1:
-			televoidLoadScene("res/scenes/splash.tmx");
-			break;
-		default:
-			for(int i = 1; i < argc; i++) {
-				if(strcmp(argv[i], "--debug") == 0) {
-					debug_mode = true;
-				} else {
-					televoidLoadScene(argv[i]);
-				}
+	switch (argc) {
+	case 1:
+		televoidLoadScene("res/scenes/splash.tmx");
+		break;
+	default:
+		for (int i = 1; i < argc; i++) {
+			if (strcmp(argv[i], "--debug") == 0) {
+				debug_mode = true;
 			}
+			else {
+				televoidLoadScene(argv[i]);
+			}
+		}
 	}
 
 	// debug systems
-	if(debug_mode) {
+	if (debug_mode) {
 		hgeAddSystem(system_trigger_renderer, 2, "transform", "trigger");
 		hgeAddSystem(system_hotspot_renderer, 2, "transform", "hotspot");
 		hgeAddSystem(system_floor_debug, 1, "floor");
@@ -311,13 +310,12 @@ int main(int argc, char **argv) {
 	televoidSceneUpdate(true);
 	//televoidIMVCreate("res/imv/test.imv");
 
-
 	hgeStart();
 	//televoidSceneDestroy();
-	imvCleanAll();
-	televoidItemsClean();
-	televoidMinigameClean();
-	st_clean();
+	//imvCleanAll();
+	//televoidItemsClean();
+	//televoidMinigameClean();
+	//st_clean();
 
 	return 0;
 }

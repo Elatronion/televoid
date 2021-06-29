@@ -1,10 +1,7 @@
 #include "Character.h"
 //#include "GameState.h"
 //#include "Scene.h"
-#include <HGE/HGE_FileUtility.h>
-#include <HGE/HGE_AudioSample.h>
-#include <HGE/HGE_AudioSource.h>
-#include <HGE/HGE_Random.h>
+#include <HGE/HGE.h>
 #include "Boombox.h"
 #include "MousePicker.h"
 #include "GameState.h"

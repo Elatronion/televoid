@@ -160,7 +160,9 @@ class SpaceRocks {
     _player_won = true
     _gamerunning = false
     System.print("YOU WIN!")
-    Inventory.add("spacerocks ticket")
+    if(Inventory.has("brutal moose")) {
+      Inventory.add("spacerocks ticket")
+    }
   }
 
   loose() {

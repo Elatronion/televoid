@@ -1,7 +1,8 @@
 #ifndef GAME_SAVER_H
 #define GAME_SAVER_H
 
-#include <HGE/HGE_Core.h>
+#include <HGE/HGE.h>
+
 /*
 save.csv
 items,"scene"
@@ -12,6 +13,5 @@ void televoidSave(const char* scene, hge_vec3 position);
 void televoidSaveOptions();
 void televoidLoad();
 void televoidLoadOptions();
-
 
 #endif

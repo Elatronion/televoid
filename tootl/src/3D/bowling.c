@@ -126,10 +126,12 @@ void system_bowling_manager(hge_entity* entity, component_bowling_game_manager* 
 				}
 
 				bowling_game_manager->current_shot++;
-				printf("Current Shot Is %d\n", bowling_game_manager->current_shot);
-				char devtalk_clip[20];
-				sprintf(&devtalk_clip, "devtalk bowling %d", bowling_game_manager->current_shot);
-				televoidBoomboxPlayDEVTALK(devtalk_clip);
+				//printf("Current Shot Is %d\n", bowling_game_manager->current_shot);
+				if(bowling_game_manager->current_shot <= 27) {
+					char devtalk_clip[20];
+					sprintf(&devtalk_clip, "devtalk bowling %d", bowling_game_manager->current_shot);
+					televoidBoomboxPlayDEVTALK(devtalk_clip);
+				}
 
 				bowling_game_manager->second_shot = !bowling_game_manager->second_shot;
 
@@ -293,10 +295,10 @@ void system_fps_controller(hge_entity* entity, hge_transform* transform, compone
 	if(hgeInputGetKeyDown(HGE_KEY_P)) {
 		printf("Position (%f, %f, %f)\n", transform->position.x, transform->position.y, transform->position.z);
 	}
-  if(hgeInputGetKeyDown(HGE_KEY_Q)) {
+  if(hgeInputGetKeyDown(HGE_KEY_ESCAPE)) {
     hgeWindowCaptureCursor(false);
   }
-	if(hgeInputGetKeyDown(HGE_KEY_C)) {
+	if(hgeInputGetMouseDown(HGE_MOUSE_LEFT)) {
 		hgeWindowCaptureCursor(true);
 	}
 }

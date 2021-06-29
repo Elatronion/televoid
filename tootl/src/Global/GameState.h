@@ -1,6 +1,8 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
-#include <HGE/HGE_Core.h>
+
+#include <HGE/HGE.h>
+
 #include <stdbool.h>
 
 /*
@@ -8,11 +10,11 @@
 */
 
 typedef enum {
-  GAME_PLAY,
-  GAME_PAUSE,
-  GAME_CUTSCENE,
-  GAME_DIALOGUE,
-  GAME_MINIGAME
+	GAME_PLAY,
+	GAME_PAUSE,
+	GAME_CUTSCENE,
+	GAME_DIALOGUE,
+	GAME_MINIGAME
 } game_state;
 
 game_state televoidGameState();

@@ -69,7 +69,9 @@ class Breakout {
 
   win() {
     _gameState = Breakout.STATE_WIN
-    Inventory.add("breakout ticket")
+    if(Inventory.has("brutal moose")) {
+      Inventory.add("breakout ticket")
+    }
   }
 
   loose() {

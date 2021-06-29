@@ -45,7 +45,7 @@
    <property name="depth" type="float" value="1"/>
   </properties>
  </imagelayer>
- <imagelayer id="23" name="glue" offsetx="-700" offsety="-401">
+ <imagelayer id="23" name="glue" visible="0" offsetx="-700" offsety="-401">
   <image source="glue.png" width="1294" height="588"/>
   <properties>
    <property name="depth" type="float" value="0"/>

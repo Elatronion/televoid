@@ -57,7 +57,9 @@ class Breakout {
 
   win() {
     System.print("YOU WIN!")
-    Inventory.add("wheely-fun ticket")
+    if(Inventory.has("brutal moose")) {
+      Inventory.add("wheely-fun ticket")
+    }
   }
 
   loose() {

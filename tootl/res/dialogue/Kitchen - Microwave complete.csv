@@ -3,7 +3,7 @@ RIGHT,NULL
 LEFT,IAN_HAPPY
 SNIPPET,Audio.playSFX("microwave start")
 MESSAGE,"And when you heat your meal...
-...It's like your own private little show."
+...It's like your own private little show.
 A show that's..."
 MESSAGE,"...just..."
 MESSAGE,"...for..."

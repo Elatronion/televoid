@@ -1,7 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include <HGE/HGE_Core.h>
+#include <HGE/HGE.h>
 #include "Hotspot.h"
 //#include "Inventory.h"
 

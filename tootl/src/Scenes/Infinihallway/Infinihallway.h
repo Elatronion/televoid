@@ -1,9 +1,10 @@
 #ifndef INFINIHALLWAY_H
 #define INFINIHALLWAY_H
-#include <HGE/HGE_Core.h>
+
+#include <HGE/HGE.h>
 
 typedef struct {
-  int dead_end;
+	int dead_end;
 } infinihallway_component;
 
 void infinihallway_create_door_hotspot(int index, const char* script);

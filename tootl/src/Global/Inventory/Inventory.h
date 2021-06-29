@@ -1,12 +1,12 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
-#include <HGE/HGE_Core.h>
+#include <HGE/HGE.h>
+
 #include "Items.h"
 
-
 typedef struct {
-  int item_id;
+	int item_id;
 } inventory_item;
 
 void televoid_inventory_update();

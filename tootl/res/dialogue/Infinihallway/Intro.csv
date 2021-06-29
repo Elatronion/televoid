@@ -12,12 +12,12 @@ MESSAGE,"Not like there's a calender here,
 or a clock."
 MESSAGE,"..."
 LEFT,IAN_HAPPY
-MESSAGE,"Wait, what? Is that you?" 
+MESSAGE,"Wait, what? Is that you?"
 MESSAGE,"You're back!?
 After all this time, you're finally back!
 I can't believe it!"
 LEFT,IAN_IDLE
-MESSAGE,"I thought for sure you'd 
+MESSAGE,"I thought for sure you'd
 forgotten about me..."
 LEFT,IAN_THINKING
 MESSAGE,"Or... am I just imagining things again?"

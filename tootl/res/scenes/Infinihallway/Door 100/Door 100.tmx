@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="26" nextobjectid="98">
- <imagelayer id="14" name="background" visible="0" offsetx="-642.667" offsety="-214.667">
-  <image source="background.png" width="1920" height="1080"/>
-  <properties>
-   <property name="depth" type="float" value="100"/>
-  </properties>
- </imagelayer>
- <imagelayer id="21" name="far background" visible="0" offsetx="-570" offsety="-186">
-  <image source="far background.png"/>
-  <properties>
-   <property name="depth" type="float" value="50"/>
-  </properties>
- </imagelayer>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="6" tileheight="6" infinite="0" nextlayerid="28" nextobjectid="98">
  <imagelayer id="20" name="background" offsetx="-570" offsety="-186">
   <image source="background.png" width="1920" height="1080"/>
   <properties>
    <property name="depth" type="float" value="25"/>
-  </properties>
- </imagelayer>
- <imagelayer id="24" name="duck" offsetx="-570" offsety="-186">
-  <image source="duck.png" width="1920" height="1080"/>
-  <properties>
-   <property name="depth" type="float" value="7"/>
   </properties>
  </imagelayer>
  <imagelayer id="19" name="ground" offsetx="-570" offsety="-186">
@@ -36,17 +18,11 @@
    <property name="depth" type="float" value="-3"/>
   </properties>
  </imagelayer>
- <imagelayer id="22" name="foreground" visible="0">
-  <image source="foreground.png"/>
-  <properties>
-   <property name="depth" type="float" value="-25"/>
-  </properties>
- </imagelayer>
  <objectgroup color="#ffff00" id="15" name="hotspot">
   <object id="76" name="OST" type="hotspot" x="0" y="0" width="6" height="6">
    <properties>
     <property name="auto_exec" type="bool" value="true"/>
-    <property name="snippet" value="Audio.playBGM(&quot;warmup by brutalmoose&quot;)"/>
+    <property name="snippet" value="Audio.playBGM(&quot;void music by Kit C&quot;)"/>
    </properties>
   </object>
   <object id="81" name="Exit" type="hotspot" x="245.053" y="289.951" width="14.8656" height="28.9943">
@@ -62,10 +38,6 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#ff0000" id="18" name="floor"/>
- <objectgroup color="#ff00ff" id="23" name="items"/>
- <objectgroup color="#0055ff" id="17" name="props"/>
- <objectgroup color="#00ff00" id="16" name="trigger"/>
  <objectgroup color="#ff00ff" id="13" name="spawn">
   <object id="34" name="DEFAULT" type="player_start" x="252" y="318.875">
    <properties>

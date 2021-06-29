@@ -1,9 +1,6 @@
 #ifndef TELEVOID_BOOMBOX_H
 #define TELEVOID_BOOMBOX_H
-#include <HGE/HGE_Core.h>
-#include <HGE/HGE_FileUtility.h>
-#include <HGE/HGE_AudioSample.h>
-#include <HGE/HGE_AudioSource.h>
+#include <HGE/HGE.h>
 
 /*
 TODO:

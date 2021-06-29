@@ -1,16 +1,15 @@
 #ifndef TELEVOID_ITEMS_H
 #define TELEVOID_ITEMS_H
-#include <HGE/HGE_ResourceManager.h>
-#include <HGE/HGE_Core.h>
 
+#include <HGE/HGE.h>
 
 typedef struct {
-  char name[255];
+	char name[255];
 } item;
 
 typedef struct {
-  char name[255];
-  bool take;
+	char name[255];
+	bool take;
 } item_component;
 
 void televoidItemsClean();

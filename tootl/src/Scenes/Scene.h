@@ -1,7 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
-#include <HGE/HGE_Core.h>
-#include <HGE/HGE_ResourceManager.h>
+
+#include <HGE/HGE.h>
 
 #include "Dialogue.h"
 #include "Hotspot.h"
@@ -31,6 +31,10 @@ void televoidSceneDestroy();
 void televoidLoadSceneForcePlayer(const char* scene_path, hge_vec3 position);
 void televoidLoadScene(const char* scene_path);
 void televoidSceneUpdate(bool skip);
+
+void televoidAddBackground(hge_vec3 position, hge_vec3 scale, bool lit, const char* path);
+void televoidAddDirLight(hge_vec3 direction, hge_vec3 ambient, hge_vec3 diffuse);
+void televoidAddPointLight(hge_vec3 position, hge_vec3 ambient, hge_vec3 diffuse);
 
 hge_transform* televoid_player_transform();
 spritesheet_component* televoid_player_spritesheet();

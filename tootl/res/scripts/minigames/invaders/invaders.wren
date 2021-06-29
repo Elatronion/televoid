@@ -126,7 +126,9 @@ class SpaceInvaders {
 
     win() {
         SpaceInvaders.setGameState(SpaceInvaders.STATE_WIN)
-        Inventory.add("invaders ticket")
+        if(Inventory.has("brutal moose")) {
+          Inventory.add("invaders ticket")
+        }
     }
 
     loose() {

@@ -1,32 +1,33 @@
 #ifndef DIALOGUE_H
 #define DIALOGUE_H
-#include <HGE/HGE_Core.h>
+
+#include <HGE/HGE.h>
 
 typedef enum {
-  DIALOGUE_MESSAGE,
-  DIALOGUE_SCRIPT,
-  DIALOGUE_SNIPPET,
-  DIALOGUE_LEFT_SPRITE,
-  DIALOGUE_RIGHT_SPRITE
+	DIALOGUE_MESSAGE,
+	DIALOGUE_SCRIPT,
+	DIALOGUE_SNIPPET,
+	DIALOGUE_LEFT_SPRITE,
+	DIALOGUE_RIGHT_SPRITE,
+	DIALOGUE_HEADER
 } dialogue_event_type;
 
-#define MAX_DATA_LENGTH 2048
 typedef struct {
-  dialogue_event_type type;
-  char data[MAX_DATA_LENGTH];
+	dialogue_event_type type;
+	const char* data;
 } dialogue_event;
 
 typedef struct dialogue_event_node_t {
-  dialogue_event event;
-  struct dialogue_event_node_t* next;
+	dialogue_event event;
+	struct dialogue_event_node_t* next;
 } dialogue_event_node;
 
 typedef struct {
-  dialogue_event_node* head;
-  dialogue_event_node* current;
-  hge_texture left_character_sprite;
-  hge_texture right_character_sprite;
-  bool active_is_right;
+	dialogue_event_node* head;
+	dialogue_event_node* current;
+	hge_texture left_character_sprite;
+	hge_texture right_character_sprite;
+	bool active_is_right;
 } dialogue_component;
 
 dialogue_event_node* dialogue_event_create(dialogue_event_type type, const char* data);

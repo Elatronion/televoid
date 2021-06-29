@@ -1,6 +1,6 @@
 #ifndef BOWLING_H
 #define BOWLING_H
-#include <HGE/HGE_Core.h>
+#include <HGE/HGE.h>
 
 typedef struct {
 	float yaw;
